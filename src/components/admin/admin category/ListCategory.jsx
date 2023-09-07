@@ -186,7 +186,7 @@ const CategoryList = () => {
 
             <div className="d-flex justify-content-end mt-4">
               <button type="submit" className="btn btn-outline-success me-2">
-                Create Category
+                Save Changes
               </button>
               <button
                 type="button"
