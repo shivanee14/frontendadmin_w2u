@@ -14,25 +14,32 @@ function AddAdvertisement() {
   const [imageURL, setImageURL] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [businessListing, setBusinessListing] = useState(null);
-
-
-  const [business_details, setBusiness_details] = useState([])
+  const [businessListingId, setBusinessListing] = useState(null);
+  const [business_details, setBusiness_details] = useState([]);
+  const active = false;
 
   const token = localStorage.getItem("accessToken");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (title && description && imageURL && startDate && endDate && businessListing) {
+    console.log("e", e);
+    console.log("title", title);
+    console.log("description", description);
+    console.log("imageURL", imageURL);
+    console.log("startDate", startDate);
+    console.log("endDate", endDate);
+    console.log("businessListingId", businessListingId);
+    if (title && description && imageURL && startDate && endDate && businessListingId) {
 
       const formData = new FormData();
 
       formData.append("title", title);
+      formData.append("active", active);
       formData.append("description", description);
-      formData.append("advertisment-image", imageURL);
+      formData.append("my-images", imageURL);
       formData.append("startDate", startDate);
       formData.append("endDate", endDate);
-      formData.append("businessListingId", businessListing);
+      formData.append("businessListing", businessListingId);
 
       try {
         const response = await axios.post(advertisement_URL, formData, {
@@ -41,7 +48,8 @@ function AddAdvertisement() {
             "Content-Type": "multipart/form-data",
           },
         });
-        if (response.status == 201) {
+        if (response.status) {
+          console.log(response);
           toast.success("Business listing created successfully!");
           e.target.reset();
           setTitle("")
@@ -64,10 +72,10 @@ function AddAdvertisement() {
   };
 
 
-  // business details get 
+  // GET Business Details
 
   useEffect(() => {
-    const fetchbusinesses = async () => {
+    const fetchBusinesses = async () => {
       try {
         const response = await axios.get(business_URL);
         setBusiness_details(response.data);
@@ -76,7 +84,7 @@ function AddAdvertisement() {
       }
     };
 
-    fetchbusinesses();
+    fetchBusinesses();
   }, []);
 
 

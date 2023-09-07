@@ -30,31 +30,34 @@ function ListAdvertisement() {
           <h3 className="d-flex justify-content-center mt-4 mb-4">
             Advertisement Listing
           </h3>
-          <table className="table table-striped table-hover" >
+          <table style={{overflowX: "visible"}} className="table table-striped table-hover" >
 
             <thead className="fs-5">
               <tr>
-                <th scope="col">Id</th>
+                {/* <th scope="col">Id</th> */}
                 <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">URL</th>
-                <th scope="col">startDate</th>
+                <th scope="col">Description</th>               
+                {/* <th scope="col">startDate</th>
                 <th scope="col">endDate</th>
-                <th scope="col">BusinessListing</th>
+                <th scope="col">BusinessListing</th> */}
                 <th scope="col">Active</th>
+                <th scope="col">Image</th>
               </tr>
             </thead>
             <tbody>
           {advertisment && 
            advertisment.map((data, index) => (
             <tr key={index}>
-               <td scope="row">{index + 1}</td>
+               {/* <td scope="row">{index + 1}</td> */}
                <td>{data.title}</td>
                <td>{data.description}</td>
-               {/* <td>{data.imageURL}</td> */}
-               <td>{data.startDate}</td>
+              
+               {/* <td>{data.startDate}</td>
                <td>{data.endDate}</td>
-               <td>{data.businessListing}</td>
+               <td>{data.businessListing}</td> */}
+               <td>{data.active? "Active" : "Inactive"}</td>
+               <td><img src={data.imageURL} alt='aa'/>
+                </td> 
             </tr>
             
            ))}

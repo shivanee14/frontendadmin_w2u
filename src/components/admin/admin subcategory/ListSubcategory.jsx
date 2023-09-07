@@ -83,47 +83,52 @@ const SubCategoryList = () => {
   const [modalContent, setModalContent] = useState("");
   const [modalSelectedCategory, setmodalSelectedCategory] = useState("");
 
+  const [subcategory, setSubcategory] = useState('');
+  const [subcategory_image, setSubcategoryImage] = useState('');
+  const [content, setContent] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+
   function handleEditorChange(event, editor) {
     const data = editor.getData();
-    setModalContent(data);
+    setContent(data);
   }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(modalsubcatId);
-  };
 
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
-
-  //   const formData = new FormData();
-
-  //   formData.append("name", subcategory);
-  //   formData.append("my-images2", subcategory_image);
-  //   formData.append("content", content);
-  //   formData.append("category", selectedCategory);
-
-  //   try {
-  //     const response = await axios.post(
-  //       `${category_URL}/${selectedCategory}/subcategories`,
-  //       formData,
-  //       {
-  //         headers: {
-  //           // Authorization: `Bearer ${token}`,
-  //           "Content-Type": "multipart/form-data",
-  //         },
-  //       }
-  //     );
-  //     if (response.data) {
-  //       toast.success("Subcategory created successfully!");
-  //       e.target.reset();
-  //       setSubcategory("");
-  //       // setSelectedCategory('');
-  //     }
-  //   } catch (error) {
-  //     console.error(error.response);
-  //   }
+  //   console.log(modalsubcatId);
   // };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+
+    formData.append("name", subcategory);
+    formData.append("image", subcategory_image);
+    formData.append("content", content);
+    // formData.append("category", selectedCategory);
+
+    try {
+      const response = await axios.post(
+        `${category_URL}/${selectedCategory}/subcategories`,
+        formData,
+        {
+          headers: {
+            // Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      if (response.data) {
+        toast.success("Subcategory created successfully!");
+        e.target.reset();
+        setSubcategory("");
+        // setSelectedCategory('');
+      }
+    } catch (error) {
+      console.error(error.response);
+    }
+  };
 
   return (
     <>
@@ -257,7 +262,7 @@ const SubCategoryList = () => {
                 className=" form-control"
                 aria-labelledby="passwordHelpInline"
                 required
-                onChange={(e) => setModalSubcategoryName(e.target.value)}
+                onChange={(e) => setSubcategory(e.target.value)}
               />
             </div>
             <div className="input-group mt-3">
@@ -273,7 +278,7 @@ const SubCategoryList = () => {
                 id="modalimage"
                 name="my-images"
                 accept="image/gif, image/jpeg, image/png"
-                onChange={(e) => setModalSubcategory_image(e.target.files[0])}
+                onChange={(e) => setSubcategoryImage(e.target.files[0])}
               />
             </div>
             <div className="input-group mt-3">
@@ -288,7 +293,7 @@ const SubCategoryList = () => {
                 id="category"
                 required
                 value={modalSelectedCategory}
-                onChange={(e) => setmodalSelectedCategory(e.target.value)}
+                onChange={(e) => setSelectedCategory(e.target.value)}
               >
                 <option hidden>Select a category...</option>
                 {categories.map((category) => (

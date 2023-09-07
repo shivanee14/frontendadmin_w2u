@@ -19,11 +19,13 @@ const BusinessListingForm = () => {
   const [latitude, setlatitude] = useState("");
   const [longitude, setlongitude] = useState(null);
   const [mobileNo, setmobileNo] = useState("");
+  const [contactNo, setContactNo] = useState("");
   const [email, setemail] = useState("");
   const [websiteUrl, setwebsiteUrl] = useState("");
   const [category, setcategory] = useState("");
   const [subcategory, setsubcategory] = useState("");
   const [business_image, setbusiness_image] = useState(null);
+  const [logoimage, setLogoimage] = useState("");
 
   useEffect(() => {
     async function fetchCategories() {
@@ -73,7 +75,8 @@ const BusinessListingForm = () => {
       formData.append("category", category);
       formData.append("subcategory", subcategory);
       formData.append("my-image", business_image);
-
+      formData.append("contact_no", contactNo);
+      formData.append("logoimage", logoimage);
       try {
         const response = await axios.post(business_listing_URL, formData, {
           headers: {
@@ -81,7 +84,7 @@ const BusinessListingForm = () => {
             "Content-Type": "multipart/form-data",
           },
         });
-         console.log(response)
+         console.log(response);
         // if (response.data) {
         //   toast.success("Business listing created successfully!");
         //   e.target.reset();
@@ -220,6 +223,25 @@ const BusinessListingForm = () => {
                       </div>
                       <div className="input-group mt-3">
                         <label
+                          htmlFor="phone"
+                          className="input-group-text col-auto fs-5 col-form-label"
+                        >
+                          Contact No.
+                        </label>
+                        <input
+                          type="tel"
+                          id="phone"
+                          name="contactNo"
+                          placeholder="12345 67891"
+                          // pattern="[0-9]{5}-[0-9]{5}"
+                          className=" form-control"
+                          aria-labelledby="passwordHelpInline"
+                          onChange={(e) => setContactNo(e.target.value)}
+                        />
+                      </div>
+                      
+                      <div className="input-group mt-3">
+                        <label
                           htmlFor="email"
                           className="input-group-text col-auto fs-5 col-form-label"
                         >
@@ -301,7 +323,7 @@ const BusinessListingForm = () => {
                           className="input-group-text  col-4 fs-5 col-form-label"
                           htmlFor="companyFirmLogo"
                         >
-                          Company Firm Logo
+                          Company Business Image
                         </label>
                         <input
                           type="file"
@@ -311,6 +333,23 @@ const BusinessListingForm = () => {
                           placeholder="Upload"
                           accept="image/gif, image/jpeg, image/png"
                           onChange={(e) => setbusiness_image(e.target.files[0])}
+                        />
+                      </div>
+                      <div className="form-gorup input-group mt-3 form-group">
+                        <label
+                          className="input-group-text  col-4 fs-5 col-form-label"
+                          htmlFor="companyFirmLogo"
+                        >
+                          Company Firm Logo
+                        </label>
+                        <input
+                          type="file"
+                          name="logoimage"
+                          className="input-group-text col-8 col-form-label form-control-file"
+                          id="companyFirmLogo"
+                          placeholder="Upload"
+                          accept="image/gif, image/jpeg, image/png"
+                          onChange={(e) => setLogoimage(e.target.files[0])}
                         />
                       </div>
                       <div className="d-flex justify-content-end mt-4">
