@@ -70,19 +70,19 @@ function ListBusinessListing() {
                     <td>{data.description}</td>
                     <td>
                   <div style={{ height: "50px" }}>
-                    <a href={`${data.logoimage}`} target="_blank">
+                    <a href={`${data.images}`} target="_blank">
                       <img
                         className="img-fluid h-100"
-                        src={`${data.logoimage}`}
+                        src={`${data.images}`}
                         alt=""
                       />
                     </a>
                   </div>
                 </td>
-                    <td>{data.description}</td>
+                    {/* <td>{data.description}</td>
                     <td>{data.websiteUrl}</td>
                     <td>{data.address.location.coordinates[0]}</td>
-                    <td>{data.address.location.coordinates[1]}</td>
+                    <td>{data.address.location.coordinates[1]}</td> */}
 
 
 

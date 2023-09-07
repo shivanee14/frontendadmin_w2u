@@ -20,6 +20,23 @@ function ListAdvertisement() {
   useEffect(() => {
     fetchAdvertisment();
   }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`${advertisment_URL}/${id}`);
+      fetchAdvertisment();
+    } catch (err) {
+      console.error(err.response || "Error deleting category");
+    }
+  };
+ const [adverttitle,setAdverttitle] = useState("")
+ const [advertdescription,setAdvertdescription] = useState("")
+ const [advertitle,setAdvertitle] = useState("")
+ const [advertimageURL,setAdvertimageURL] = useState("")
+ const [advertstartDate,setAdvertstartDate] = useState("")
+ const [advertendDate,setAdvertendDate] = useState("")
+ 
+
   return (
   
     <>
@@ -56,8 +73,49 @@ function ListAdvertisement() {
                <td>{data.endDate}</td>
                <td>{data.businessListing}</td> */}
                <td>{data.active? "Active" : "Inactive"}</td>
-               <td><img src={data.imageURL} alt='aa'/>
-                </td> 
+               <td>
+                      <div style={{ height: "50px" }}>
+
+                        <a href={`${data.imageURL}`} target="_blank">
+
+                          <img
+                            className="img-fluid h-100"
+                            src={`${data.imageURL}`}
+                            alt=""
+                          />
+
+                        </a>
+                      </div>
+                    </td>
+                    <td>
+                  <div className="d-flex gap-2">
+                    <button
+                      className="btn btn-light btn-round mb-0"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Delete"
+                      onClick={() => {
+                        const deletelist =
+                          window.confirm("Delete Advertisment list?");
+                        if (deletelist) {
+                          handleDelete(data._id);
+                        }
+                      }}
+                    >
+                      <i className="bi bi-trash" />
+                    </button>
+                    {/* <button
+                      className="btn btn-light btn-round mb-0"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Edit"
+                      onClick={() => handleEdit(data._id)}
+                    >
+                      <i className="bi bi-pencil-square" />
+                    </button> */}
+                  </div>
+                </td>
+              
             </tr>
             
            ))}
