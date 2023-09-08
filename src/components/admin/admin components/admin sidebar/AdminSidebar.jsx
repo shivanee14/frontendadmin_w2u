@@ -30,71 +30,71 @@ function AdminSidebar() {
       <div style={{ display: "flex", minHeight: "100vh" }}>
         <Sidebar width="100%">
           <Menu>
-            <MenuItem component={<Link to="/admin" />}> Dashboard </MenuItem>
-            <SubMenu label="Category">
-              <MenuItem component={<Link to="/admin/list_category" />}>
-                Table
+            <MenuItem style={{fontWeight: "bold"}}  component={<Link to="/admin" />}> Dashboard </MenuItem>
+            <SubMenu style={{fontWeight: "bold"}}  label="Category">
+              <MenuItem style={{fontWeight: "bold"}}  component={<Link to="/admin/list_category" />}>
+                List
               </MenuItem>
-              <MenuItem component={<Link to="/admin/add_category" />}>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_category" />}>
                 Add New +
               </MenuItem>
             </SubMenu>
-            <SubMenu label="Subcategory">
-              <MenuItem component={<Link to="/admin/list_subcategory" />}>
-                Table
+            <SubMenu style={{fontWeight: "bold"}} label="Subcategory">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_subcategory" />}>
+              List
               </MenuItem>
-              <MenuItem component={<Link to="/admin/add_subcategory" />}>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_subcategory" />}>
                 Add New +
               </MenuItem>
             </SubMenu>
-            <SubMenu label="news">
-              <MenuItem component={<Link to="/admin/list_news" />}>
-                Table
+            <SubMenu style={{fontWeight: "bold"}}  label="News">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_news" />}>
+              List
               </MenuItem>
-              <MenuItem component={<Link to="/admin/add_news" />}>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_news" />}>
                 Add New +
               </MenuItem>
             </SubMenu>
-            <SubMenu label="user">
-              <MenuItem component={<Link to="/admin/list_user" />}>
-                Table
+            <SubMenu style={{fontWeight: "bold"}}  label="User">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_user" />}>
+                List
               </MenuItem>
             </SubMenu>
-            <SubMenu label="Advertisement">
-              <MenuItem component={<Link to="/admin/list_advertisement" />}>
-                Table
+            <SubMenu style={{fontWeight: "bold"}}  label="Advertisement">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_advertisement" />}>
+                List
               </MenuItem>
-              <MenuItem component={<Link to="/admin/add_advertisement" />}>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_advertisement" />}>
                 Add New +
               </MenuItem>
             </SubMenu>
-            <SubMenu label="Business Listed">
-              <MenuItem component={<Link to="/admin/list_businesses" />}>
-                Table
+            <SubMenu style={{fontWeight: "bold"}}  label="Business Listed">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_businesses" />}>
+                List
               </MenuItem>
-              <MenuItem component={<Link to="/admin/add_businesses" />}>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_businesses" />}>
                 Add New +
               </MenuItem>
             </SubMenu>
-            <SubMenu label="Darshan Timing">
-              <MenuItem component={<Link to="/admin/list_darshan_timing" />}>
-                Table
+            <SubMenu style={{fontWeight: "bold"}}  label="Darshan Timing">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_darshan_timing" />}>
+                List
               </MenuItem>
-              <MenuItem component={<Link to="/admin/add_darshan_timing" />}>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_darshan_timing" />}>
                 Add New +
               </MenuItem>
             </SubMenu>
-            <SubMenu label="Home Video">
-              <MenuItem component={<Link to="/admin/list_home_video" />}>
-                Table
+            <SubMenu style={{fontWeight: "bold"}}  label="Home Video">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_home_video" />}>
+                List
               </MenuItem>
-              <MenuItem component={<Link to="/admin/add_home_video" />}>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_home_video" />}>
                 Add New +
               </MenuItem>
             </SubMenu>
-            <SubMenu label="Newsletter">
-              <MenuItem component={<Link to="/admin/list_newsletter" />}>
-                Table
+            <SubMenu style={{fontWeight: "bold"}}  label="Newsletter">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_newsletter" />}>
+                List
               </MenuItem>
             </SubMenu>
           </Menu>

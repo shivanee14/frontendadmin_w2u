@@ -74,9 +74,9 @@ const BusinessListingForm = () => {
       formData.append("websiteUrl", websiteUrl);
       formData.append("category", category);
       formData.append("subcategory", subcategory);
-      formData.append("my-image", business_image);
+      formData.append("images", business_image);
       formData.append("contact_no", contactNo);
-      formData.append("logoimage", logoimage);
+       formData.append("logoimage", logoimage);
       try {
         const response = await axios.post(business_listing_URL, formData, {
           headers: {

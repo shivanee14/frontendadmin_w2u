@@ -133,7 +133,7 @@ const SubCategoryList = () => {
   const [editModal, setEditModal] = useState(false);  
   const [editId, setEditId] = useState('');
   const [editTitle, setEditTitle] = useState('');
-  const [editTag, setEditTag] = useState('');
+  // const [editTag, setEditTag] = useState('');
   const [editContent, setEditContent] = useState('');
   const [editImages, setEditImages] = useState([]);
 
@@ -274,26 +274,26 @@ const SubCategoryList = () => {
 
       <Modal className="modal-close d-inline-block" dialogClassName="modal-semi-full" centered scrollable show={editModal} onHide={() => setEditModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title as="h4">Edit Blog</Modal.Title>
+          <Modal.Title as="h4">Edit Subcategory</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           
             <Form>
               <div className="mb-3">
-                <Form.Label>Blog Title</Form.Label>
+                <Form.Label>Category Name</Form.Label>
                 <Form.Control type="text" value={editTitle} onChange={(e) => setEditTitle(e.target.value)} />
               </div>
               <div className="mb-3">
-                <Form.Label>Blog Content</Form.Label>
+                <Form.Label>Category Content</Form.Label>
                 <Form.Control type="text" value={editContent} onChange={(e) => setEditContent(e.target.value)} />
                
               </div>
-              <div className="mb-3">
+              {/* <div className="mb-3">
                 <Form.Label>Blog Tag</Form.Label>
                 <Form.Control type="text" value={editTag} onChange={(e) => setEditTag(e.target.value)} />
-              </div>
+              </div> */}
               <div className="mb-3">
-                <Form.Label>Images</Form.Label>
+                <Form.Label>Category Images</Form.Label>
                 <Form.Control type="file" accept="image/*" multiple onChange={(e) => setEditImages(e.target.files[0])} />
               </div>
             </Form>

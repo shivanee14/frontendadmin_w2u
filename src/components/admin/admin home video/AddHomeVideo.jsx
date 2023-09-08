@@ -1,8 +1,30 @@
 import React from 'react'
+import { Card, Form , Col, Row, Button} from 'react-bootstrap'
 
 function AddHomeVideo() {
-  return (
-    <>
+  return (<>
+
+  <Card>
+    <div className='container-fluid'>
+    <h3 className='my-4 text-center'>Add Home Video</h3>
+    <Card.Body>
+      <Row >
+      <Col className='col-lg-2' />
+      <Col className='justify-content-center  col-lg-8'>
+      <Form>
+        <Form.Label className='fs-5'>
+          Home Page Video
+        </Form.Label>
+        <Form.Control type="file" id="video" name="video" accept="video/*" />
+      </Form>
+      <Button className='justify-content-end  d-flex my-2 '> Save </Button>
+      </Col>
+      <Col className='col-lg-2' />
+      </Row>
+    </Card.Body>
+    </div>
+  </Card>
+
       <main>
         <section>
           <div className="container-fluid">
@@ -40,8 +62,7 @@ function AddHomeVideo() {
         </section>
       </main>
 
-    </>
-  )
+  </>)
 }
 
 export default AddHomeVideo
