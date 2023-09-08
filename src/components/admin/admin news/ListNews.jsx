@@ -45,6 +45,8 @@ function ListNews() {
   const [newsContent, setnewsContent] = useState("");
   const [newsEditor, setnewsEditor] = useState("");
   const [newsImage, setnewsImage] = useState(null);
+  const [newsHeadline, setNewsHeadline] = useState(null);
+  const [newsSubHeading, setNewsSubHeading] = useState(null);
 
   const handleEdit = async (id) => {
     setShow(true);
@@ -55,12 +57,16 @@ function ListNews() {
 
     if (newsid && newsName && slugName && categoryName && newsContent && newsImage && newsEditor ) {
       const formData = new FormData();
-      formData.append("name", newsName);
+      formData.append("title", newsName);
       formData.append("slug", slugName);
-      formData.append("category", categoryName);
+      formData.append("newsCategory", categoryName);
       formData.append("content", newsContent);
       formData.append("my-images", newsImage);
-      formData.append("editor", newsEditor);
+      formData.append("newsEditor", newsEditor);
+      formData.append("headline_news", newsHeadline);
+      formData.append("subhading_discription", newsSubHeading);
+      // formData.append("editor", newsEditor);
+      // formData.append("editor", newsEditor);
       try {
         const response = await axios.put(`${news_URL}/${newsid}`, formData, {
           headers: {
@@ -194,6 +200,32 @@ function ListNews() {
                 onChange={(e) => setnewsName(e.target.value)}
               />
             </div>
+            <div className="mb-3">
+              <label htmlFor="newsName" className="form-label">
+              News Headline
+              </label>
+              <input
+                className="form-control"
+                id="newsName"
+                type="text"
+                placeholder="News Headline"
+                value={newsEditor}
+                onChange={(e) => setNewsHeadline(e.target.value)}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="newsName" className="form-label">
+              News SubHeading
+              </label>
+              <input
+                className="form-control"
+                id="newsName"
+                type="text"
+                placeholder="News SubHeading"
+                value={newsEditor}
+                onChange={(e) => setNewsSubHeading(e.target.value)}
+              />
+            </div>
 
             <div className="mb-3">
               <label htmlFor="slugName" className="form-label">   
@@ -269,8 +301,8 @@ function ListNews() {
                 value={newsEditor}
                 onChange={(e) => setnewsEditor(e.target.value)}
               />
-            </div>
-
+            </div>     
+           
             <div className="d-flex justify-content-end mt-4">
               <button type="submit" className="btn btn-outline-success me-2">
                 Create News

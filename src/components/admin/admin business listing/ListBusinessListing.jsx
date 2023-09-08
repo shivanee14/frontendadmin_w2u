@@ -106,7 +106,7 @@ function ListBusinessListing() {
     formData.append("websiteUrl", websiteUrl);
     formData.append("category", category);
     formData.append("subcategory", subcategory);
-    formData.append("my-image", business_image);
+    formData.append("images", business_image);
     formData.append("contact_no", contactNo);
     formData.append("logoimage", logoimage);
     try {
@@ -117,7 +117,7 @@ function ListBusinessListing() {
         },
       });
       if (response.data) {
-        console.log(response);
+        console.log(response.data);
         toast.success("Updated Successfully");
       }
       fetchbusinesses();

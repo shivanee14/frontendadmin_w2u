@@ -176,7 +176,7 @@ const SubCategoryList = () => {
           <option hidden>Select Category...</option>
             {categories && categories.map((category) => (
               <option key={category._id} value={category._id}>
-                {category.name} {category._id}
+                {category.name}
               </option>))}
           </select>
         </div>

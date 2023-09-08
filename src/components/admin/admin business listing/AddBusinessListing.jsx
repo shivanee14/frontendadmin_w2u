@@ -59,8 +59,7 @@ const BusinessListingForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
-    //if (title && description && address && latitude && longitude && mobileNo && email && websiteUrl && category && subcategory && business_image) {
+    if (title && description && address && latitude && longitude && mobileNo && email && websiteUrl && category && subcategory && business_image) {
 
       const formData = new FormData();
 
@@ -83,22 +82,19 @@ const BusinessListingForm = () => {
             // Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
-        });
-         console.log(response);
-        // if (response.data) {
-        //   toast.success("Business listing created successfully!");
-        //   e.target.reset();
-        //   setTitle("")
-        //   setbusiness_image(null)
-
-        // }
+        });         
+        if (response.data) {
+          toast.success("Business listing created successfully!");
+          e.target.reset();
+          console.log(response);
+        }
       } catch (error) {
         console.error("Error creating business listing:", error);
       }
-    // }
-    // else {
-    //   toast.error("All business fields are mandatory")
-    // }
+    }
+    else {
+      toast.error("All business fields are mandatory")
+    }
   };
   return (
     <>

@@ -62,13 +62,13 @@ const CategoryList = () => {
             // Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
-        });
-        // console.log(response)
+        });         
         if (response.data) {
           toast.success("category added successfully");
           e.target.reset();
-          setcatName("");
-          setcatImage(null);
+          console.log(response)
+         // setcatName("");
+         // setcatImage(null);
         }
       } catch (error) {
         console.error(error.response || "Something went wrong");
