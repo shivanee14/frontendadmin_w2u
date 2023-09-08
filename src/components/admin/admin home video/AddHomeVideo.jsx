@@ -11,9 +11,12 @@ function AddHomeVideo() {
       thumbnailUrl: req.body.thumbnailUrl,
       uploader: req.user.id, */}
 
-      const [homeVideo, setHomeVideo] = useState('');
-      
+    const [video, setVideo] = useState(null);
+    const [homeVideo, setHomeVideo] = useState('');
 
+    function handleHomeVideo(){
+      console.log("Video Selected", video);
+    }
 
   return (<>
   {/* <Card>
@@ -54,14 +57,14 @@ function AddHomeVideo() {
                       </label>
                       <input
                         type="file" id="video" name="video" accept="video/*"
-
-
                         className="col-9 form-control"
                         aria-labelledby="passwordHelpInline"
+                        onChange={(e) => setVideo(e.target.files[0])}
                       />
                     </div>
                     <div className="d-flex justify-content-end mt-4">
                       <button type="submit" className="btn btn-success"
+                      onClick={() => handleHomeVideo()}
                       >
                         Submit
                       </button>

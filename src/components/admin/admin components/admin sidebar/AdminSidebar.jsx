@@ -97,6 +97,14 @@ function AdminSidebar() {
                 List
               </MenuItem>
             </SubMenu>
+            <SubMenu style={{fontWeight: "bold"}}  label="Social Media">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_social_media" />}>
+                List
+              </MenuItem>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_social_media" />}>
+                Add New +
+              </MenuItem>
+            </SubMenu>
           </Menu>
         </Sidebar>
       </div>

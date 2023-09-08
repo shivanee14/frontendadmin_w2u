@@ -39,23 +39,17 @@ import AddDarshanTiming from "../components/admin/admin darshan timing/AddDarsha
 import HomeVideo from "../components/admin/admin home video/HomeVideo";
 import AddHomeVideo from "../components/admin/admin home video/AddHomeVideo";
 import ListNewsletterUser from "../components/admin/admin newsletters user/ListNewsletterUser";
+import AddSocialMedia from "../components/admin/Social Media/AddSocialMedia";
+import ListSocialMeida from "../components/admin/Social Media/ListSocialMeida";
 
 function PageRoutes() {
 
-
-    
   return (
     <>
       <Router>
         <Routes>
-          <Route
-            exact
-            path="/:category_name/:category_id"
-            element={<CategoryPage />}
-          />
-          ;
-          <Route
-            exact
+          <Route exact path="/:category_name/:category_id" element={<CategoryPage />} />;
+          <Route exact
             // path="/:category/:subcategoryname"
             path="/:category_name/:category_id/:subcategory_Name/:subcategory_id"
             element={<SubCategoryPage />}
@@ -141,6 +135,9 @@ function PageRoutes() {
 
             {/* newsletter */}
             <Route exact path="list_newsletter" element={<ListNewsletterUser />} />
+             {/* Social Media */}
+             <Route exact path="list_social_media" element={<ListSocialMeida />} />
+            <Route exact path="add_social_media" element={<AddSocialMedia />} />
 
 
 
