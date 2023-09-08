@@ -1,10 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
+import toast from "react-hot-toast";
 import { Card, Form , Col, Row, Button} from 'react-bootstrap'
 
 function AddHomeVideo() {
-  return (<>
+  const HOME_VIDEO = process.env.REACT_APP_INDEX_VIDEO_URL;
+  {/* title: req.body.title,
+      description: req.body.description,
+      url: req.file ? req.file.path : null,
+      thumbnailUrl: req.body.thumbnailUrl,
+      uploader: req.user.id, */}
 
-  <Card>
+    const [video, setVideo] = useState(null);
+    const [homeVideo, setHomeVideo] = useState('');
+
+    function handleHomeVideo(){
+      console.log("Video Selected", video);
+    }
+
+  return (<>
+  {/* <Card>
     <div className='container-fluid'>
     <h3 className='my-4 text-center'>Add Home Video</h3>
     <Card.Body>
@@ -23,7 +38,7 @@ function AddHomeVideo() {
       </Row>
     </Card.Body>
     </div>
-  </Card>
+  </Card> */}
 
       <main>
         <section>
@@ -33,23 +48,23 @@ function AddHomeVideo() {
                 <div className="card border">
                   <h3 className="mt-3 text-center">Add Home Video</h3>
                   <div className="card-body">
-                    <div className=" input-group mt-3 ">
+                    <div className="mt-3">
                       <label
                         htmlFor="video"
-                        className=" input-group-text col-3  fs-5 col-form-label"
+                        className="col-3  fs-5 col-form-label"
                       >
                         Home Video
                       </label>
                       <input
                         type="file" id="video" name="video" accept="video/*"
-
-
                         className="col-9 form-control"
                         aria-labelledby="passwordHelpInline"
+                        onChange={(e) => setVideo(e.target.files[0])}
                       />
                     </div>
                     <div className="d-flex justify-content-end mt-4">
                       <button type="submit" className="btn btn-success"
+                      onClick={() => handleHomeVideo()}
                       >
                         Submit
                       </button>
@@ -65,4 +80,4 @@ function AddHomeVideo() {
   </>)
 }
 
-export default AddHomeVideo
+export default AddHomeVideo;
