@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { NavLink, useHistory } from 'react-router-dom';
 import axios from "axios";
-import Modal from "react-bootstrap/Modal";
+import { Modal, Col, Row, Card } from "react-bootstrap";
 import toast from "react-hot-toast";
+
 function ListDarshanTiming() {
   const darshan_URL = process.env.REACT_APP_DARSHAN_TIME_URL ;
   const [darshan,setDarshan] = useState([])
@@ -17,17 +19,38 @@ function ListDarshanTiming() {
 
   useEffect((()=>{
     fetchDarshan()
-  }),[])
-  return (
-    <>
+  }),[]);
 
-      <div className='container-fluid'>
-        <div className='row'>
-          <h3 className="d-flex justify-content-center mt-4 mb-4">
-            Darshan Time
-          </h3>
-          <table className="table table-striped table-hover" >
-            <thead className="fs-5">
+  return (<>
+    <div className='container-fluid'>
+      <div className='row'>
+        <h3 className="d-flex justify-content-center mt-4 mb-4"> Darshan Time </h3>
+        {darshan && darshan.map((data, index) => (
+        <Card>
+          <Card.Body>
+            <h3>{data.temple_name}</h3>         
+            <hr/>   
+            <ul>
+              <Row className="justify">
+                <Col className="col-md-6">                
+              <h6>Summer Sessions</h6>
+              {data.session.summer.map((sess) =>
+                <p className="text-right">{sess.name} : {sess.time} </p>
+              )}
+              </Col>
+              <Col className="col-md-6">
+            <h6>Winter Sessions</h6>
+              {data.session.winter.map((sess) => 
+               <p className="text-right">{sess.name} : {sess.time} </p>
+              )}
+              </Col>
+              </Row>
+            </ul>
+
+          </Card.Body>
+        </Card>))}
+        {/* <table className="table table-striped table-hover" >
+          <thead className="fs-5">
               <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Temple</th>
@@ -51,14 +74,13 @@ function ListDarshanTiming() {
              
 
             </tbody>
-          </table>
+          </table> */}
 
 
 
         </div>
-      </div>
-    </>
-  )
+    </div>
+  </>)
 }
 
-export default ListDarshanTiming
+export default ListDarshanTiming;
