@@ -66,7 +66,9 @@ const CategoryList = () => {
         if (response.data) {
           toast.success("category added successfully");
           e.target.reset();
-          console.log(response)
+          fetchCategories();
+          setShow(false);
+         // console.log(response)
          // setcatName("");
          // setcatImage(null);
         }
@@ -78,7 +80,7 @@ const CategoryList = () => {
     }
   };
 
-  const handleClose = () => setShow(false);
+  // const handleClose = () => setShow(false);
 
   return (
     <>
@@ -142,7 +144,7 @@ const CategoryList = () => {
         </tbody>
       </table>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
@@ -190,7 +192,7 @@ const CategoryList = () => {
               </button>
               <button
                 type="button"
-                onClick={handleClose}
+                onClick={() => setShow(false)}
                 className="btn btn-outline-success"
               >
                 close
