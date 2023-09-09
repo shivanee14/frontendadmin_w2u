@@ -1,59 +1,63 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
 import Modal from "react-bootstrap/Modal";
-function ListSocialMeida() {
-  const SOCIAL_MEDIA_API = process.env.REACT_APP_SOCIAL_MEDIA_URL;
+import toast from "react-hot-toast";
 
-  const [socials, setSocials] = useState([]);
+const ListEvent = () => {
+  const event_URL = process.env.REACT_APP_EVENT_URL ;
+  const domain_URL = process.env.REACT_APP_DOMAIN_URL;
+
+  const [events, setEvents] = useState([]);
   const [show, setShow] = useState(false);
 
-const fetchSocial = async () => {
+  const fetchEvent = async () => {
     try {
-      const response = await axios.get(SOCIAL_MEDIA_API);
+      const response = await axios.get(event_URL);
+      setEvents(response.data);
       // console.log(response);
-      setSocials(response.data);
-  //     if(response) { console.log(response);
-  // }
-      // console.log(response);
-     //  setSocials(response.data);
     } catch (err) {
       console.log(err.response.data.message || "Error fetching categories");
     }
   };
 
   useEffect(() => {
-    fetchSocial();
+    fetchEvent();
   }, []);
 
-  
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${SOCIAL_MEDIA_API}/${id}`);
-      fetchSocial();
+      await axios.delete(`${event_URL}/${id}`);
+      fetchEvent();
     } catch (err) {
-      console.error(err.response || "Error deleting social_media_list");
+      console.error(err.response || "Error deleting event");
     }
   };
 
-  const [socialid, setsocialid] = useState("");
-  const [title, setTitle] = useState("");
-  const [socialImage, setsocialImage] = useState(null);
+  // try {
+  //   await axios.put(`${category_URL}/${id}`, { name: newName });
+  //   fetchCategories();
+  // } catch (err) {
+  //   console.error(err.response || "Error updating category");
+  // }
+
+  const [eventid, seteventid] = useState("");
+  const [eventName, seteventName] = useState("");
+  const [evenImage, seteventImage] = useState(null);
 
   const handleEdit = async (id) => {
     setShow(true);
-    setsocialid(id);
+    seteventid(id);
   };
   const confirmUpdate = async (e) => {
     e.preventDefault();
 
-    if (socialid && title && socialImage) {
+    if (eventid && eventName && evenImage) {
       const formData = new FormData();
-      formData.append("title", title);
-      formData.append("Image", socialImage);
-     
+      formData.append("name", eventName);
+      formData.append("my-images", evenImage);
+
       try {
-        const response = await axios.put(`${SOCIAL_MEDIA_API}/${socialid}`, formData, {
+        const response = await axios.put(`${event_URL}/${eventid}`, formData, {
           headers: {
             // Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
@@ -76,25 +80,31 @@ const fetchSocial = async () => {
 
   const handleClose = () => setShow(false);
 
-
   return (
-   <>
-    <h3> List SocialMeida</h3>
+    <>
+      <h3>Event Hendling</h3>
       <table className="table table-striped table-hover">
         <thead>
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Title</th>
-            <th scope="col">logo</th>
+            <th scope="col">Event Name</th>
+            <th scope="col">Location</th>
+            <th scope="col">Address</th>
+            <th scope="col">Time</th>
+            <th scope="col">Date</th>
+            <th scope="col">Details</th>
+            <th scope="col">Ticket_price</th>
+            <th scope="col">Website_url</th>
             <th scope="col">Action</th>
+            
           </tr>
         </thead>
         <tbody>
-          {socials &&
-            socials.map((data, index) => (
+          {events &&
+            events.map((data, index) => (
               <tr key={index}>
                 <td scope="row">{index + 1}</td>
-                <td>{data.title}</td>
+                <td>{data.name}</td>
                 <td>
                   <div style={{ height: "50px" }}>
                     <a href={`${data.Image}`} target="_blank">
@@ -106,7 +116,7 @@ const fetchSocial = async () => {
                     </a>
                   </div>
                 </td>
-               <td>
+                <td>
                   <div className="d-flex gap-2">
                     <button
                       className="btn btn-light btn-round mb-0"
@@ -114,15 +124,15 @@ const fetchSocial = async () => {
                       data-bs-placement="top"
                       title="Delete"
                       onClick={() => {
-                        const deletesocial =
-                          window.confirm("Delete social_media List?");
-                        if (deletesocial) {
+                        const deletecategory =
+                          window.confirm("Delete category?");
+                        if (deletecategory) {
                           handleDelete(data._id);
                         }
                       }}
                     >
                       <i className="bi bi-trash" />
-                    </button> 
+                    </button>
                     <button
                       className="btn btn-light btn-round mb-0"
                       data-bs-toggle="tooltip"
@@ -133,12 +143,12 @@ const fetchSocial = async () => {
                       <i className="bi bi-pencil-square" />
                     </button>
                   </div>
-                </td> 
+                </td>
               </tr>
             ))}
         </tbody>
       </table>
-      
+
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
@@ -147,15 +157,15 @@ const fetchSocial = async () => {
           <form onSubmit={confirmUpdate}>
             <div className="mb-3">
               <label htmlFor="categoryName" className="form-label">
-              Title
+                Category Name
               </label>
               <input
                 className="form-control"
                 id="categoryName"
                 type="text"
-                placeholder="title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Category Name"
+                value={eventName}
+                onChange={(e) => seteventName(e.target.value)}
               />
             </div>
 
@@ -166,7 +176,7 @@ const fetchSocial = async () => {
 
 
 
-                 className="w-100"
+                className="w-100"
                 htmlFor="my-images"
                 style={{ cursor: "pointer" }}
               >
@@ -176,7 +186,7 @@ const fetchSocial = async () => {
                   name="my-images"
                   id="image"
                   accept="image/gif, image/jpeg, image/png"
-                  onChange={(e) => setsocialImage(e.target.files[0])}
+                  onChange={(e) => seteventImage(e.target.files[0])}
                 />
               </label>
             </div>
@@ -196,8 +206,8 @@ const fetchSocial = async () => {
           </form>
         </Modal.Body>
       </Modal>
-   </>
-  )
-}
+    </>
+  );
+};
 
-export default ListSocialMeida;
+export default ListEvent;

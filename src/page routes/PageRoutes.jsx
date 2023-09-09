@@ -41,6 +41,7 @@ import AddHomeVideo from "../components/admin/admin home video/AddHomeVideo";
 import ListNewsletterUser from "../components/admin/admin newsletters user/ListNewsletterUser";
 import AddSocialMedia from "../components/admin/Social Media/AddSocialMedia";
 import ListSocialMeida from "../components/admin/Social Media/ListSocialMeida";
+import ListEvent from "../components/admin/admin Event/ListEvent";
 
 function PageRoutes() {
 
@@ -138,6 +139,10 @@ function PageRoutes() {
              {/* Social Media */}
              <Route exact path="list_social_media" element={<ListSocialMeida />} />
             <Route exact path="add_social_media" element={<AddSocialMedia />} />
+             
+              {/* Event */}
+              <Route exact path="list_event" element={<ListEvent />} />
+            <Route exact path="add_event" element={<AddSocialMedia />} />
 
 
 

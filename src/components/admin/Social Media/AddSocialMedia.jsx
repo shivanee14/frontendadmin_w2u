@@ -10,7 +10,7 @@ function AddSocialMedia() {
   const handleSocialMedia = async (e) => {
    // e.preventDefault();
     console.log("title", title);
-    console.log("image", image);
+    console.log("my-images", image);
 
     const formData = new FormData();
     formData.append('title', title);
