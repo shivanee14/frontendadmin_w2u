@@ -42,6 +42,7 @@ import ListNewsletterUser from "../components/admin/admin newsletters user/ListN
 import AddSocialMedia from "../components/admin/Social Media/AddSocialMedia";
 import ListSocialMedia from "../components/admin/Social Media/ListSocialMedia";
 import ListEvent from "../components/admin/admin Event/ListEvent";
+import AddEvent from '../components/admin/admin Event/AddEvent';
 import AddGuide from '../components/admin/Guide/AddGuide';
 import ListGuide from "../components/admin/Guide/ListGuide";
 
@@ -137,7 +138,7 @@ function PageRoutes() {
              
             {/* Event */}
             <Route exact path="list_event" element={<ListEvent />} />
-            <Route exact path="add_event" element={<AddSocialMedia />} />
+            <Route exact path="add_event" element={<AddEvent />} />
 
             {/* Guide */}
             <Route exact path="list_guide" element={<ListGuide />} />
