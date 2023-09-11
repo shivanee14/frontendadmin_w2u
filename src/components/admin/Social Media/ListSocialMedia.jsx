@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import toast from "react-hot-toast";
 import Modal from "react-bootstrap/Modal";
+
 function ListSocialMedia() {
   const SOCIAL_MEDIA_API = process.env.REACT_APP_SOCIAL_MEDIA_URL;
 
@@ -11,12 +12,7 @@ function ListSocialMedia() {
 const fetchSocial = async () => {
     try {
       const response = await axios.get(SOCIAL_MEDIA_API);
-      // console.log(response);
       setSocials(response.data);
-  //     if(response) { console.log(response);
-  // }
-      // console.log(response);
-     //  setSocials(response.data);
     } catch (err) {
       console.log(err.response.data.message || "Error fetching categories");
     }
@@ -40,10 +36,17 @@ const fetchSocial = async () => {
   const [title, setTitle] = useState("");
   const [socialImage, setsocialImage] = useState(null);
 
-  const handleEdit = async (id) => {
+  const handleEdit = async (id, title, image) => {
     setShow(true);
     setsocialid(id);
+    setTitle(title);
+    setsocialImage(image);
+
   };
+
+  // console.log("title", title);
+  // console.log("my-images", socialImage);
+ 
   const confirmUpdate = async (e) => {
     e.preventDefault();
 
@@ -51,9 +54,7 @@ const fetchSocial = async () => {
       const formData = new FormData();
       formData.append("title", title);
       formData.append("my-images", socialImage);
-      console.log("title", title);
-      console.log("socialImage", socialImage);
-     
+  
       try {
         const response = await axios.put(`${SOCIAL_MEDIA_API}/${socialid}`, formData, {
           headers: {
@@ -62,13 +63,11 @@ const fetchSocial = async () => {
           },
         });         
         if (response.data) {
-          toast.success("category added successfully");
+          toast.success("Social Media Post updated Successfully");
           e.target.reset();
-          console.log(response);
+         // console.log(response);
           fetchSocial();
           setShow(false);
-         //setcatName("");
-         // setcatImage(null);
         }
       } catch (error) {
         console.error(error.response || "Something went wrong");
@@ -101,7 +100,7 @@ const fetchSocial = async () => {
                     <a href={`${data.Image}`} target="_blank">
                       <img
                         className="img-fluid h-100"
-                        src={`${data.Image}`}
+                        src={data.Image}
                         alt=""
                       />
                     </a>
@@ -116,7 +115,7 @@ const fetchSocial = async () => {
                       title="Delete"
                       onClick={() => {
                         const deletesocial =
-                          window.confirm("Delete social_media List?");
+                          window.confirm("Delete Social Media Post?");
                         if (deletesocial) {
                           handleDelete(data._id);
                         }
@@ -129,7 +128,7 @@ const fetchSocial = async () => {
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
                       title="Edit"
-                      onClick={() => handleEdit(data._id)}
+                      onClick={() => handleEdit(data._id, data.title, data.Image )}
                     >
                       <i className="bi bi-pencil-square" />
                     </button>

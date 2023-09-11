@@ -24,18 +24,17 @@ function AddSocialMedia() {
           "Content-Type": "multipart/form-data",
         },
       });
-    if(response){
-      toast.success("category added successfully");
+      if(response){
+      toast.success("Social Media post added Successfully");
       setTitle("");
       setImage(null)
       console.log(response);
 
+      }
     }
-}
-catch (error){
-    console.log(error);
-
-}
+    catch (error){
+      console.log(error);
+    }
   }
 
   return (<>    
