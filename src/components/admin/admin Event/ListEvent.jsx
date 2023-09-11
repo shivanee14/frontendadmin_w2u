@@ -87,6 +87,7 @@ const ListEvent = () => {
         <thead>
           <tr>
             <th scope="col">Id</th>
+            <th scope="col">Event Image</th>
             <th scope="col">Event Name</th>
             <th scope="col">Location</th>
             <th scope="col">Address</th>
@@ -104,7 +105,6 @@ const ListEvent = () => {
             events.map((data, index) => (
               <tr key={index}>
                 <td scope="row">{index + 1}</td>
-                <td>{data.name}</td>
                 <td>
                   <div style={{ height: "50px" }}>
                     <a href={`${data.Image}`} target="_blank">
@@ -112,10 +112,19 @@ const ListEvent = () => {
                         className="img-fluid h-100"
                         src={`${data.Image}`}
                         alt=""
-                      />
+                        />
                     </a>
                   </div>
                 </td>
+               <td>{data.name}</td>
+                <td>{data.location}</td>
+                <td>{data.address}</td>
+                <td>{data.details}</td>
+                <td>{data.date}</td>
+                <td>{data.time}</td>
+                <td>{data.ticket_price}</td>
+                <td>{data.website_url}</td>
+
                 <td>
                   <div className="d-flex gap-2">
                     <button
