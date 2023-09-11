@@ -87,10 +87,20 @@ function ListBusinessListing() {
     const [editModal, setEditModal] = useState(false);  
     const [editId, setEditId] = useState('');
 
-  function handleEdit(id){
+  function handleEdit(id,title,des,add,mno,contact,email,web,){
     console.log(id);
     setEditModal(true);
     setEditId(id);
+    setTitle(title);
+    setDescription(des);
+    setAddress(add);
+    setMobileNo(mno);
+    setContactNo(contact);
+    setEmail(email);
+    setWebsiteUrl(web);
+   
+
+
     console.log("Business ID", id);
   }
 
@@ -166,7 +176,7 @@ function ListBusinessListing() {
                     <td>{data.mobileNo}</td>
                     <td>{data.email}</td>
                     <td>{data.description}</td>
-                    <td>{data.description}</td>
+                
                     <td>
                   <div style={{ height: "50px" }}>
                     <a href={`${data.images}`} target="_blank">
