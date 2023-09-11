@@ -40,9 +40,11 @@ import HomeVideo from "../components/admin/admin home video/HomeVideo";
 import AddHomeVideo from "../components/admin/admin home video/AddHomeVideo";
 import ListNewsletterUser from "../components/admin/admin newsletters user/ListNewsletterUser";
 import AddSocialMedia from "../components/admin/Social Media/AddSocialMedia";
-import ListSocialMeida from "../components/admin/Social Media/ListSocialMeida";
+import ListSocialMedia from "../components/admin/Social Media/ListSocialMedia";
 import ListEvent from "../components/admin/admin Event/ListEvent";
-import AddEvent from "../components/admin/admin Event/AddEvent";
+import AddEvent from '../components/admin/admin Event/AddEvent';
+import AddGuide from '../components/admin/Guide/AddGuide';
+import ListGuide from "../components/admin/Guide/ListGuide";
 
 function PageRoutes() {
 
@@ -91,35 +93,27 @@ function PageRoutes() {
             element={<EditUserProfilePage />}
           />
 
-          {/* admin panel */}
-
-
+          {/* Admin Panel */}
           <Route exact path="admin" element={<Dashboard />}>
 
-             {/* category */}
-
+            {/* Category */}
             <Route exact path="add_category" element={<AddCategory />} />
             <Route exact path="list_category" element={<ListCategory />} />
 
-            {/* subcategory */}
-
+            {/* Subcategory */}
             <Route exact path="add_subcategory" element={<AddSubcategory />} />
-            <Route
-              exact
-              path="list_subcategory"
-              element={<ListSubcategory />}
-            />
-            {/* news  */}
+            <Route exact path="list_subcategory" element={<ListSubcategory />} />
+
+            {/* News  */}
             <Route exact path="add_news" element={<AddNews />} />
             <Route exact path="list_news" element={<ListNews />} />
 
-            {/* user list */}
-
+            {/* User List */}
             <Route exact path="list_user" element={<ListUser />} />
 
             {/* ------------------------ */}
 
-            {/* advertisement */}
+            {/* Advertisement */}
             <Route exact path="list_advertisement" element={< ListAdvertisement />} />
             <Route exact path="add_advertisement" element={<AddAdvertisement />} />
 
@@ -127,27 +121,30 @@ function PageRoutes() {
             <Route exact path="list_businesses" element={<ListBusinessListing />} />
             <Route exact path="add_businesses" element={<AddBusinessListing />} />
 
-            {/* darshan_timing */}
+            {/* Darshan Timing */}
             <Route exact path="list_darshan_timing" element={<ListDarshanTiming />} />
             <Route exact path="add_darshan_timing" element={<AddDarshanTiming />} />
 
-            {/* home_video */}
+            {/* Home_Video */}
             <Route exact path="list_home_video" element={<HomeVideo />} />
             <Route exact path="add_home_video" element={<AddHomeVideo />} />
 
-            {/* newsletter */}
+            {/* Newsletter */}
             <Route exact path="list_newsletter" element={<ListNewsletterUser />} />
-             {/* Social Media */}
-             <Route exact path="list_social_media" element={<ListSocialMeida />} />
+
+            {/* Social Media */}
+            <Route exact path="list_social_media" element={<ListSocialMedia />} />
             <Route exact path="add_social_media" element={<AddSocialMedia />} />
              
-              {/* Event */}
-              <Route exact path="list_event" element={<ListEvent />} />
+            {/* Event */}
+            <Route exact path="list_event" element={<ListEvent />} />
             <Route exact path="add_event" element={<AddEvent />} />
 
-
-
+            {/* Guide */}
+            <Route exact path="list_guide" element={<ListGuide />} />
+            <Route exact path="add_guide" element={<AddGuide />} />
           </Route>
+
           <Route exact path="contact-us" element={<ContactUsPage />} />
           <Route exact path="about-us" element={<AboutUsPage />} />
           {/* <Route exact path="rough2" element={<Rough2 />} /> */}

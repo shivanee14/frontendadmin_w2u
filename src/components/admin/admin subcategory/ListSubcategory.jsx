@@ -161,6 +161,7 @@ const SubCategoryList = () => {
         toast.success("Updated Successfully");
       }
       fetchSubCategories();
+      setEditModal(false);
     } catch (error) {
       console.error("Error editing subcategory:", error);
     }
@@ -170,8 +171,8 @@ const SubCategoryList = () => {
     <div className="container-fluid">
       <div className="row">
         <h3 className="d-flex justify-content-center mt-4">Subcategory</h3>
-        <div className="input-group my-3 col-8">
-          <label htmlFor="subcategory" className="input-group-text col-2 fs-5 col-form-label" >Subcategory</label>
+        <div className=" my-3 col-8">
+          <label htmlFor="subcategory" className=" col-2 fs-5 col-form-label" >Subcategory</label>
           <select className="col-3 form-select" id="subcategory" name="subcategory" onChange={(e) => setSelectedCategoryId(e.target.value)} value={selectedCategoryId} required >
           <option hidden>Select Category...</option>
             {categories && categories.map((category) => (

@@ -99,10 +99,10 @@ function AddAdvertisement() {
                   <h3 className="mt-3 text-center">Add Advertisement Listing</h3>
                   <div className="card-body">
                     <form onSubmit={handleSubmit}>
-                      <div className=" input-group mt-3">
+                      <div className="mt-1">
                         <label
                           htmlFor="inputTitle"
-                          className=" input-group-text col-auto  fs-5 col-form-label"
+                          className="col-auto col-form-label"
                         >
                           Title
                         </label>
@@ -115,10 +115,10 @@ function AddAdvertisement() {
                           placeholder="Enter title"
                         />
                       </div>
-                      <div className=" input-group mt-3">
+                      <div className="mt-1">
                         <label
                           htmlFor="description"
-                          className=" input-group-text col-auto  fs-5 col-form-label"
+                          className="col-auto col-form-label"
                         >
                           Description:
 
@@ -132,10 +132,9 @@ function AddAdvertisement() {
                           placeholder="Enter description"
                         />
                       </div>
-
-                      <div className="form-gorup input-group mt-3 form-group ">
+                      <div className="form-gorup mt-1 form-group ">
                         <label
-                          className="input-group-text col-3 fs-5 col-form-label"
+                          className="col-3 col-form-label"
                           htmlFor="shortImage"
                         >
                           Image
@@ -145,17 +144,17 @@ function AddAdvertisement() {
                           type="file"
                           placeholder="Upload"
 
-                          className="input-group-text col-9 col-form-label form-control-file"
+                          className="col-9 col-form-label form-control-file"
                           id="shortImage"
                           accept="image/gif, image/jpeg, image/png"
                           onChange={(e) => setImageURL(e.target.files[0])}
 
                         />
                       </div>
-                      <div className="input-group mt-3">
+                      <div className="mt-1">
                         <label
                           htmlFor="startdate"
-                          className="col-3 input-group-text col-auto fs-5 col-form-label"
+                          className="col-3 col-auto col-form-label"
                         >
                           Start Date
                         </label>
@@ -168,11 +167,10 @@ function AddAdvertisement() {
                           onChange={(e) => setStartDate(e.target.value)}
                         />
                       </div>
-
-                      <div className="input-group mt-3">
+                      <div className="mt-1">
                         <label
                           htmlFor="enddate"
-                          className="col-3 input-group-text col-auto fs-5 col-form-label"
+                          className="col-3 col-auto col-form-label"
                         >
                           End Date:
                         </label>
@@ -185,10 +183,10 @@ function AddAdvertisement() {
                           onChange={(e) => setEndDate(e.target.value)}
                         />
                       </div>
-                      <div className="input-group mt-3">
+                      <div className="mt-1">
                         <label
                           htmlFor="dropdown1"
-                          className="input-group-text col-3 fs-5 col-form-label"
+                          className="col-3 col-form-label"
                         >
                           Business Listing
                         </label>
@@ -214,7 +212,7 @@ function AddAdvertisement() {
                           Default checkbox
                         </label>
                       </div> */}
-                      <div className="d-flex justify-content-end mt-4">
+                      <div className="d-flex justify-content-end mt-1">
                         <button type="submit" className="btn btn-success">
                           Submit
                         </button>

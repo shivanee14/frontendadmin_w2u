@@ -80,23 +80,12 @@ const confirmUpdate = async (e) => {
   }
 };
 
-const handleClose = () => setShow(false);
-
-
-
-  return (
-  
-    <>
-
-      <div className='container-fluid'>
-        <div className='row'>
-
-          <h3 className="d-flex justify-content-center mt-4 mb-4">
-            Advertisement Listing
-          </h3>
-          <table style={{overflowX: "visible"}} className="table table-striped table-hover" >
-
-            <thead className="fs-5">
+  return (<>
+    <div className='container-fluid'>
+      <div className='row'>
+        <h3 className="d-flex justify-content-center mt-4 mb-4"> Advertisement Listing </h3>
+        <table style={{overflowX: "visible"}} className="table table-striped table-hover" >
+          <thead className="fs-5">
               <tr>
                 {/* <th scope="col">Id</th> */}
                 <th scope="col">Title</th>
@@ -114,83 +103,46 @@ const handleClose = () => setShow(false);
             <tr key={index}>
                {/* <td scope="row">{index + 1}</td> */}
                <td>{data.title}</td>
-               <td>{data.description}</td>
-              
+               <td>{data.description}</td>              
                {/* <td>{data.startDate}</td>
                <td>{data.endDate}</td>
                <td>{data.businessListing}</td> */}
                <td>{data.active? "Active" : "Inactive"}</td>
                <td>
-                      <div style={{ height: "50px" }}>
-
-                        <a href={`${data.imageURL}`} target="_blank">
-
-                          <img
-                            className="img-fluid h-100"
-                            src={`${data.imageURL}`}
-                            alt=""
-                          />
-
-                        </a>
-                      </div>
-                    </td>
-                    <td>
+                  <div style={{ height: "50px" }}>
+                    <a href={`${data.imageURL}`} target="_blank">
+                      <img className="img-fluid h-100" src={`${data.imageURL}`} alt="" />
+                    </a>
+                  </div>
+                </td>
+                <td>
                   <div className="d-flex gap-2">
-                    <button
-                      className="btn btn-light btn-round mb-0"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="Delete"
-                      onClick={() => {
-                        const deletelist =
-                          window.confirm("Delete Advertisment list?");
-                        if (deletelist) {
-                          handleDelete(data._id);
-                        }
-                      }}
-                    >
+                    <button className="btn btn-light btn-round mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"
+                      onClick={() => { const deletelist = window.confirm("Delete Advertisment list?");
+                        if (deletelist) {  handleDelete(data._id);  }  }}>
                       <i className="bi bi-trash" />
                     </button>
-                   <button 
-                      className="btn btn-light btn-round mb-0"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="Edit"
-                      onClick={() => handleEdit(data._id)}
-                    >
+                   <button className="btn btn-light btn-round mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"
+                      onClick={() => handleEdit(data._id)}>
                       <i className="bi bi-pencil-square" />
                     </button> 
                   </div>
-                </td>
-              
-            </tr>
-            
-           ))}
-              
+                </td>              
+            </tr>            
+           ))}              
             </tbody>
           </table>
               
-          <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
+      <Modal show={show} onHide={() => setShow(false)}>
+        <Modal.Header closeButton> <Modal.Title>Edit Advertisement </Modal.Title> </Modal.Header>
         <Modal.Body>
           <form onSubmit={confirmUpdate}>
-            <div className="mb-3">
-              <label htmlFor="adtitle" className="form-label">
-              title
-              </label>
-              <input
-                className="form-control"
-                id="adtitle"
-                type="text"
-                placeholder="Category Name"
-                value={adverttitle}
-                onChange={(e) => setAdverttitle(e.target.value)}
+            <div className="mb-1">
+              <label htmlFor="adtitle" className="form-label">Advertisement Title</label>
+              <input className="form-control" id="adtitle" type="text" placeholder="Advertisement Title" value={adverttitle} onChange={(e) => setAdverttitle(e.target.value)}
               />
             </div>
-
-            <div className="mb-3">
+            <div className="mb-1">
               <label htmlFor="adtitle" className="form-label">
               Description
               </label>
@@ -203,15 +155,8 @@ const handleClose = () => setShow(false);
                 onChange={(e) => setAdvertdescription(e.target.value)}
               />
             </div>
-
-            <div className="col-md-12 position-relative">
-              <h6 className="my-2">Add Image</h6>
-              <label
-
-                className="w-100"
-                htmlFor="my-images"
-                style={{ cursor: "pointer" }}
-              >
+            <div className="col-md-12 position-relative mb-1">
+              <label className="w-100" htmlFor="my-images" style={{ cursor: "pointer" }} > Add Image </label>
                 <input
                   className="form-control stretched-link"
                   type="file"
@@ -219,14 +164,10 @@ const handleClose = () => setShow(false);
                   id="image"
                   accept="image/gif, image/jpeg, image/png"
                   onChange={(e) => setAdvertimageURL(e.target.files[0])}
-                />
-              </label>
-            </div>
-                
-            <div className="mb-3">
-              <label htmlFor="adstart" className="form-label">
-             startDate
-              </label>
+                />             
+            </div>                
+            <div className="mb-1">
+              <label htmlFor="adstart" className="form-label">Start Date</label>
               <input
                 className="form-control"
                 id="adstart"
@@ -236,11 +177,8 @@ const handleClose = () => setShow(false);
                 onChange={(e) => setAdvertstartDate(e.target.value)}
               />
             </div>
-
-            <div className="mb-3">
-              <label htmlFor="adend" className="form-label">
-             endDate
-              </label>
+            <div className="mb-1">
+              <label htmlFor="adend" className="form-label">End Date</label>
               <input
                 className="form-control"
                 id="adend"
@@ -250,38 +188,34 @@ const handleClose = () => setShow(false);
                 onChange={(e) => setAdvertendDate(e.target.value)}
               />
             </div>
-
-            <div className="mb-3">
+            <div className="mb-1">
               <label htmlFor="adbusiness" className="form-label">
-              BusinessListing
+              Business Listing
               </label>
               <input
                 className="form-control"
                 id="adbusiness"
                 type="text"
-                placeholder=" BusinessListing"
+                placeholder=" Business Listing"
                 value={advertbusinessListing}
                 onChange={(e) => setAdvertbusinessListing(e.target.value)}
               />
             </div>
-
-            <div className="d-flex justify-content-end mt-4">
+            <div className="d-flex justify-content-end mt-2">
               <button type="submit" className="btn btn-outline-success me-2">
                 Save Changes
               </button>
               <button
                 type="button"
-                onClick={handleClose}
+                onClick={() => setShow(false)}
                 className="btn btn-outline-success"
               >
-                close
+                Close
               </button>
             </div>
           </form>
         </Modal.Body>
       </Modal>
-
-
         </div>
       </div>
     </>

@@ -42,26 +42,23 @@ function ListUser() {
           <table className="table table-striped table-hover">
             <thead>
               <tr>
-                <th scope="col">SR no</th>
+                <th scope="col">UserName</th>                
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
-                <th scope="col">Email</th>
                 <th scope="col">Mobile No.</th>
-                <th scope="col">Date of Birth</th>
                 <th scope="col">Gender</th>
               </tr>
             </thead>
             <tbody>
               {userDetail &&
                 userDetail.map((data, index) => (
-                  <tr key={index}>
-                    <td scope="row">{index + 1}</td>
+                  <tr key={index}>                   
                     <td>{data.username}</td>
                     <td>{data.firstName}</td>
                     <td>{data.lastName}</td>
-                    <td>{data.gender}</td>
-                    <td>{data.dob}</td>
                     <td>{data.mobileNo}</td>
+                    <td>{data.gender}</td>
+                  
                     {/* <td>
                       <div className="d-flex gap-2">
                         <button

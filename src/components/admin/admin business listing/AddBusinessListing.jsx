@@ -105,13 +105,13 @@ const BusinessListingForm = () => {
             <div className=" row g-2">
               <div className="col-lg-9">
                 <div className="card border">
-                  <h3 className="mt-3 text-center">Business Listing</h3>
-                  <div className="card-body">
+                  <h3 className="mt-2 text-center">Add New Business</h3>
+                  <div className="card-body my-1 py-0">
                     <form onSubmit={handleSubmit}>
-                      <div className=" input-group mt-3">
+                      <div className="mt-1">
                         <label
                           htmlFor="companyFirmName"
-                          className=" input-group-text col-auto fs-5 col-form-label"
+                          className="col-auto col-form-label"
                         >
                           Company Firm Name
                         </label>
@@ -125,11 +125,10 @@ const BusinessListingForm = () => {
                           onChange={(e) => setTitle(e.target.value)}
                         />
                       </div>
-
-                      <div className=" input-group mt-3">
+                      <div className="mt-1">
                         <label
                           htmlFor="DescProductService"
-                          className=" input-group-text col-auto  fs-5 col-form-label"
+                          className="col-auto col-form-label"
                         >
                           Description Product Service
                         </label>
@@ -143,10 +142,10 @@ const BusinessListingForm = () => {
                           onChange={(e) => setdescription(e.target.value)}
                         />
                       </div>
-                      <div className=" input-group mt-3">
+                      <div className="mt-1">
                         <label
                           htmlFor="address"
-                          className=" input-group-text col-auto  fs-5 col-form-label"
+                          className="col-auto col-form-label"
                         >
                           Address
                         </label>
@@ -160,10 +159,10 @@ const BusinessListingForm = () => {
                           onChange={(e) => setaddress(e.target.value)}
                         />
                       </div>
-                      <div className="input-group mt-3">
+                      <div className="mt-1">
                         <label
                           htmlFor="latitude"
-                          className=" input-group-text col-auto fs-5 col-form-label"
+                          className="col-auto col-form-label"
                         >
                           Latitude
                         </label>
@@ -180,10 +179,10 @@ const BusinessListingForm = () => {
                           onChange={(e) => setlatitude(e.target.value)}
                         />
                       </div>
-                      <div className=" input-group mt-3">
+                      <div className="mt-1">
                         <label
                           htmlFor="longitude"
-                          className=" input-group-text col-auto  fs-5 col-form-label"
+                          className="col-auto col-form-label"
                         >
                           Longitude
                         </label>
@@ -198,11 +197,10 @@ const BusinessListingForm = () => {
                           onChange={(e) => setlongitude(e.target.value)}
                         />
                       </div>
-
-                      <div className="input-group mt-3">
+                      <div className="mt-1">
                         <label
                           htmlFor="phone"
-                          className="input-group-text col-auto fs-5 col-form-label"
+                          className="col-auto col-form-label"
                         >
                           Mobile No.
                         </label>
@@ -217,10 +215,10 @@ const BusinessListingForm = () => {
                           onChange={(e) => setmobileNo(e.target.value)}
                         />
                       </div>
-                      <div className="input-group mt-3">
+                      <div className="mt-1">
                         <label
                           htmlFor="phone"
-                          className="input-group-text col-auto fs-5 col-form-label"
+                          className="col-auto col-form-label"
                         >
                           Contact No.
                         </label>
@@ -234,12 +232,11 @@ const BusinessListingForm = () => {
                           aria-labelledby="passwordHelpInline"
                           onChange={(e) => setContactNo(e.target.value)}
                         />
-                      </div>
-                      
-                      <div className="input-group mt-3">
+                      </div>                      
+                      <div className="mt-1">
                         <label
                           htmlFor="email"
-                          className="input-group-text col-auto fs-5 col-form-label"
+                          className="col-auto col-form-label"
                         >
                           Email
                         </label>
@@ -253,11 +250,10 @@ const BusinessListingForm = () => {
                           onChange={(e) => setemail(e.target.value)}
                         />
                       </div>
-
-                      <div className=" input-group mt-3">
+                      <div className="mt-1">
                         <label
                           htmlFor="url"
-                          className=" input-group-text col-auto fs-5 col-form-label"
+                          className="col-auto col-form-label"
                         >
                           Website URL
                         </label>
@@ -271,10 +267,10 @@ const BusinessListingForm = () => {
                           onChange={(e) => setwebsiteUrl(e.target.value)}
                         />
                       </div>
-                      <div className="input-group mt-3">
+                      <div className="mt-1">
                         <label
                           htmlFor="category"
-                          className="input-group-text col-3 fs-5 col-form-label"
+                          className="col-3 col-form-label"
                         >
                           Category
                         </label>
@@ -292,10 +288,10 @@ const BusinessListingForm = () => {
                           ))}
                         </select>
                       </div>
-                      <div className="input-group mt-3">
+                      <div className="mt-1">
                         <label
                           htmlFor="subcategory"
-                          className="input-group-text col-3 fs-5 col-form-label"
+                          className="col-3 col-form-label"
                         >
                           Subcategory
                         </label>
@@ -313,10 +309,9 @@ const BusinessListingForm = () => {
                           ))}
                         </select>
                       </div>
-
-                      <div className="form-gorup input-group mt-3 form-group">
+                      <div className="form-gorup mt-1 form-group">
                         <label
-                          className="input-group-text  col-4 fs-5 col-form-label"
+                          className="col-4 col-form-label"
                           htmlFor="companyFirmLogo"
                         >
                           Company Business Image
@@ -324,16 +319,16 @@ const BusinessListingForm = () => {
                         <input
                           type="file"
                           name="business_image"
-                          className="input-group-text col-8 col-form-label form-control-file"
+                          className="col-8 col-form-label form-control-file"
                           id="companyFirmLogo"
                           placeholder="Upload"
                           accept="image/gif, image/jpeg, image/png"
                           onChange={(e) => setbusiness_image(e.target.files[0])}
                         />
                       </div>
-                      <div className="form-gorup input-group mt-3 form-group">
+                      <div className="form-gorup mt-1 form-group">
                         <label
-                          className="input-group-text  col-4 fs-5 col-form-label"
+                          className="col-4 col-form-label"
                           htmlFor="companyFirmLogo"
                         >
                           Company Firm Logo
@@ -341,14 +336,14 @@ const BusinessListingForm = () => {
                         <input
                           type="file"
                           name="logoimage"
-                          className="input-group-text col-8 col-form-label form-control-file"
+                          className="col-8 col-form-label form-control-file"
                           id="companyFirmLogo"
                           placeholder="Upload"
                           accept="image/gif, image/jpeg, image/png"
                           onChange={(e) => setLogoimage(e.target.files[0])}
                         />
                       </div>
-                      <div className="d-flex justify-content-end mt-4">
+                      <div className="d-flex justify-content-end mt-2">
                         <button type="submit" className="btn btn-success">
                           Submit
                         </button>

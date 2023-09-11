@@ -14,7 +14,7 @@ const CategoryList = () => {
     try {
       const response = await axios.get(category_URL);
       setCategories(response.data);
-      // console.log(response);
+      console.log(response.data);
     } catch (err) {
       console.log(err.response.data.message || "Error fetching categories");
     }
@@ -44,13 +44,14 @@ const CategoryList = () => {
   const [catName, setcatName] = useState("");
   const [catImage, setcatImage] = useState(null);
 
-  const handleEdit = async (id) => {
+  const handleEdit = async (id, name) => {
     setShow(true);
     setcatid(id);
+    setcatName(name);    
   };
+
   const confirmUpdate = async (e) => {
     e.preventDefault();
-
     if (catid && catName && catImage) {
       const formData = new FormData();
       formData.append("name", catName);
@@ -68,7 +69,7 @@ const CategoryList = () => {
           e.target.reset();
           fetchCategories();
           setShow(false);
-         // console.log(response)
+          console.log(response.data)
          // setcatName("");
          // setcatImage(null);
         }
@@ -80,11 +81,8 @@ const CategoryList = () => {
     }
   };
 
-  // const handleClose = () => setShow(false);
-
-  return (
-    <>
-      <h3>Category</h3>
+  return (<>
+    <h3>Category</h3>
       <table className="table table-striped table-hover">
         <thead>
           <tr>
@@ -133,7 +131,7 @@ const CategoryList = () => {
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
                       title="Edit"
-                      onClick={() => handleEdit(data._id)}
+                      onClick={() => handleEdit(data._id, data.name)}
                     >
                       <i className="bi bi-pencil-square" />
                     </button>
@@ -201,8 +199,7 @@ const CategoryList = () => {
           </form>
         </Modal.Body>
       </Modal>
-    </>
-  );
+  </>);
 };
 
 export default CategoryList;
