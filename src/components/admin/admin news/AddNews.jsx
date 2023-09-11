@@ -62,107 +62,38 @@ function AddNews() {
     }
   };
 
-  return (
-    <>
-    
-      <main>
-        <section>
-          <div className="container-fluid">
-            <div className=" row g-2">
-              <div className="col-12">
-                <div className="card border">
-                  <h3 className="mt-3 text-center">Add News</h3>
-                  <form onSubmit={submitnews}>
-                    <div className="card-body">
-                      <div className=" input-group mt-3">
-                        <label
-                          htmlFor="newsTitle"
-                          className=" input-group-text col-auto fs-5 col-form-label"
-                        >
-                          Title
-                        </label>
-                        <input
-                          type="text"
-                          id="newsTitle"
-                          className=" form-control"
-                          aria-labelledby="passwordHelpInline"
-                          placeholder="Title of the News"
-                          onChange={(e) => setTitle(e.target.value)}
-                        />
-                      </div>
-                      <div className=" input-group mt-3">
-                        <label
-                          htmlFor="inputSlug"
-                          className=" input-group-text col-auto  fs-5 col-form-label"
-                        >
-                          Slug
-                        </label>
-                        <input
-                          type="text"
-                          id="inputSlug"
-                          className=" form-control"
-                          aria-labelledby="passwordHelpInline"
-                          placeholder="Slug of News"
-                          onChange={(e) => setSlug(e.target.value)}
-
-                        />
-                      </div>
-                      <div className=" input-group mt-3">
-                        <label
-                          htmlFor="inputCategory"
-                          className=" input-group-text col-auto  fs-5 col-form-label"
-                        >
-                          Category
-                        </label>
-                        <input
-                          type="text"
-                          id="inputCategory"
-                          className=" form-control"
-                          aria-labelledby="passwordHelpInline"
-                          placeholder="Category of News"
-                          onChange={(e) => setNews_category(e.target.value)}
-
-                        />
-                      </div>
-
-                      <div className="form-group input-group mt-3">
-                        <label
-                          className="input-group-text  col-3 fs-5  col-form-label"
-                          htmlFor="image"
-                        >
-                          Image
-                        </label>
-                        <input
-                          type="file"
-                          // name="my-images"
-                          className="input-group-text col-9 col-form-label form-control-file"
-                          id="image"
-                          accept="image/gif, image/jpeg, image/png"
-                          onChange={(e) => setImage(e.target.files[0])}
-                        />
-                      </div>
-                      <div className="input-group mt-3">
-                        <label
-                          htmlFor="editor"
-                          className="col-3 input-group-text col-auto fs-5 col-form-label"
-                        >
-                          Editor
-                        </label>
-                        <input
-                          type="text"
-                          id="editor"
-                          className=" form-control"
-                          placeholder="News Editor"
-                          onChange={(e) => setEditor(e.target.value)}
-                        />
-                      </div>
-                      <div className=" input-group mt-3">
-                        <label
-                          htmlFor="content"
-                          className=" input-group-text col-auto fs-5 col-form-label"
-                        >
-                          Content
-                        </label>
+  return (<>
+    <main>
+      <section>
+        <div className="container-fluid">
+          <div className=" row g-2">
+            <div className="col-12">
+              <div className="card border">
+                <h3 className="mt-3 text-center">Add News</h3>
+                <form onSubmit={submitnews}>
+                  <div className="card-body">
+                    <div className="mt-1">
+                      <label htmlFor="newsTitle" className="col-auto col-form-label"> Title </label>
+                      <input type="text" id="newsTitle" className=" form-control" aria-labelledby="passwordHelpInline" placeholder="Title of the News" onChange={(e) => setTitle(e.target.value)} />
+                    </div>
+                    <div className="mt-1">
+                      <label htmlFor="inputSlug" className="col-auto col-form-label" > Slug </label>
+                      <input  onChange={(e) => setSlug(e.target.value)}type="text" id="inputSlug" className="form-control" aria-labelledby="passwordHelpInline" placeholder="Slug of News"/>
+                    </div>
+                    <div className="mt-1">
+                      <label htmlFor="inputCategory" className="col-auto col-form-label"> Category </label>
+                      <input type="text" id="inputCategory" className="form-control" aria-labelledby="passwordHelpInline" placeholder="Category of News" onChange={(e) => setNews_category(e.target.value)}/>
+                    </div>
+                    <div className="form-group mt-1">
+                      <label className="col-3 col-form-label" htmlFor="image"> Image </label>
+                      <input onChange={(e) => setImage(e.target.files[0])} type="file" className="col-9 col-form-label form-control-file" id="image" accept="image/gif, image/jpeg, image/png" />
+                    </div>
+                    <div className="mt-1">
+                      <label htmlFor="editor" className="col-3 col-auto col-form-label" > Editor </label>
+                      <input type="text" id="editor" className=" form-control" placeholder="News Editor" onChange={(e) => setEditor(e.target.value)} />
+                    </div>
+                    <div className="mt-1">
+                      <label htmlFor="content" className="col-auto col-form-label" > Content </label>
                         {/* <input
                           type="text"
                           id="content"
@@ -173,30 +104,20 @@ function AddNews() {
 
                         /> */}
 
-                        <CKEditor
-                          editor={ClassicEditor}
-                          data="<p>Write something Here!</p>"
-                          onChange={handleEditorChange}
-                        />
-                      </div>
-
-                      <div className="d-flex justify-content-end mt-4">
-                        <button type="submit" className="btn btn-success">
-                          Submit
-                        </button>
-                      </div>
+                      <CKEditor editor={ClassicEditor} data="<p>Write something Here!</p>" onChange={handleEditorChange} />
                     </div>
-                  </form>
-
-                </div>
+                    <div className="d-flex justify-content-end mt-4">
+                      <button type="submit" className="btn btn-success"> Submit </button>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
-        </section>
-      </main>
-    </>
-
-  );
+        </div>
+      </section>
+    </main>
+  </>);
 }
 
 export default AddNews;
