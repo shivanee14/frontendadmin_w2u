@@ -16,22 +16,23 @@ const AddEvent = () => {
   const [event_date, setEvent_date] =  useState('');
   const [event_detail, setEvent_detail] =  useState('');
   const [event_ticket_price, setEvent_ticket_price] =  useState('');
+  const [event_web_url, setEvent_web_url] =  useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (event_image && event_Name && event_location && event_address && event_time && event_date && event_detail && event_ticket_price) {
+    // if (event_image && event_Name && event_location && event_address && event_time && event_date && event_detail && event_ticket_price) {
 
       const formData = new FormData();
-      formData.append('my-images', event_image);
       formData.append('name', event_Name);
-      formData.append('name', event_location);
-      formData.append('name', event_address);
-      formData.append('name', event_time);
-      formData.append('name', event_date);
-      formData.append('name', event_detail);
-      formData.append('name', event_ticket_price);
-
+      formData.append('my-images', event_image);
+      formData.append('location', event_location);
+     formData.append('address', event_address);
+     formData.append('time', event_time);
+       formData.append('date', event_date);
+      formData.append('details', event_detail);
+      formData.append('ticket_price', event_ticket_price);
+      formData.append('website_url', event_ticket_price);
       try {
         const response = await axios.post(event_URL, formData, {
           headers: {
@@ -39,19 +40,19 @@ const AddEvent = () => {
             "Content-Type": "multipart/form-data",
           },
         });
-        if (response.data) {
-          toast.success("category added successfully");
-          e.target.reset();
-          setEvent_Name("")
-          setEvent_image(null)
-        }
+        // if (response.data) {
+        //   toast.success("category added successfully");
+        //   e.target.reset();
+        //   setEvent_Name("")
+        //   setEvent_image(null)
+        // }
       } catch (error) {
         console.error(error.response || "Something went wrong");
 
-      }
-    }
-    else {
-      toast.error("All fields are mandatory.");
+    //   }
+    // }
+    // else {
+    //   toast.error("All fields are mandatory.");
     }
   }
   return (
@@ -69,6 +70,17 @@ const AddEvent = () => {
 
                   <div className="card-body">
                     <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label htmlFor="eventName" className="form-label" >Event Name</label>
+                        <input
+                          className="form-control"
+                          id="eventName"
+                          type="text"
+                          placeholder="Event Name"
+                          value={event_Name}
+                          onChange={(e) => setEvent_Name(e.target.value)}
+                        />
+                      </div>
 
                     <div className="col-md-12 position-relative">
                         <h6 className="my-2">Add Image</h6>
@@ -86,17 +98,7 @@ const AddEvent = () => {
                           />
                         </label>
                       </div>
-                      <div className="mb-3">
-                        <label htmlFor="eventName" className="form-label" >Event Name</label>
-                        <input
-                          className="form-control"
-                          id="eventName"
-                          type="text"
-                          placeholder="Event Name"
-                          value={event_Name}
-                          onChange={(e) => setEvent_Name(e.target.value)}
-                        />
-                      </div>
+                     
                   
                       <div className="mb-3">
                         <label htmlFor="location" className="form-label" >Event location</label>
@@ -120,6 +122,18 @@ const AddEvent = () => {
                           value={event_address}
                           onChange={(e) => setEvent_address(e.target.value)}
                         />
+                      </div> 
+                      <div className="mb-3">
+                        <label htmlFor="date" className="form-label" >Event date</label>
+                        <input
+                          className="form-control"
+                          id="date"
+                          type="datetime-local"
+                          
+                          placeholder="Event date"
+                          value={event_date}
+                          onChange={(e) => setEvent_date(e.target.value)}
+                        />
                       </div>
 
                       <div className="mb-3">
@@ -134,17 +148,7 @@ const AddEvent = () => {
                         />
                       </div>
 
-                      <div className="mb-3">
-                        <label htmlFor="date" className="form-label" >Event date</label>
-                        <input
-                          className="form-control"
-                          id="date"
-                          type="text"
-                          placeholder="Event date"
-                          value={event_date}
-                          onChange={(e) => setEvent_date(e.target.value)}
-                        />
-                      </div>
+                     
 
                       <div className="mb-3">
                         <label htmlFor="detail" className="form-label" >Event detail</label>
@@ -163,10 +167,22 @@ const AddEvent = () => {
                         <input
                           className="form-control"
                           id="ticket"
-                          type="text"
+                          type="number"
                           placeholder="ticket_price"
                           value={event_ticket_price}
                           onChange={(e) => setEvent_ticket_price(e.target.value)}
+                        />
+                      </div>       
+
+                      <div className="mb-3">
+                        <label htmlFor="web" className="form-label" >Event Web_url</label>
+                        <input
+                          className="form-control"
+                          id="web"
+                          type="text"
+                          placeholder="Web_url"
+                          value={event_web_url}
+                          onChange={(e) => setEvent_web_url(e.target.value)}
                         />
                       </div>       
 

@@ -42,20 +42,41 @@ const ListEvent = () => {
 
   const [eventid, seteventid] = useState("");
   const [eventName, seteventName] = useState("");
-  const [evenImage, seteventImage] = useState(null);
+  const [eventImage, seteventImage] = useState(null);
+  const [eventLocation, seteventLocation] = useState("");
+  const [eventAddress, seteventAddress] =useState("");
+  const [eventDate, seteventDate] = useState("");
+  const [eventTime, seteventTime] = useState("");
+  const [eventDetail ,seteventDetail] = useState("");
+  const [eventTicket_price, seteventTicket_price] = useState("");
+  const [eventWeb_url, seteventWeb_url] = useState("");
 
-  const handleEdit = async (id) => {
+  const handleEdit = async (id,name,loc,add,date,time,detail,price,wurl) => {
     setShow(true);
     seteventid(id);
+    seteventName(name);
+    seteventLocation(loc);
+    seteventAddress(add);
+    // seteventDate(date);
+    seteventTime(time);
+    seteventDetail(detail);
+    seteventTicket_price(price);
+    seteventWeb_url(wurl);
   };
   const confirmUpdate = async (e) => {
     e.preventDefault();
 
-    if (eventid && eventName && evenImage) {
+    if (eventid && eventName && eventImage) {
       const formData = new FormData();
       formData.append("name", eventName);
-      formData.append("my-images", evenImage);
-
+      formData.append("my-images", eventImage);
+      formData.append('location', eventLocation);
+      formData.append('address', eventAddress);
+      formData.append('date', eventDate);
+      formData.append('time', eventTime);
+       formData.append('details', eventDetail);
+       formData.append('ticket_price', eventTicket_price);
+       formData.append('website_url', eventWeb_url);
       try {
         const response = await axios.put(`${event_URL}/${eventid}`, formData, {
           headers: {
@@ -64,7 +85,8 @@ const ListEvent = () => {
           },
         });         
         if (response.data) {
-          toast.success("category added successfully");
+          toast.success("event added successfully");
+          fetchEvent();
           e.target.reset();
           console.log(response)
          // setcatName("");
@@ -91,8 +113,8 @@ const ListEvent = () => {
             <th scope="col">Event Name</th>
             <th scope="col">Location</th>
             <th scope="col">Address</th>
-            <th scope="col">Time</th>
             <th scope="col">Date</th>
+            <th scope="col">Time</th>
             <th scope="col">Details</th>
             <th scope="col">Ticket_price</th>
             <th scope="col">Website_url</th>
@@ -105,6 +127,8 @@ const ListEvent = () => {
             events.map((data, index) => (
               <tr key={index}>
                 <td scope="row">{index + 1}</td>
+
+                <td>{data.name}</td>
                 <td>
                   <div style={{ height: "50px" }}>
                     <a href={`${data.Image}`} target="_blank">
@@ -116,12 +140,12 @@ const ListEvent = () => {
                     </a>
                   </div>
                 </td>
-               <td>{data.name}</td>
+              
                 <td>{data.location}</td>
                 <td>{data.address}</td>
+               <td>{data.date}</td>
+                <td>{data.time}</td> 
                 <td>{data.details}</td>
-                <td>{data.date}</td>
-                <td>{data.time}</td>
                 <td>{data.ticket_price}</td>
                 <td>{data.website_url}</td>
 
@@ -147,7 +171,7 @@ const ListEvent = () => {
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
                       title="Edit"
-                      onClick={() => handleEdit(data._id)}
+                      onClick={() => handleEdit(data._id,data.name,data.location,data.address,data.time,data.details,data.ticket_price,data.website_url)}
                     >
                       <i className="bi bi-pencil-square" />
                     </button>
@@ -165,14 +189,14 @@ const ListEvent = () => {
         <Modal.Body>
           <form onSubmit={confirmUpdate}>
             <div className="mb-3">
-              <label htmlFor="categoryName" className="form-label">
-                Category Name
+              <label htmlFor="eventName" className="form-label">
+             Event Name
               </label>
               <input
                 className="form-control"
-                id="categoryName"
+                id="eventName"
                 type="text"
-                placeholder="Category Name"
+                placeholder="Event Name"
                 value={eventName}
                 onChange={(e) => seteventName(e.target.value)}
               />
@@ -181,9 +205,6 @@ const ListEvent = () => {
             <div className="col-md-12 position-relative">
               <h6 className="my-2">Add Image</h6>
               <label
-
-
-
 
                 className="w-100"
                 htmlFor="my-images"
@@ -198,6 +219,102 @@ const ListEvent = () => {
                   onChange={(e) => seteventImage(e.target.files[0])}
                 />
               </label>
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="eventlocation" className="form-label">
+             Event location
+              </label>
+              <input
+                className="form-control"
+                id="eventlocation"
+                type="text"
+                placeholder="Category Name"
+                value={eventLocation}
+                onChange={(e) => seteventLocation(e.target.value)}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="eventaddress" className="form-label">
+             Event Address
+              </label>
+              <input
+                className="form-control"
+                id="eventaddress"
+                type="text"
+                placeholder="Event Address"
+                value={eventAddress}
+                onChange={(e) => seteventAddress(e.target.value)}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="eventdate" className="form-label">
+             Event Date
+              </label>
+              <input
+                className="form-control"
+                id="eventdate"
+                type="datetime-local"
+                placeholder="Event Address"
+                value={eventDate}
+                onChange={(e) => seteventDate(e.target.value)}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="eventtime" className="form-label">
+             Event time
+              </label>
+              <input
+                className="form-control"
+                id="eventtime"
+                type="text"
+                placeholder="Event time"
+                value={eventTime}
+                onChange={(e) => seteventTime(e.target.value)}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="eventdetail" className="form-label">
+             Event detail
+              </label>
+              <input
+                className="form-control"
+                id="eventdetail"
+                type="text"
+                placeholder="Event detail"
+                value={eventDetail}
+                onChange={(e) => seteventDetail(e.target.value)}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="eventprice" className="form-label">
+             Event Ticket_price
+              </label>
+              <input
+                className="form-control"
+                id="eventprice"
+                type="number"
+                placeholder="Event Ticket_price"
+                value={eventTicket_price}
+                onChange={(e) => seteventTicket_price(e.target.value)}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="eventweb" className="form-label">
+             Event Web_url
+              </label>
+              <input
+                className="form-control"
+                id="eventweb"
+                type="text"
+                placeholder="Event Web_url"
+                value={eventWeb_url}
+                onChange={(e) => seteventWeb_url(e.target.value)}
+              />
             </div>
 
             <div className="d-flex justify-content-end mt-4">

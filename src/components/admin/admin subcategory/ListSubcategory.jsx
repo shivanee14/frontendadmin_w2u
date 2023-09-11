@@ -137,9 +137,11 @@ const SubCategoryList = () => {
   const [editContent, setEditContent] = useState('');
   const [editImages, setEditImages] = useState([]);
 
-  function handleEdit(catId){
+  function handleEdit(catId,name,content){
     setEditModal(true);
     setEditId(catId);
+    setEditTitle(name);
+    setEditContent(content);
     console.log("category id", catId);
   }
 
@@ -218,7 +220,7 @@ const SubCategoryList = () => {
                             <i className="bi bi-trash" />
                           </button>
                           <button className="btn btn-light btn-round mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" 
-                          onClick={() => { handleEdit(subCategory._id);
+                          onClick={() => { handleEdit(subCategory._id,subCategory.name,subCategory.content);
                             }}
                           >
                             <i className="bi bi-pencil-square" />
@@ -281,11 +283,11 @@ const SubCategoryList = () => {
           
             <Form>
               <div className="mb-3">
-                <Form.Label>Category Name</Form.Label>
+                <Form.Label>Subategory Name</Form.Label>
                 <Form.Control type="text" value={editTitle} onChange={(e) => setEditTitle(e.target.value)} />
               </div>
               <div className="mb-3">
-                <Form.Label>Category Content</Form.Label>
+                <Form.Label>Subategory Content</Form.Label>
                 <Form.Control type="text" value={editContent} onChange={(e) => setEditContent(e.target.value)} />
                
               </div>

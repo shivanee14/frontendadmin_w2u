@@ -27,7 +27,7 @@ function AdminSidebar() {
           height="22px"
         />
       </button> */}
-      <div style={{ display: "flex", minHeight: "100vh" }}>
+      <div style={{ display: "flex", minHeight: "100vh" ,backgroundColor:"powderblue"}}>
         <Sidebar width="100%">
           <Menu>
             <MenuItem style={{fontWeight: "bold"}}  component={<Link to="/admin" />}> Dashboard </MenuItem>

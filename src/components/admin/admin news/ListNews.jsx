@@ -45,12 +45,17 @@ function ListNews() {
   const [newsContent, setnewsContent] = useState("");
   const [newsEditor, setnewsEditor] = useState("");
   const [newsImage, setnewsImage] = useState(null);
-  const [newsHeadline, setNewsHeadline] = useState(null);
-  const [newsSubHeading, setNewsSubHeading] = useState(null);
+  const [newsHeadline, setNewsHeadline] = useState("");
+  const [newsSubHeading, setNewsSubHeading] = useState("");
 
-  const handleEdit = async (id) => {
+  const handleEdit = async (id,name,slug,catname,content,editor) => {
     setShow(true);
     setnewsid(id);
+    setnewsName(name);
+    setslugName(slug);
+    setcategoryName(catname);
+    setnewsContent(content);
+    setnewsEditor(editor);
   };
   const confirmUpdate = async (e) => {
     e.preventDefault();
@@ -167,7 +172,7 @@ function ListNews() {
                           data-bs-toggle="tooltip"
                           data-bs-placement="top"
                           title="Edit"
-                          onClick={() => handleEdit(data._id)}
+                          onClick={() => handleEdit(data._id,data.title,data.slug,data.newsCategory,data.content,data.newsEditor)}
                         >
                           <i className="bi bi-pencil-square" />
                         </button>

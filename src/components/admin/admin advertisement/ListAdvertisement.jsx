@@ -41,6 +41,9 @@ function ListAdvertisement() {
  const handleEdit = async (id) => {
   setShow(true);
   setAdvertId(id);
+  setAdvertId(id);
+  setAdvertId(id);
+  setAdvertId(id);
 };  
 
 const confirmUpdate = async (e) => {
@@ -87,7 +90,7 @@ const confirmUpdate = async (e) => {
         <table style={{overflowX: "visible"}} className="table table-striped table-hover" >
           <thead className="fs-5">
               <tr>
-                {/* <th scope="col">Id</th> */}
+                <th scope="col">Id</th>
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>               
                 {/* <th scope="col">startDate</th>
@@ -101,7 +104,7 @@ const confirmUpdate = async (e) => {
           {advertisment && 
            advertisment.map((data, index) => (
             <tr key={index}>
-               {/* <td scope="row">{index + 1}</td> */}
+                <td scope="row">{index + 1}</td> 
                <td>{data.title}</td>
                <td>{data.description}</td>              
                {/* <td>{data.startDate}</td>
@@ -123,7 +126,7 @@ const confirmUpdate = async (e) => {
                       <i className="bi bi-trash" />
                     </button>
                    <button className="btn btn-light btn-round mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"
-                      onClick={() => handleEdit(data._id)}>
+                      onClick={() => handleEdit(data._id,data.title,data.description)}>
                       <i className="bi bi-pencil-square" />
                     </button> 
                   </div>
