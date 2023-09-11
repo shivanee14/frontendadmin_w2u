@@ -113,6 +113,14 @@ function AdminSidebar() {
                 Add New +
               </MenuItem>
             </SubMenu>
+            <SubMenu style={{fontWeight: "bold"}}  label="Guide">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_guide" />}>
+                List
+              </MenuItem>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_guide" />}>
+                Add New +
+              </MenuItem>
+            </SubMenu>
           </Menu>
         </Sidebar>
       </div>

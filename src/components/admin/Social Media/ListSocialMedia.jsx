@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import toast from "react-hot-toast";
 import Modal from "react-bootstrap/Modal";
-function ListSocialMeida() {
+function ListSocialMedia() {
   const SOCIAL_MEDIA_API = process.env.REACT_APP_SOCIAL_MEDIA_URL;
 
   const [socials, setSocials] = useState([]);
@@ -50,7 +50,9 @@ const fetchSocial = async () => {
     if (socialid && title && socialImage) {
       const formData = new FormData();
       formData.append("title", title);
-      formData.append("Image", socialImage);
+      formData.append("my-images", socialImage);
+      console.log("title", title);
+      console.log("socialImage", socialImage);
      
       try {
         const response = await axios.put(`${SOCIAL_MEDIA_API}/${socialid}`, formData, {
@@ -62,8 +64,10 @@ const fetchSocial = async () => {
         if (response.data) {
           toast.success("category added successfully");
           e.target.reset();
-          console.log(response)
-         // setcatName("");
+          console.log(response);
+          fetchSocial();
+          setShow(false);
+         //setcatName("");
          // setcatImage(null);
         }
       } catch (error) {
@@ -73,9 +77,6 @@ const fetchSocial = async () => {
       toast.error("All fields are mandatory.");
     }
   };
-
-  const handleClose = () => setShow(false);
-
 
   return (
    <>
@@ -139,59 +140,23 @@ const fetchSocial = async () => {
         </tbody>
       </table>
       
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Edit Social Media Post</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={confirmUpdate}>
             <div className="mb-3">
-              <label htmlFor="categoryName" className="form-label">
-              Title
-              </label>
-              <input
-                className="form-control"
-                id="categoryName"
-                type="text"
-                placeholder="title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
+              <label htmlFor="categoryName" className="form-label"> Title </label>
+              <input className="form-control" id="categoryName" type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
             </div>
-
             <div className="col-md-12 position-relative">
-              <h6 className="my-2">Add Image</h6>
-              <label
-
-
-
-
-                 className="w-100"
-                htmlFor="my-images"
-                style={{ cursor: "pointer" }}
-              >
-                <input
-                  className="form-control stretched-link"
-                  type="file"
-                  name="my-images"
-                  id="image"
-                  accept="image/gif, image/jpeg, image/png"
-                  onChange={(e) => setsocialImage(e.target.files[0])}
-                />
-              </label>
+              <label className="w-100" htmlFor="my-images" style={{ cursor: "pointer" }} > Add Image  </label>
+              <input onChange={(e) => setsocialImage(e.target.files[0])} className="form-control stretched-link" type="file" name="my-images" id="image" accept="image/gif, image/jpeg, image/png" />
             </div>
-
             <div className="d-flex justify-content-end mt-4">
-              <button type="submit" className="btn btn-outline-success me-2">
-                Save Changes
-              </button>
-              <button
-                type="button"
-                onClick={handleClose}
-                className="btn btn-outline-success"
-              >
-                close
-              </button>
+              <button type="submit" className="btn btn-outline-success me-2"> Save Changes </button>
+              <button type="button" onClick={() => setShow(false)} className="btn btn-outline-success" > Close </button>
             </div>
           </form>
         </Modal.Body>
@@ -200,4 +165,4 @@ const fetchSocial = async () => {
   )
 }
 
-export default ListSocialMeida;
+export default ListSocialMedia;

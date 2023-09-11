@@ -76,13 +76,17 @@ function ListNews() {
         });
         if (response.data) {
           toast.success("news added successfully");
-          e.target.reset();
+          e.target.reset();  
+          fetchNews();
+          setShow(false);
           setnewsName("");
           setslugName("");
           setcategoryName("");
           setnewsContent("");
           setnewsImage(null);
           setnewsEditor("");
+          setNewsSubHeading("");
+          setNewsHeadline("");
         }
       } catch (error) {
         console.error(error.response || "Something went wrong");
@@ -92,9 +96,7 @@ function ListNews() {
     }
   };
 
-  const handleClose = () => setShow(false);
-
-
+ 
   return (
     <>
       <div className='container-fluid'>
@@ -181,7 +183,7 @@ function ListNews() {
         </div>
       </div>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
@@ -201,28 +203,28 @@ function ListNews() {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="newsName" className="form-label">
+              <label htmlFor="newsHeadline" className="form-label">
               News Headline
               </label>
               <input
                 className="form-control"
-                id="newsName"
+                id="newsHeadline"
                 type="text"
                 placeholder="News Headline"
-                value={newsEditor}
+                value={newsHeadline}
                 onChange={(e) => setNewsHeadline(e.target.value)}
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="newsName" className="form-label">
+              <label htmlFor="newsSubHeading" className="form-label">
               News SubHeading
               </label>
               <input
                 className="form-control"
-                id="newsName"
+                id="newsSubHeading"
                 type="text"
                 placeholder="News SubHeading"
-                value={newsEditor}
+                value={newsSubHeading}
                 onChange={(e) => setNewsSubHeading(e.target.value)}
               />
             </div>
@@ -309,7 +311,7 @@ function ListNews() {
               </button>
               <button
                 type="button"
-                onClick={handleClose}
+                onClick={() => setShow(false)}
                 className="btn btn-outline-success"
               >
                 close

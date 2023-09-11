@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import toast from "react-hot-toast";
 import { Button, Card, Form } from 'react-bootstrap';
 
 function AddSocialMedia() {
@@ -24,7 +25,11 @@ function AddSocialMedia() {
         },
       });
     if(response){
+      toast.success("category added successfully");
+      setTitle("");
+      setImage(null)
       console.log(response);
+
     }
 }
 catch (error){
@@ -43,7 +48,7 @@ catch (error){
           <Form.Label htmlFor="image">Image</Form.Label>
           <Form.Control onChange={(e) => setImage(e.target.files[0])} id="image" accept="image/gif, image/jpeg, image/png" type="file"  />
         </Form>
-        <Button onClick={() => handleSocialMedia()}>Save</Button>
+        <Button className='my-2' onClick={() => handleSocialMedia()}>Save</Button>
       </Card.Body>
     </Card>
   </>)

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Button, Modal , Form} from "react-bootstrap";
+import { Button, Modal , Form, Card} from "react-bootstrap";
 
 function ListBusinessListing() {
   const business_listing_URL = process.env.REACT_APP_BUSINESS_LISTING ;
@@ -48,7 +48,7 @@ function ListBusinessListing() {
       const response = await axios.get(business_listing_URL);
       setBusinesses(response.data);
       // console.log("hello")
-      //  console.log(response);
+      console.log(response.data);
     } catch (err) {
       console.log("business_listing_URL", err);
       toast(err.response.data.message || "Error fetching businesses");
@@ -133,10 +133,15 @@ function ListBusinessListing() {
           <h3 className="d-flex justify-content-center mt-4 mb-4">
             Business Listing
           </h3>
+          <Card>
+            <Card.Body>
+
+            </Card.Body>
+          </Card>
           <table className="table table-striped table-hover">
             <thead>
               <tr className="fs-6">
-                <th scope="col">Id</th>
+                {/* <th scope="col">Id</th> */}
                 <th scope="col">Company Firm Name</th>
                 <th scope="col">Mobile No.</th>
                 <th scope="col">Email</th>
@@ -156,8 +161,8 @@ function ListBusinessListing() {
               {businesses &&
                 businesses.map((data, index) => (
                   <tr key={index}>
-                    <td scope="row">{index + 1}</td>
-                    <td>{data.address.location.coordinates[0]}</td>
+                    {/* <td scope="row">{index + 1}</td> */}
+                    <td>{data.title}</td>
                     <td>{data.mobileNo}</td>
                     <td>{data.email}</td>
                     <td>{data.description}</td>
@@ -203,7 +208,7 @@ function ListBusinessListing() {
                           data-bs-toggle="tooltip"
                           data-bs-placement="top"
                           title="Edit"
-                          onClick={() => handleEdit(data._id)}
+                          onClick={() => handleEdit(data._id, data.title, data.description, data.address, data.mobileNo, data.contact_no, data.email )}
                         >
                           <i className="bi bi-pencil-square" />
                         </button>

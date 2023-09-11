@@ -71,14 +71,14 @@ const SubCategoryForm = () => {
             <div className=" row g-2">
               <div className="col-lg-9">
                 <div className="card border">
-                  <h3 className="mt-3 text-center">Add Subcategory</h3>
+                  <h3 className="mt-2 mb-1 text-center">Add Subcategory</h3>
 
-                  <div className="card-body">
+                  <div className="card-body my-1 py-0">
                     <form onSubmit={handleSubmit}>
-                      <div className=" input-group mt-3">
+                      <div className="my-1 py-0 mx-0 px-0">
                         <label
                           htmlFor="subcategory"
-                          className=" input-group-text col-auto fs-5 col-form-label"
+                          className="col-form-label"
                         >
                           Subcategory Name
                         </label>
@@ -91,33 +91,15 @@ const SubCategoryForm = () => {
                           onChange={(e) => setSubcategory(e.target.value)}
                         />
                       </div>
-                      <div className="input-group mt-3">
-                        <label
-                          className="input-group-text col-2 fs-5 col-form-label"
-                          htmlFor="image"
-                        >
-                          Image
-                        </label>
-                        <input
-                          type="file"
-                          className="input-group-text col-10 col-form-label form-control-file"
-                          id="image"
-                          name="image"
-                          accept="image/gif, image/jpeg, image/png ,  image/jpg"
-                          onChange={(e) =>
-                            setSubcategory_image(e.target.files[0])
-                          }
-                        />
-                      </div>
-                      <div className="input-group mt-3">
+                      <div className="my-1 py-0 mx-0 px-0">
                         <label
                           htmlFor="category"
-                          className="input-group-text col-3 fs-5 col-form-label"
+                          className="col-form-label"
                         >
                           Category
                         </label>
                         <select
-                          className="col-3 form-select"
+                          className="form-select"
                           id="category"
                           required
                           value={selectedCategory}
@@ -131,10 +113,28 @@ const SubCategoryForm = () => {
                           ))}
                         </select>
                       </div>
-                      <div className=" input-group mt-3">
+                      <div className="my-1 py-0 mx-0 px-0">
+                        <label
+                          htmlFor="image"
+                          className="col-form-label me-2"
+                        >
+                          Image
+                        </label>
+                        <input
+                          type="file"
+                          id="image"
+                          name="image"
+                          className="my-2 form-control-file"
+                          accept="image/gif, image/jpeg, image/png ,  image/jpg"
+                          onChange={(e) =>
+                            setSubcategory_image(e.target.files[0])
+                          }
+                        />
+                      </div>                      
+                      <div className="my-1 py-0 mx-0 px-0">
                         <label
                           htmlFor="content"
-                          className=" input-group-text col-auto fs-5 col-form-label"
+                          className="col-form-label me-2"
                         >
                           Content
                         </label>
@@ -144,7 +144,6 @@ const SubCategoryForm = () => {
                           onChange={handleEditorChange}
                         />
                       </div>
-
                       <div className="d-flex justify-content-end mt-4">
                         <button type="submit" className="btn btn-success">
                           Create Subcategory
