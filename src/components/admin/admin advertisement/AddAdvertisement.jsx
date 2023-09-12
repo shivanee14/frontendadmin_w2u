@@ -39,7 +39,7 @@ function AddAdvertisement() {
       formData.append("my-images", imageURL);
       formData.append("startDate", startDate);
       formData.append("endDate", endDate);
-      formData.append("businessListing", businessListingId);
+      formData.append("businessListingId", businessListingId);
 
       try {
         const response = await axios.post(advertisement_URL, formData, {

@@ -38,12 +38,12 @@ function ListAdvertisement() {
  const [advertendDate,setAdvertendDate] = useState("")
  const [advertbusinessListing,setAdvertbusinessListing] = useState("")
 
- const handleEdit = async (id) => {
+ const handleEdit = async (id,title,des,business) => {
   setShow(true);
   setAdvertId(id);
-  setAdvertId(id);
-  setAdvertId(id);
-  setAdvertId(id);
+  setAdverttitle(title);
+  setAdvertdescription(des);
+  setAdvertbusinessListing(business);
 };  
 
 const confirmUpdate = async (e) => {
@@ -57,7 +57,7 @@ const confirmUpdate = async (e) => {
     formData.append("my-images", advertimageURL);
     formData.append("startDate", advertstartDate);
     formData.append("endDate", advertendDate);
-    formData.append("businessListing", advertbusinessListing);
+    formData.append("businessListingId", advertbusinessListing);
     
 
     try {
@@ -69,7 +69,8 @@ const confirmUpdate = async (e) => {
       });
    
       if (response.data) {
-        toast.success("category added successfully");
+        toast.success("advertisment added successfully");
+        fetchAdvertisment();
         e.target.reset();
         console.log(response.data)
         // setcatName("");
@@ -92,12 +93,12 @@ const confirmUpdate = async (e) => {
               <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Title</th>
-                <th scope="col">Description</th>               
-                {/* <th scope="col">startDate</th>
-                <th scope="col">endDate</th>
-                <th scope="col">BusinessListing</th> */}
-                <th scope="col">Active</th>
                 <th scope="col">Image</th>
+                <th scope="col">Description</th>               
+                <th scope="col">startDate</th>
+                <th scope="col">endDate</th>
+                <th scope="col">BusinessListing</th>
+                <th scope="col">Active</th>
               </tr>
             </thead>
             <tbody>
@@ -106,11 +107,6 @@ const confirmUpdate = async (e) => {
             <tr key={index}>
                 <td scope="row">{index + 1}</td> 
                <td>{data.title}</td>
-               <td>{data.description}</td>              
-               {/* <td>{data.startDate}</td>
-               <td>{data.endDate}</td>
-               <td>{data.businessListing}</td> */}
-               <td>{data.active? "Active" : "Inactive"}</td>
                <td>
                   <div style={{ height: "50px" }}>
                     <a href={`${data.imageURL}`} target="_blank">
@@ -118,6 +114,12 @@ const confirmUpdate = async (e) => {
                     </a>
                   </div>
                 </td>
+               <td>{data.description}</td>              
+               <td>{data.startDate}</td>
+               <td>{data.endDate}</td>
+               <td>{data.businessListing}</td>
+               <td>{data.active? "Active" : "Inactive"}</td>
+               
                 <td>
                   <div className="d-flex gap-2">
                     <button className="btn btn-light btn-round mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"
