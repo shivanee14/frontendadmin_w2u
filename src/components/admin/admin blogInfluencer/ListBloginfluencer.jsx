@@ -42,10 +42,12 @@ const fetchBlogs = async () => {
   const [bloggerDescription, setBloggerDescription] = useState("");
 
 
-  const handleEdit = async (id) => {
+  const handleEdit = async (id,name,insta,des) => {
     setShow(true);
-    bloggerid(id);
-    // setcatName(name);    
+    setbloggerid(id);
+    setBloggerName(name); 
+    setinstaName(insta);   
+    setBloggerDescription(des);     
   };
 
   const confirmUpdate = async (e) => {
@@ -70,8 +72,9 @@ const fetchBlogs = async () => {
           fetchBlogs();
           setShow(false);
           console.log(response.data)
-         // setcatName("");
-         // setcatImage(null);
+          setBloggerName("");
+          setinstaName("");
+          setBloggerDescription("");
         }
       } catch (error) {
         console.error(error.response || "Something went wrong");
@@ -136,7 +139,7 @@ const fetchBlogs = async () => {
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
                       title="Edit"
-                      onClick={() => handleEdit(data._id)}
+                      onClick={() => handleEdit(data._id,data.blogger_name,data.insta_name,data.description)}
                     >
                       <i className="bi bi-pencil-square" />
                     </button>
@@ -169,7 +172,7 @@ const fetchBlogs = async () => {
            
             <div className="mb-3">
               <label htmlFor="instaName" className="form-label">
-            Blogger Name
+              Insta Name
               </label>
               <input
                 className="form-control"
@@ -182,7 +185,7 @@ const fetchBlogs = async () => {
             </div>
              <div className="mb-3">
               <label htmlFor="bloggerdes" className="form-label">
-            Blogger Name
+               Description
               </label>
               <input
                 className="form-control"
