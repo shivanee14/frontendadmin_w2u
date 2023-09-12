@@ -14,9 +14,9 @@ const ListEvent = () => {
     try {
       const response = await axios.get(event_URL);
       setEvents(response.data);
-      // console.log(response);
+     // console.log(response);
     } catch (err) {
-      console.log(err.response.data.message || "Error fetching categories");
+      console.log(err.response.data.message || "Error fetching EVENT");
     }
   };
 
@@ -32,13 +32,6 @@ const ListEvent = () => {
       console.error(err.response || "Error deleting event");
     }
   };
-
-  // try {
-  //   await axios.put(`${category_URL}/${id}`, { name: newName });
-  //   fetchCategories();
-  // } catch (err) {
-  //   console.error(err.response || "Error updating category");
-  // }
 
   const [eventid, seteventid] = useState("");
   const [eventName, seteventName] = useState("");
@@ -63,6 +56,7 @@ const ListEvent = () => {
     seteventTicket_price(price);
     seteventWeb_url(wurl);
   };
+
   const confirmUpdate = async (e) => {
     e.preventDefault();
 
@@ -74,9 +68,10 @@ const ListEvent = () => {
       formData.append('address', eventAddress);
       formData.append('date', eventDate);
       formData.append('time', eventTime);
-       formData.append('details', eventDetail);
-       formData.append('ticket_price', eventTicket_price);
-       formData.append('website_url', eventWeb_url);
+      formData.append('details', eventDetail);
+      formData.append('ticket_price', eventTicket_price);
+      formData.append('website_url', eventWeb_url);
+
       try {
         const response = await axios.put(`${event_URL}/${eventid}`, formData, {
           headers: {
@@ -85,12 +80,10 @@ const ListEvent = () => {
           },
         });         
         if (response.data) {
-          toast.success("event added successfully");
+          toast.success("Event added Successfully");
           fetchEvent();
+          setShow(false);
           e.target.reset();
-          console.log(response)
-         // setcatName("");
-         // setcatImage(null);
         }
       } catch (error) {
         console.error(error.response || "Something went wrong");
@@ -100,24 +93,21 @@ const ListEvent = () => {
     }
   };
 
-  const handleClose = () => setShow(false);
-
-  return (
-    <>
-      <h3>Event Hendling</h3>
+  return (<>
+    <h4 className='text-center mt-2 mb-4'>List of Events</h4>
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Event Image</th>
-            <th scope="col">Event Name</th>
-            <th scope="col">Location</th>
+            {/* <th scope="col">Id</th> */}
+            {/* <th scope="col">Event Image</th> */}
+            <th scope="col">Event Name</th>            
             <th scope="col">Address</th>
+            <th scope="col">Location</th>
             <th scope="col">Date</th>
             <th scope="col">Time</th>
             <th scope="col">Details</th>
-            <th scope="col">Ticket_price</th>
-            <th scope="col">Website_url</th>
+            <th scope="col">Ticket Price</th>
+            <th scope="col">Website URL</th>
             <th scope="col">Action</th>
             
           </tr>
@@ -126,10 +116,10 @@ const ListEvent = () => {
           {events &&
             events.map((data, index) => (
               <tr key={index}>
-                <td scope="row">{index + 1}</td>
+                {/* <td scope="row">{index + 1}</td> */}
 
                 <td>{data.name}</td>
-                <td>
+                {/* <td>
                   <div style={{ height: "50px" }}>
                     <a href={`${data.Image}`} target="_blank">
                       <img
@@ -139,11 +129,10 @@ const ListEvent = () => {
                         />
                     </a>
                   </div>
-                </td>
-              
-                <td>{data.location}</td>
+                </td> */}            
                 <td>{data.address}</td>
-               <td>{data.date}</td>
+                <td>{data.location}</td>
+                <td>{data.date}</td>
                 <td>{data.time}</td> 
                 <td>{data.details}</td>
                 <td>{data.ticket_price}</td>
@@ -182,11 +171,11 @@ const ListEvent = () => {
         </tbody>
       </table>
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+  <Modal show={show} onHide={() => setShow(false)}>
+    <Modal.Header closeButton>
+      <Modal.Title>Edit Event</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
           <form onSubmit={confirmUpdate}>
             <div className="mb-3">
               <label htmlFor="eventName" className="form-label">
@@ -323,17 +312,16 @@ const ListEvent = () => {
               </button>
               <button
                 type="button"
-                onClick={handleClose}
+                onClick={() => setShow(false)}
                 className="btn btn-outline-success"
               >
                 close
               </button>
             </div>
           </form>
-        </Modal.Body>
-      </Modal>
-    </>
-  );
+    </Modal.Body>
+  </Modal>
+  </>);
 };
 
 export default ListEvent;

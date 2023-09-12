@@ -77,9 +77,8 @@ const fetchSocial = async () => {
     }
   };
 
-  return (
-   <>
-    <h3> List SocialMeida</h3>
+  return (<div className='bg-dark'>
+    <h4 className='text-center mt-2 mb-4'>List of Social Media Post</h4>
       <table className="table table-striped table-hover">
         <thead>
           <tr>
@@ -160,7 +159,7 @@ const fetchSocial = async () => {
           </form>
         </Modal.Body>
       </Modal>
-   </>
+   </div>
   )
 }
 

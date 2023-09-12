@@ -55,13 +55,11 @@ const AddEvent = () => {
     //   toast.error("All fields are mandatory.");
     }
   }
-  return (
-    <>
-     
-      <main>
-        <section>
-          <div className="container-fluid">
-            <div className="row g-2">
+  return (<>
+    <main>
+      <section>
+        <div className="container-fluid">
+          <div className="row g-2">
               <div className="col-lg-9">
                 <div className="card border">
                   <div className="card-header border-bottom p-3">
@@ -101,7 +99,7 @@ const AddEvent = () => {
                      
                   
                       <div className="mb-3">
-                        <label htmlFor="location" className="form-label" >Event location</label>
+                        <label htmlFor="location" className="form-label" >Event Location</label>
                         <input
                           className="form-control"
                           id="location"
@@ -113,7 +111,7 @@ const AddEvent = () => {
                       </div>
 
                       <div className="mb-3">
-                        <label htmlFor="address" className="form-label" >Event address</label>
+                        <label htmlFor="address" className="form-label" >Event Address</label>
                         <input
                           className="form-control"
                           id="address"
@@ -124,7 +122,7 @@ const AddEvent = () => {
                         />
                       </div> 
                       <div className="mb-3">
-                        <label htmlFor="date" className="form-label" >Event date</label>
+                        <label htmlFor="date" className="form-label" >Event Date</label>
                         <input
                           className="form-control"
                           id="date"
@@ -137,7 +135,7 @@ const AddEvent = () => {
                       </div>
 
                       <div className="mb-3">
-                        <label htmlFor="time" className="form-label" >Event time</label>
+                        <label htmlFor="time" className="form-label" >Event Time</label>
                         <input
                           className="form-control"
                           id="time"
@@ -151,7 +149,7 @@ const AddEvent = () => {
                      
 
                       <div className="mb-3">
-                        <label htmlFor="detail" className="form-label" >Event detail</label>
+                        <label htmlFor="detail" className="form-label" >Event Detail</label>
                         <input
                           className="form-control"
                           id="detail"
@@ -163,7 +161,7 @@ const AddEvent = () => {
                       </div>
 
                       <div className="mb-3">
-                        <label htmlFor="ticket" className="form-label" >Event ticket</label>
+                        <label htmlFor="ticket" className="form-label" >Event Ticket</label>
                         <input
                           className="form-control"
                           id="ticket"
@@ -175,7 +173,7 @@ const AddEvent = () => {
                       </div>       
 
                       <div className="mb-3">
-                        <label htmlFor="web" className="form-label" >Event Web_url</label>
+                        <label htmlFor="web" className="form-label" >Event Web URL</label>
                         <input
                           className="form-control"
                           id="web"
@@ -198,12 +196,11 @@ const AddEvent = () => {
                   </div>
                 </div>
               </div>
-            </div>
           </div>
-        </section>
-      </main>
-    </>
-  );
+        </div>
+      </section>
+    </main>
+  </>);
 
 };
 

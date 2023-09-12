@@ -102,8 +102,11 @@ body {
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     overflow-x: hidden;
-    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUsaTEqQ7q_Ql02gPe5xENCJ6M_sAbCWC00Q&usqp=CAU") repeat;
+    /* background-color: #323233; */
+    /* background: url("../images/background.webp") repeat; */
+    /* background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUsaTEqQ7q_Ql02gPe5xENCJ6M_sAbCWC00Q&usqp=CAU") repeat; */
     background-size: 100px;
+    padding-left: 0;
 }
 
 hr {

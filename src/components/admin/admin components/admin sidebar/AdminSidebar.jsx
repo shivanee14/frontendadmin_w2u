@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Sidebar,
   Menu,
@@ -11,6 +11,13 @@ import { Link } from "react-router-dom";
 function AdminSidebar() {
   const { collapseSidebar, toggleSidebar, collapsed, toggled, broken } =
     useProSidebar();
+
+    const [menuCollapse, setMenuCollapse] = useState(false);
+    const menuIconClick = () => {
+      //condition checking to change state from true to false and vice versa
+      menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
+    };
+
 
   return (
     <>
@@ -27,10 +34,12 @@ function AdminSidebar() {
           height="22px"
         />
       </button> */}
-      <div style={{ display: "flex", minHeight: "100vh" ,backgroundColor:"powderblue"}}>
-        <Sidebar width="100%">
-          <Menu>
-            <MenuItem style={{fontWeight: "bold"}}  component={<Link to="/admin" />}> Dashboard </MenuItem>
+      <div style={{ display: "flex", minHeight: "100vh" ,backgroundColor:"powderblue",  margin: "0 0 60px 20px", paddingLeft: "0", position: "sticky", top: "0"}} className="mx-0 px-0">
+      {/* <div className="closemenu" onClick={menuIconClick}>CC </div> */}
+        <Sidebar toggled={menuCollapse} width="100%" className="mx-0 px-0" style={{ margin: "0 0 60px 20px", paddingLeft: 0}}>
+        {/* style={{color: "#757C90"}} "#72788B"  */} 
+          <Menu className="mx-0 px-0" style={{backgroundColor: "#c0e4ea"}}>
+            <MenuItem  style={{fontWeight: "bold"}}  component={<Link to="/admin" />}> Dashboard </MenuItem>
             <SubMenu style={{fontWeight: "bold"}}  label="Category">
               <MenuItem style={{fontWeight: "bold"}}  component={<Link to="/admin/list_category" />}>
                 List

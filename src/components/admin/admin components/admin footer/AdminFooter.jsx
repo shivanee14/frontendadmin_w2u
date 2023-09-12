@@ -3,9 +3,9 @@ import React from "react";
 function AdminFooter() {
   return (
     <>
-      <footer className="mt-5">
+      <footer className="mt-5 bg-dark">
         <div className="container">
-          <div className="card card-body bg-light">
+          <div className="card card-body bg-dark">
             <div className="row align-items-center justify-content-between">
               <div className="col-md-6">
                 {/* Copyright */}
@@ -21,7 +21,7 @@ function AdminFooter() {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
+                    <a style={{color: "#92959d"}} className="nav-link" href="#">
                       Privacy
                     </a>
                   </li>
