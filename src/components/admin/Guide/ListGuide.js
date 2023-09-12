@@ -29,7 +29,7 @@ function ListGuide() {
       await axios.delete(`${GUIDE_API}/${id}`);
       fetchGuide();
     } catch (err) {
-      console.error(err.response || "Error deleting category");
+      console.error(err.response || "Error deleting Guide");
     }
   };
    
@@ -86,13 +86,14 @@ function ListGuide() {
   };
 
   return (<>
+  <div style={{color: "#000000"}}>
     <h4 className='text-center mt-2 mb-4'>List of Guides</h4>
-    <Row style={{color: "#2B3542"}} className="mt-2 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort">
-        <Col lg="1" className="d-flex flex-column mb-lg-0 pe-1 d-flex">
-          <div  className="text-md cursor-pointer sort" onClick={() => handleSort('email')}> Index no. </div>
+    <Row style={{color: "#2B3542", fontWeight: "bold"}} className="mt-2 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort">
+        <Col lg="1" className="d-flex flex-column mb-lg-0 pe-1 d-flex align-items-start">
+          <div  className="text-md cursor-pointer sort" onClick={() => handleSort('email')}>Index</div>
         </Col>
-        <Col lg="2" className="d-flex flex-column mb-lg-0 pe-1 d-flex justify-content-center align-items-lg-center">
-          <div  className="text-md cursor-pointer sort" onClick={() => handleSort('email')}> Name </div>
+        <Col lg="2" className="d-flex flex-column mb-lg-0 pe-1 d-flex ">
+          <div  className="text-md cursor-pointer sort" onClick={() => handleSort('email')}>Guide Name</div>
         </Col>
         <Col lg="2" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center">
           <div className="text-md cursor-pointer sort" onClick={() => handleSort('firstName')}> Experience </div>
@@ -146,6 +147,7 @@ function ListGuide() {
                     <i className="bi bi-pencil-square" />
                   </Button>
               </Col>
+              <hr />
             </Row>
           </Card.Body>
         </Card>
@@ -173,6 +175,7 @@ function ListGuide() {
 
     </Modal.Body>
   </Modal>
+  </div>
   </>)
 }
 

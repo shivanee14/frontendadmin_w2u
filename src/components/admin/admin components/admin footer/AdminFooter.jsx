@@ -21,7 +21,7 @@ function AdminFooter() {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
+                    <a style={{color: "#92959d"}} className="nav-link" href="#">
                       Privacy
                     </a>
                   </li>

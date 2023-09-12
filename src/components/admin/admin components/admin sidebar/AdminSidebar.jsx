@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Sidebar,
   Menu,
@@ -11,6 +11,13 @@ import { Link } from "react-router-dom";
 function AdminSidebar() {
   const { collapseSidebar, toggleSidebar, collapsed, toggled, broken } =
     useProSidebar();
+
+    const [menuCollapse, setMenuCollapse] = useState(false);
+    const menuIconClick = () => {
+      //condition checking to change state from true to false and vice versa
+      menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
+    };
+
 
   return (
     <>
@@ -136,18 +143,50 @@ function AdminSidebar() {
               <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_blog" />}>
                 Add New +
               </MenuItem>
+            </SubMenu>           
+            <SubMenu style={{fontWeight: "bold"}}  label="Food">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_food" />}>
+                List
+              </MenuItem>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_food" />}>
+                Add New +
+              </MenuItem>
+            </SubMenu>
+            <SubMenu style={{fontWeight: "bold"}}  label="Mandir">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_mandir" />}>
+                List
+              </MenuItem>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_mandir" />}>
+                Add New +
+              </MenuItem>
+            </SubMenu>
+            <SubMenu style={{fontWeight: "bold"}}  label="Shopping">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_shopping" />}>
+                List
+              </MenuItem>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_shopping" />}>
+                Add New +
+              </MenuItem>
+            </SubMenu>
+            <SubMenu style={{fontWeight: "bold"}}  label="Tourist">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_tourist" />}>
+                List
+              </MenuItem>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_tourist" />}>
+                Add New +
+              </MenuItem>
             </SubMenu>
             <SubMenu style={{fontWeight: "bold"}}  label="Wedding_Agent">
               <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_wedding_agent" />}>
                 List
               </MenuItem>
               <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_wedding_agent" />}>
-                Add New +
+              Add New +
               </MenuItem>
             </SubMenu>
-          </Menu>
-        </Sidebar>
-      </div>
+            </Menu>        
+        </Sidebar>      
+    </div>
     </>
   );
 }
