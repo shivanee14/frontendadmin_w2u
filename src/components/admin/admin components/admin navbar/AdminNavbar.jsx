@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function AdminNavbar() {
   return (
     <>
-      <header className="navbar-light navbar-sticky sticky-top header-static border-bottom navbar-dashboard">
+      <header className="navbar-light bg-dark navbar-sticky sticky-top header-static border-bottom navbar-dashboard">
         <nav className="navbar navbar-expand-lg">
           <div className="container">
             <Link className=" navbar-brand py-0 me-3" to="/">

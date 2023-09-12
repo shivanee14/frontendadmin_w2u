@@ -29,7 +29,7 @@ function AdminSidebar() {
       </button> */}
       <div style={{ display: "flex", minHeight: "100vh" ,backgroundColor:"powderblue"}}>
         <Sidebar width="100%">
-          <Menu>
+          <Menu style={{backgroundColor:"#c0e4ea"}}>
             <MenuItem style={{fontWeight: "bold"}}  component={<Link to="/admin" />}> Dashboard </MenuItem>
             <SubMenu style={{fontWeight: "bold"}}  label="Category">
               <MenuItem style={{fontWeight: "bold"}}  component={<Link to="/admin/list_category" />}>
@@ -118,6 +118,30 @@ function AdminSidebar() {
                 List
               </MenuItem>
               <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_guide" />}>
+                Add New +
+              </MenuItem>
+            </SubMenu>
+            <SubMenu style={{fontWeight: "bold"}}  label="BloggerInfluencer">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_blogger" />}>
+                List
+              </MenuItem>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_blogger" />}>
+                Add New +
+              </MenuItem>
+            </SubMenu>
+            <SubMenu style={{fontWeight: "bold"}}  label="Blog">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_blog" />}>
+                List
+              </MenuItem>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_blog" />}>
+                Add New +
+              </MenuItem>
+            </SubMenu>
+            <SubMenu style={{fontWeight: "bold"}}  label="Wedding_Agent">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_wedding_agent" />}>
+                List
+              </MenuItem>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_wedding_agent" />}>
                 Add New +
               </MenuItem>
             </SubMenu>

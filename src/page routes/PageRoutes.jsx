@@ -45,7 +45,12 @@ import ListEvent from "../components/admin/admin Event/ListEvent";
 import AddEvent from '../components/admin/admin Event/AddEvent';
 import AddGuide from '../components/admin/Guide/AddGuide';
 import ListGuide from "../components/admin/Guide/ListGuide";
-
+import AddBloginfluencer from "../components/admin/admin blogInfluencer/AddBloginfluencer";
+import ListBloginfluencer from "../components/admin/admin blogInfluencer/ListBloginfluencer";
+import AddBlog from "../components/admin/admin blog/AddBlog";
+import ListBlog from "../components/admin/admin blog/ListBlog";
+import Addwedding_Agent from "../components/admin/admin wedding_Agent/Addwedding_Agent";
+import Listwedding_Agent from "../components/admin/admin wedding_Agent/Listwedding_Agent";
 function PageRoutes() {
 
   return (
@@ -143,7 +148,25 @@ function PageRoutes() {
             {/* Guide */}
             <Route exact path="list_guide" element={<ListGuide />} />
             <Route exact path="add_guide" element={<AddGuide />} />
+         
+          
+            {/* bloggerInfluencer */}
+            <Route exact path="list_blogger" element={<ListBloginfluencer />} />
+            <Route exact path="add_blogger" element={<AddBloginfluencer />} />
+
+            
+            {/* bloggerInfluencer */}
+            <Route exact path="list_blog" element={<ListBlog />} />
+            <Route exact path="add_blog" element={<AddBlog />} />
+
+             {/* wedding_agent */}
+             <Route exact path="list_wedding_agent" element={<Listwedding_Agent />} />
+            <Route exact path="add_wedding_agent" element={<Addwedding_Agent/>} />
+
+
           </Route>
+
+          
 
           <Route exact path="contact-us" element={<ContactUsPage />} />
           <Route exact path="about-us" element={<AboutUsPage />} />
