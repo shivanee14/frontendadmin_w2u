@@ -5,9 +5,7 @@ import toast from "react-hot-toast";
 
 
 const Addwedding_Agent = () => {
-  console.log("Hello");
-
-  const wdding_agent_URL = process.env.REACT_APP_WEDDING_URL ;
+  const WEDDING_API = process.env.REACT_APP_WEDDING_URL ;
 
   const [venture_Name, setVenture_Name] = useState('');
   const [agent_Name, setAgent_Name] = useState('');
@@ -27,7 +25,7 @@ const Addwedding_Agent = () => {
       formData.append('description', agent_description);
 
       try {
-        const response = await axios.post(wdding_agent_URL, formData, {
+        const response = await axios.post(WEDDING_API, formData, {
           headers: {
             // Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
@@ -62,7 +60,7 @@ const Addwedding_Agent = () => {
               <div className="col-lg-9">
                 <div className="card border">
                   <div className="card-header border-bottom p-3">
-                    <h5 className="card-header-title mb-0">Add Wedding_Agent  </h5>
+                    <h5 className="card-header-title mb-0">Add Wedding Agent  </h5>
                   </div>
                   <div className="card-body">
                     <form onSubmit={handleSubmit}>

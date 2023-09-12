@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import toast from "react-hot-toast";
 
 const Listwedding_Agent = () => {
-    const wedding_agent_URL = process.env.REACT_APP_WEDDING_URL ;
+    const WEDDING_API = process.env.REACT_APP_WEDDING_URL ;
 
     const domain_URL = process.env.REACT_APP_DOMAIN_URL;
   
@@ -13,7 +13,7 @@ const Listwedding_Agent = () => {
   
     const fetchWedding_agent = async () => {
       try {
-        const response = await axios.get(wedding_agent_URL);
+        const response = await axios.get(WEDDING_API);
         setwedding_agents(response.data);
         console.log(response.data);
       } catch (err) {
@@ -27,7 +27,7 @@ const Listwedding_Agent = () => {
 
     const handleDelete = async (id) => {
         try {
-          await axios.delete(`${wedding_agent_URL}/${id}`);
+          await axios.delete(`${WEDDING_API}/${id}`);
           fetchWedding_agent();
         } catch (err) {
           console.error(err.response || "Error deleting wedding_agent");
@@ -71,7 +71,7 @@ const Listwedding_Agent = () => {
     formData.append("description", agentdescription);
 
       try {
-        const response = await axios.put(`${wedding_agent_URL}/${agentid}`, formData, {
+        const response = await axios.put(`${WEDDING_API}/${agentid}`, formData, {
           headers: {
             // Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
@@ -100,7 +100,7 @@ const Listwedding_Agent = () => {
   return (
 
     <>
-    <h3>Wedding_Agent</h3>
+    <h3>Wedding Agent</h3>
       <table className="table table-striped table-hover">
         <thead>
           <tr>

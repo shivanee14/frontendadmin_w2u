@@ -2,17 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import toast from "react-hot-toast";
 
-
-
 const AddBlog = () => {
-
-    const blog_URL = process.env.REACT_APP_BLOG_URL  ;
-
+  const BLOG_API = process.env.REACT_APP_BLOG_URL;
 
   const [blog_title, setBlog_title] = useState('');
   const [blogDescription, setBlogDescription] = useState("");
   const [blog_Date, setBlog_Date] = useState("");
-//   const [blog_Image, setBlog_Image] = useState(null);
+//const [blog_Image, setBlog_Image] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,7 +22,7 @@ const AddBlog = () => {
       formData.append('date', blog_Date);
 
       try {
-        const response = await axios.post(blog_URL, formData, {
+        const response = await axios.post(BLOG_API, formData, {
           headers: {
             // Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
@@ -98,7 +94,7 @@ const AddBlog = () => {
                           className="form-control"
                           id="blogdes"
                           type="text"
-                          placeholder="blog Description"
+                          placeholder="Blog Description"
                           value={blogDescription}
                           onChange={(e) => setBlogDescription(e.target.value)}
                         />

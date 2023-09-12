@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 
 const ListBlog = () => {
-  const blog_URL = process.env.REACT_APP_BLOG_URL  ;
+  const BLOG_API = process.env.REACT_APP_BLOG_URL  ;
 
     const [show, setShow] = useState(false);
 
@@ -15,7 +15,7 @@ const ListBlog = () => {
 
 const fetchBlogss = async () => {
     try {
-      const response = await axios.get(blog_URL);
+      const response = await axios.get(BLOG_API);
       setBlogListss(response.data);
       console.log(response.data);
     } catch (err) {
@@ -29,7 +29,7 @@ const fetchBlogss = async () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${blog_URL}/${id}`);
+      await axios.delete(`${BLOG_API}/${id}`);
       fetchBlogss();
     } catch (err) {
       console.error(err.response || "Error deleting category");
@@ -64,7 +64,7 @@ const fetchBlogss = async () => {
      
 
       try {
-        const response = await axios.put(`${blog_URL}/${bloggerid}`, formData, {
+        const response = await axios.put(`${BLOG_API}/${bloggerid}`, formData, {
           headers: {
             // Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
@@ -90,7 +90,7 @@ const fetchBlogss = async () => {
 
   return (
    <>
-   <h3>BlogInfluencer</h3>
+   <h3>Blog </h3>
       <table className="table table-striped table-hover">
         <thead>
           <tr>

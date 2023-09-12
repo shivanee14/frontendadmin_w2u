@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 
 const AddBloginfluencer = () => {
 
-    const blogInfluencer_URL = process.env.REACT_APP_BLOGGER_URL ;
+    const BLOG_INFLUENCER_API = process.env.REACT_APP_BLOGGER_URL ;
 
 
   const [bloginfluencer_Name, setBloginfluencer_Name] = useState('');
@@ -24,7 +24,7 @@ const AddBloginfluencer = () => {
       formData.append('description', blog_description);
 
       try {
-        const response = await axios.post(blogInfluencer_URL, formData, {
+        const response = await axios.post(BLOG_INFLUENCER_API, formData, {
           headers: {
             // Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
@@ -56,7 +56,7 @@ const AddBloginfluencer = () => {
               <div className="col-lg-9">
                 <div className="card border">
                   <div className="card-header border-bottom p-3">
-                    <h5 className="card-header-title mb-0">Add Category</h5>
+                    <h5 className="card-header-title mb-0">Add Influencer's Blog</h5>
                   </div>
                   <div className="card-body">
                     <form onSubmit={handleSubmit}>
@@ -73,12 +73,12 @@ const AddBloginfluencer = () => {
                       </div>
 
                       <div className="mb-3">
-                        <label htmlFor="instaName" className="form-label" >Insta Name</label>
+                        <label htmlFor="instaName" className="form-label" >Instagram Username</label>
                         <input
                           className="form-control"
                           id="instaName"
                           type="text"
-                          placeholder="Insta Name"
+                          placeholder="Insta Handle"
                           value={insta_name}
                           onChange={(e) => setInsta_name(e.target.value)}
                         />

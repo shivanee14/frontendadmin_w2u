@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 
 const ListBloginfluencer = () => {
-    const blogInfluencer_URL = process.env.REACT_APP_BLOGGER_URL;
+    const BLOG_INFLUENCER_API = process.env.REACT_APP_BLOGGER_URL;
 
     const [show, setShow] = useState(false);
 
@@ -15,7 +15,7 @@ const ListBloginfluencer = () => {
 
 const fetchBlogs = async () => {
     try {
-      const response = await axios.get(blogInfluencer_URL);
+      const response = await axios.get(BLOG_INFLUENCER_API);
       setBlogLists(response.data);
       console.log(response.data);
     } catch (err) {
@@ -29,7 +29,7 @@ const fetchBlogs = async () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${blogInfluencer_URL}/${id}`);
+      await axios.delete(`${BLOG_INFLUENCER_API}/${id}`);
       fetchBlogs();
     } catch (err) {
       console.error(err.response || "Error deleting category");
@@ -60,7 +60,7 @@ const fetchBlogs = async () => {
      
 
       try {
-        const response = await axios.put(`${blogInfluencer_URL}/${bloggerid}`, formData, {
+        const response = await axios.put(`${BLOG_INFLUENCER_API}/${bloggerid}`, formData, {
           headers: {
             // Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
@@ -87,7 +87,7 @@ const fetchBlogs = async () => {
 
   return (
    <>
-   <h3>BlogInfluencer</h3>
+   <h3>Blog Influencer</h3>
       <table className="table table-striped table-hover">
         <thead>
           <tr>
