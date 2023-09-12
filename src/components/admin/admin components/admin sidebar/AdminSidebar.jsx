@@ -9,18 +9,9 @@ import {
 import { Link } from "react-router-dom";
 
 function AdminSidebar() {
-  const { collapseSidebar, toggleSidebar, collapsed, toggled, broken } =
-    useProSidebar();
+  const { collapseSidebar, toggleSidebar, collapsed, toggled, broken } = useProSidebar();
 
-    const [menuCollapse, setMenuCollapse] = useState(false);
-    const menuIconClick = () => {
-      //condition checking to change state from true to false and vice versa
-      menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
-    };
-
-
-  return (
-    <>
+  return (<>
       {/* <button
         className="btn dropdown-toggle"
         type="button"
@@ -186,9 +177,8 @@ function AdminSidebar() {
             </SubMenu>
             </Menu>        
         </Sidebar>      
-    </div>
-    </>
-  );
+      </div>
+  </>);
 }
 
 export default AdminSidebar;
