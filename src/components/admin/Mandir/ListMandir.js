@@ -23,10 +23,58 @@ function ListMandir() {
       fetchMandir();
     }, []);
   
-    const handleEdit = () => {
-      console.log("handleEdit");
+  const [show, setShow] = useState(false);
+  const [editId, setEditId] = useState("");
+  const [mandirName, setMandirName] = useState("");      // name
+  const [address, setAddress] = useState("");            // address
+  const [location, setLocation] = useState("");          // location
+  const [details, setDetails] = useState("");            // details
+  const [image, setImage] = useState(null);              // my-images
+
+  const handleEdit = (id, name, add, loc, detail) => {
+    setShow(true);
+    setEditId(id);
+    setMandirName(name);
+    setAddress(add);
+    setLocation(loc);
+    setDetails(detail);
+  }
+
+  const ConfirmUpdate = async () => {
+    if (mandirName && address && location && image && details) {
+      
+      const formData = new FormData();
+      formData.append('name', mandirName);
+      formData.append('address', address);
+      formData.append('location', location);
+      formData.append('details', details);
+      formData.append('my-images', image); 
+
+      try {
+        const response = await axios.put(`${MANDIR_API}/${editId}`, formData, {
+          headers: {
+            // Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        });         
+        if (response.data) {
+          toast.success("Mandir details updated Successfully");
+          fetchMandir();
+          setShow(false);
+          setMandirName("");
+          setAddress("");
+          setLocation("");
+          setDetails("");
+          setImage(null);
+        }
+      } catch (error) {
+        console.error(error.response || "Something went wrong");
+      }
+    } else {
+      toast.error("All fields are mandatory.");
     }
-  
+  };
+
     const handleDelete = async (id) => {
       try {
         await axios.delete(`${MANDIR_API}/${id}`);
@@ -94,7 +142,7 @@ function ListMandir() {
               </Col>
               <Col xs="1" lg="1" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-4 align-items-lg-center">
                 <Button variant='outline-primary' className='me-1'
-                  onClick={() => handleEdit(data._id, data.name, data.experience, data.location, data.guide_location_title )}>
+                  onClick={() => handleEdit(data._id, data.name, data.address, data.location, data.details)}>
                     <i className="bi bi-pencil-square" />
                   </Button>
               </Col>
@@ -104,28 +152,27 @@ function ListMandir() {
         </Card>
       ))}
 
-  {/* <Modal show={show} onHide={() => setShow(false)}>
+  <Modal show={show} onHide={() => setShow(false)}>
     <Modal.Header closeButton>
        <Modal.Title>Edit Guide</Modal.Title>
     </Modal.Header>
     <Modal.Body>
-      <Form>
-        <Form.Label className='my-1' htmlFor="guideName">Guide Name</Form.Label>
-        <Form.Control  className='my-1' value={guideName} onChange={(e) => setGuideName(e.target.value)} id="guideName" type="text" placeholder="Guide Name"/> 
-        <Form.Label className='my-1' htmlFor="guideImage">Guide Image</Form.Label>
-        <Form.Control  className='my-1' onChange={(e) => setGuideImage(e.target.files[0])} id="guideImage" accept="image/gif, image/jpeg, image/png" type="file"  />
-        <Form.Label className='my-1' htmlFor="locationTitle">Guide Location Title</Form.Label>
-        <Form.Control  className='my-1' value={locationTitle} onChange={(e) => setLocationTitle(e.target.value)} id="locationTitle" type="text" placeholder="Location for Guide" />
-        <Form.Label className='my-1' htmlFor="guideLocation">Guide Location</Form.Label>
-        <Form.Control  className='my-1' value={guideLocation} onChange={(e) => setGuideLocation(e.target.value)} id="guideLocation" type="text" placeholder="Guide's Location" />
-        <Form.Label className='my-1' htmlFor="exp">Experience</Form.Label>
-        <Form.Control  className='my-1' value={exp} onChange={(e) => setExp(e.target.value)} id="exp" type="text" placeholder="Guide's Experience" />
-      </Form>    
+       <Form>
+          <Form.Label className='my-1' htmlFor="mandirName">Mandir Name</Form.Label>
+          <Form.Control  className='my-1' value={mandirName} onChange={(e) => setMandirName(e.target.value)} id="mandirName" type="text" placeholder="Mandir Name"/> 
+          <Form.Label className='my-1' htmlFor="image">Image</Form.Label>
+          <Form.Control  className='my-1' onChange={(e) => setImage(e.target.files[0])} id="image" accept="image/gif, image/jpeg, image/png" type="file"  />
+          <Form.Label className='my-1' htmlFor="address">Address</Form.Label>
+          <Form.Control  className='my-1' value={address} onChange={(e) => setAddress(e.target.value)} id="address" type="text" placeholder="Address" />
+          <Form.Label className='my-1' htmlFor="location">Location</Form.Label>
+          <Form.Control  className='my-1' value={location} onChange={(e) => setLocation(e.target.value)} id="location" type="text" placeholder="Location" />
+          <Form.Label className='my-1' htmlFor="details">Details</Form.Label>
+          <Form.Control  className='my-1' value={details} onChange={(e) => setDetails(e.target.value)} id="details" type="text" placeholder="Details" />
+        </Form>       
       <Button className='mx-1' onClick={() => ConfirmUpdate()}>Save</Button>
       <Button className='mx-1' onClick={() => setShow(false)}>Close</Button>
-
     </Modal.Body>
-  </Modal> */}
+  </Modal>
     </div>
   </>)
 }

@@ -21,9 +21,72 @@ function ListFood() {
     fetchFood();
   }, []);
 
-  const handleEdit = () => {
-    console.log("handleEdit");
+  const [show, setShow] = useState(false);
+  const [editId, setEditId] = useState("");
+  const [restuarant, setRestaurant] = useState("");      // restaurant_name
+  const [address, setAddress] = useState("");            // address
+  const [offer, setOffer] = useState("");                // offer_description
+  const [amenity, setAmenity] = useState("");            // amenities
+  const [rules, setRules] = useState("");                // rules
+  const [desc, setDesc] = useState("");                  // description
+  const [rating, setRating] = useState("");              // rating_and_review,
+  const [hotelStar, setHotelStar] = useState(0);        // hotel_star
+  const [image, setImage] = useState(null);              // my-images
+
+  const handleEdit = (id, name, add, offer, amenity, rule, desc, rate, star ) => {
+    setShow(true);
+    setEditId(id);
+    setRestaurant(name);
+    setAddress(add);
+    setOffer(offer);
+    setAmenity(amenity);
+    setRules(rule);
+    setDesc(desc);
+    setRating(rate);
+    setHotelStar(star);
   }
+
+  const ConfirmUpdate = async () => {
+    if (restuarant && address &&  desc && image && offer && amenity && rules && rating && hotelStar) {
+      const formData = new FormData();
+      formData.append('restaurant_name', restuarant);
+      formData.append('address', address);
+      formData.append('offer_description', offer);
+      formData.append('amenities', amenity);
+      formData.append('rules', rules);
+      formData.append('description', desc);
+      formData.append('rating_and_review', rating);
+      formData.append('hotel_star', hotelStar);
+      formData.append('my-images', image);   
+
+      try {
+        const response = await axios.put(`${FOOD_API}/${editId}`, formData, {
+          headers: {
+            // Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        });         
+        if (response.data) {
+          toast.success("Food places updated Successfully");
+          fetchFood();
+          setShow(false);
+          setRestaurant("");
+          setAddress("");
+          setOffer("");
+          setAmenity("");
+          setRules("");
+          setDesc("");
+          setRating("");
+          setHotelStar(0);
+          setImage(null);
+        }
+      } catch (error) {
+        console.error(error.response || "Something went wrong");
+      }
+    } else {
+      toast.error("All fields are mandatory.");
+    }
+  };
 
   const handleDelete = async (id) => {
     try {
@@ -93,7 +156,7 @@ function ListFood() {
               </Col>
               <Col xs="1" lg="1" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-4 align-items-lg-center">
                 <Button variant='outline-primary' className='me-1'
-                  onClick={() => handleEdit(data._id, data.name, data.experience, data.location, data.guide_location_title )}>
+                  onClick={() => handleEdit(data._id, data.restaurant_name, data.address, data.offer_description, data.amenities, data.rules, data.description, data.rating_and_review, data.hotel_star )}>
                     <i className="bi bi-pencil-square" />
                   </Button>
               </Col>
@@ -103,28 +166,35 @@ function ListFood() {
         </Card>
       ))}
 
-  {/* <Modal show={show} onHide={() => setShow(false)}>
+  <Modal show={show} onHide={() => setShow(false)}>
     <Modal.Header closeButton>
        <Modal.Title>Edit Guide</Modal.Title>
     </Modal.Header>
     <Modal.Body>
-      <Form>
-        <Form.Label className='my-1' htmlFor="guideName">Guide Name</Form.Label>
-        <Form.Control  className='my-1' value={guideName} onChange={(e) => setGuideName(e.target.value)} id="guideName" type="text" placeholder="Guide Name"/> 
-        <Form.Label className='my-1' htmlFor="guideImage">Guide Image</Form.Label>
-        <Form.Control  className='my-1' onChange={(e) => setGuideImage(e.target.files[0])} id="guideImage" accept="image/gif, image/jpeg, image/png" type="file"  />
-        <Form.Label className='my-1' htmlFor="locationTitle">Guide Location Title</Form.Label>
-        <Form.Control  className='my-1' value={locationTitle} onChange={(e) => setLocationTitle(e.target.value)} id="locationTitle" type="text" placeholder="Location for Guide" />
-        <Form.Label className='my-1' htmlFor="guideLocation">Guide Location</Form.Label>
-        <Form.Control  className='my-1' value={guideLocation} onChange={(e) => setGuideLocation(e.target.value)} id="guideLocation" type="text" placeholder="Guide's Location" />
-        <Form.Label className='my-1' htmlFor="exp">Experience</Form.Label>
-        <Form.Control  className='my-1' value={exp} onChange={(e) => setExp(e.target.value)} id="exp" type="text" placeholder="Guide's Experience" />
-      </Form>    
+        <Form>
+          <Form.Label className='my-1' htmlFor="restuarant">Restaurant Name</Form.Label>
+          <Form.Control  className='my-1' value={restuarant} onChange={(e) => setRestaurant(e.target.value)} id="restuarant" type="text" placeholder="Restuarant Name"/> 
+          <Form.Label className='my-1' htmlFor="image">Image</Form.Label>
+          <Form.Control  className='my-1' onChange={(e) => setImage(e.target.files[0])} id="image" accept="image/gif, image/jpeg, image/png" type="file"  />
+          <Form.Label className='my-1' htmlFor="address">Address</Form.Label>
+          <Form.Control  className='my-1' value={address} onChange={(e) => setAddress(e.target.value)} id="address" type="text" placeholder="Address" />
+          <Form.Label className='my-1' htmlFor="offer">Offer</Form.Label>
+          <Form.Control  className='my-1' value={offer} onChange={(e) => setOffer(e.target.value)} id="offer" type="text" placeholder="Offer" />
+          <Form.Label className='my-1' htmlFor="amenity">Amenities</Form.Label>
+          <Form.Control  className='my-1' value={amenity} onChange={(e) => setAmenity(e.target.value)} id="amenity" type="text" placeholder="Amenities" />
+          <Form.Label className='my-1' htmlFor="rules">Rules</Form.Label>
+          <Form.Control  className='my-1' value={rules} onChange={(e) => setRules(e.target.value)} id="rules" type="text" placeholder="Rules" />
+          <Form.Label className='my-1' htmlFor="desc">Description</Form.Label>
+          <Form.Control  className='my-1' value={desc} onChange={(e) => setDesc(e.target.value)} id="desc" type="text" placeholder="Description" />
+          <Form.Label className='my-1' htmlFor="rating">Rating and Reviews</Form.Label>
+          <Form.Control  className='my-1' value={rating} onChange={(e) => setRating(e.target.value)} id="rating" type="text" placeholder="Rating and Reviews" />
+          <Form.Label className='my-1' htmlFor="hotelStar">Star Rating of Hotel</Form.Label>
+          <Form.Control  className='my-1' value={hotelStar} onChange={(e) => setHotelStar(e.target.value)} id="hotelStar" type="number" min="1" max="5" placeholder="3" />
+        </Form>   
       <Button className='mx-1' onClick={() => ConfirmUpdate()}>Save</Button>
       <Button className='mx-1' onClick={() => setShow(false)}>Close</Button>
-
     </Modal.Body>
-  </Modal> */}
+  </Modal> 
     </div>
   </>)
 }

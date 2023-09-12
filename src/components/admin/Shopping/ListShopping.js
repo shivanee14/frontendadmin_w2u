@@ -23,9 +23,61 @@ function ListShopping() {
     fetchShopping();
   }, []);
 
-  const handleEdit = () => {
-    console.log("handleEdit");
+
+  const [show, setShow] = useState(false);
+  const [editId, setEditId] = useState("");
+  const [shoppingName, setShoppingName] = useState("");      // name
+  const [slug, setSlug] = useState("");                      // slug
+  const [location, setLocation] = useState("");              // location
+  const [details, setDetails] = useState("");                // details
+  const [tag, setTag] = useState("");                        // tag
+  const [image, setImage] = useState(null);                  // my-images
+
+  const handleEdit = (id, name, slug, loc, tag, detail) => {
+    setShow(true);
+    setEditId(id);
+    setShoppingName(name);
+    setSlug(slug);
+    setLocation(loc);
+    setDetails(detail);
+    setTag(tag);
   }
+
+  const ConfirmUpdate = async () => {
+    if (shoppingName && slug &&  location && details && tag && image) {
+      const formData = new FormData();
+      formData.append('name', shoppingName);
+      formData.append('slug', slug);
+      formData.append('location', location);
+      formData.append('details', details);
+      formData.append('tag', tag);
+      formData.append('my-images', image);        
+
+      try {
+        const response = await axios.put(`${SHOPPING_API}/${editId}`, formData, {
+          headers: {
+            // Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        });         
+        if (response.data) {
+          toast.success("Shopping place updated Successfully");
+          fetchShopping();
+          setShow(false);
+          setShoppingName("");
+          setSlug("");
+          setLocation("");
+          setDetails("");
+          setTag("");
+          setImage(null);
+        }
+      } catch (error) {
+        console.error(error.response || "Something went wrong");
+      }
+    } else {
+      toast.error("All fields are mandatory.");
+    }
+  };
 
   const handleDelete = async (id) => {
     try {
@@ -34,13 +86,12 @@ function ListShopping() {
     } catch (err) {
       console.error(err.response || "Error deleting Mandir details");
     }
-  };
-  
+  };  
 
   return (<>
     <div style={{color: "#000000"}}>
-    <h4 className='text-center mt-2 mb-4'>List of Shopping Places</h4>
-    <Row style={{color: "#2B3542", fontWeight: "bold"}} className="mt-2 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort">
+      <h4 className='text-center mt-2 mb-4'>List of Shopping Places</h4>
+      <Row style={{color: "#2B3542", fontWeight: "bold"}} className="mt-2 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort">
         <Col lg="1" className="d-flex flex-column mb-lg-0 pe-1 d-flex align-items-start">
           <div  className="text-md cursor-pointer sort">Index</div>
         </Col>
@@ -95,7 +146,7 @@ function ListShopping() {
               </Col>
               <Col xs="1" lg="1" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-4 align-items-lg-center">
                 <Button variant='outline-primary' className='me-1'
-                  onClick={() => handleEdit(data._id, data.name, data.experience, data.location, data.guide_location_title )}>
+                  onClick={() => handleEdit(data._id, data.name, data.slug, data.location, data.tag, data.details)}>
                     <i className="bi bi-pencil-square" />
                   </Button>
               </Col>
@@ -105,28 +156,29 @@ function ListShopping() {
         </Card>
       ))}
 
-  {/* <Modal show={show} onHide={() => setShow(false)}>
-    <Modal.Header closeButton>
-       <Modal.Title>Edit Guide</Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-      <Form>
-        <Form.Label className='my-1' htmlFor="guideName">Guide Name</Form.Label>
-        <Form.Control  className='my-1' value={guideName} onChange={(e) => setGuideName(e.target.value)} id="guideName" type="text" placeholder="Guide Name"/> 
-        <Form.Label className='my-1' htmlFor="guideImage">Guide Image</Form.Label>
-        <Form.Control  className='my-1' onChange={(e) => setGuideImage(e.target.files[0])} id="guideImage" accept="image/gif, image/jpeg, image/png" type="file"  />
-        <Form.Label className='my-1' htmlFor="locationTitle">Guide Location Title</Form.Label>
-        <Form.Control  className='my-1' value={locationTitle} onChange={(e) => setLocationTitle(e.target.value)} id="locationTitle" type="text" placeholder="Location for Guide" />
-        <Form.Label className='my-1' htmlFor="guideLocation">Guide Location</Form.Label>
-        <Form.Control  className='my-1' value={guideLocation} onChange={(e) => setGuideLocation(e.target.value)} id="guideLocation" type="text" placeholder="Guide's Location" />
-        <Form.Label className='my-1' htmlFor="exp">Experience</Form.Label>
-        <Form.Control  className='my-1' value={exp} onChange={(e) => setExp(e.target.value)} id="exp" type="text" placeholder="Guide's Experience" />
-      </Form>    
-      <Button className='mx-1' onClick={() => ConfirmUpdate()}>Save</Button>
-      <Button className='mx-1' onClick={() => setShow(false)}>Close</Button>
-
-    </Modal.Body>
-  </Modal> */}
+    <Modal show={show} onHide={() => setShow(false)}>
+      <Modal.Header closeButton>
+          <Modal.Title>Edit Guide</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form>
+          <Form.Label className='my-1' htmlFor="shoppingName">Shopping Area Name</Form.Label>
+          <Form.Control  className='my-1' value={shoppingName} onChange={(e) => setShoppingName(e.target.value)} id="shoppingName" type="text" placeholder="Shopping Area Name"/> 
+          <Form.Label className='my-1' htmlFor="image">Image</Form.Label>
+          <Form.Control  className='my-1' onChange={(e) => setImage(e.target.files[0])} id="image" accept="image/gif, image/jpeg, image/png" type="file"  />
+          <Form.Label className='my-1' htmlFor="slug">Shopping Area Slug</Form.Label>
+          <Form.Control  className='my-1' value={slug} onChange={(e) => setSlug(e.target.value)} id="slug" type="text" placeholder="Shopping Area Slug" />
+          <Form.Label className='my-1' htmlFor="location">Shopping Area Location</Form.Label>
+          <Form.Control  className='my-1' value={location} onChange={(e) => setLocation(e.target.value)} id="location" type="text" placeholder="Location" />
+          <Form.Label className='my-1' htmlFor="details">Shopping Area Details</Form.Label>
+          <Form.Control  className='my-1' value={details} onChange={(e) => setDetails(e.target.value)} id="details" type="text" placeholder="Details" />
+          <Form.Label className='my-1' htmlFor="tag">Add Tag</Form.Label>
+          <Form.Control  className='my-1' value={tag} onChange={(e) => setTag(e.target.value)} id="tag" type="text" placeholder="Tag" />
+        </Form>  
+        <Button className='mx-1' onClick={() => ConfirmUpdate()}>Save</Button>
+        <Button className='mx-1' onClick={() => setShow(false)}>Close</Button>
+      </Modal.Body>
+    </Modal>
     </div>
   </>);
 }
