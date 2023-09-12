@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 
 const AddBlog = () => {
 
-    const blog_URL = process.env.REACT_APP_Blog_URL  ;
+    const blog_URL = process.env.REACT_APP_BLOG_URL  ;
 
 
   const [blog_title, setBlog_title] = useState('');

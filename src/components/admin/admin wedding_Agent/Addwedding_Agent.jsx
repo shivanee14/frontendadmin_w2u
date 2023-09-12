@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 
 const Addwedding_Agent = () => {
 
-  const wdding_agent_URL = process.env.REACT_APP_Wedding_Agent_URL ;
+  const wdding_agent_URL = process.env.REACT_APP_WEDDING_URL ;
 
   const [venture_Name, setVenture_Name] = useState('');
   const [agent_Name, setAgent_Name] = useState('');

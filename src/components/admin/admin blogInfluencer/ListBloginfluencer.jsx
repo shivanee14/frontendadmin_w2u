@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 
 const ListBloginfluencer = () => {
-    const blogInfluencer_URL = process.env.REACT_APP_Blogger_URL  ;
+    const blogInfluencer_URL = process.env.REACT_APP_BLOGGER_URL;
 
     const [show, setShow] = useState(false);
 

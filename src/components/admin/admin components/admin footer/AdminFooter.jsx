@@ -5,7 +5,7 @@ function AdminFooter() {
     <>
       <footer className="mt-5 bg-dark">
         <div className="container">
-          <div className="card card-body bg-dark" >
+          <div className="card card-body bg-dark">
             <div className="row align-items-center justify-content-between">
               <div className="col-md-6">
                 {/* Copyright */}

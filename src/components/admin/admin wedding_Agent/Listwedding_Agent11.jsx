@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import toast from "react-hot-toast";
 const Listwedding_Agent = () => {
 
-    const wedding_agent_URL = process.env.REACT_APP_Wedding_Agent_URL ;
+    const wedding_agent_URL = process.env.REACT_APP_WEDDING_URL ;
 
     const domain_URL = process.env.REACT_APP_DOMAIN_URL;
   

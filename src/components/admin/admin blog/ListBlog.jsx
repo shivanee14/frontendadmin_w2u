@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 
 const ListBlog = () => {
-    const blog_URL = process.env.REACT_APP_Blog_URL  ;
+  const blog_URL = process.env.REACT_APP_BLOG_URL  ;
 
     const [show, setShow] = useState(false);
 
