@@ -5,12 +5,13 @@ import toast from "react-hot-toast";
 
 
 const Addwedding_Agent = () => {
+  console.log("Hello");
 
   const wdding_agent_URL = process.env.REACT_APP_WEDDING_URL ;
 
   const [venture_Name, setVenture_Name] = useState('');
   const [agent_Name, setAgent_Name] = useState('');
-//   const [wedding_agent_image, setWedding_agent_image] = useState(null);
+  const [wedding_agent_image, setWedding_agent_image] = useState(null);
   const [agent_contactno, setAgent_contactno] = useState('');
   const [agent_description, setAgent_description] = useState('');
   const handleSubmit = async (e) => {
@@ -21,7 +22,7 @@ const Addwedding_Agent = () => {
       const formData = new FormData();
       formData.append('ventureName', venture_Name);
       formData.append('agentName', agent_Name);
-    //   formData.append('my-images', wedding_agent_image);
+      formData.append('my-images', wedding_agent_image);
       formData.append('contactNo', agent_contactno);
       formData.append('description', agent_description);
 
@@ -35,6 +36,7 @@ const Addwedding_Agent = () => {
         if (response.data) {
           toast.success("category added successfully");
           e.target.reset();
+          console.log(response.data);
           setVenture_Name("")
         //   setWedding_agent_image(null)
           setAgent_Name("")
@@ -87,7 +89,7 @@ const Addwedding_Agent = () => {
                         />
                       </div>
 
-                      {/* <div className="col-md-12 position-relative">
+                      <div className="col-md-12 position-relative">
                         <h6 className="my-2">Add Image</h6>
                         <label className="w-100"
                           htmlFor="image"
@@ -99,10 +101,10 @@ const Addwedding_Agent = () => {
                             name="my-images"
                             id="image"
                             accept="image/gif, image/jpeg, image/png"
-                            onChange={(e) => setCategory_image(e.target.files[0])}
+                            onChange={(e) => setWedding_agent_image(e.target.files[0])}
                           />
                         </label>
-                      </div> */}
+                      </div> 
                           
                           <div className="mb-3">
                         <label htmlFor="contactno" className="form-label" >Contact no</label>
