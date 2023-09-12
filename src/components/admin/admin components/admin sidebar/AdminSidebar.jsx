@@ -167,7 +167,7 @@ function AdminSidebar() {
                 Add New +
               </MenuItem>
             </SubMenu>
-            <SubMenu style={{fontWeight: "bold"}}  label="Wedding_Agent">
+            <SubMenu style={{fontWeight: "bold"}}  label="Wedding Agent">
               <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_wedding_agent" />}>
                 List
               </MenuItem>
@@ -175,7 +175,7 @@ function AdminSidebar() {
               Add New +
               </MenuItem>
             </SubMenu>
-            </Menu>        
+          </Menu>        
         </Sidebar>      
       </div>
   </>);
