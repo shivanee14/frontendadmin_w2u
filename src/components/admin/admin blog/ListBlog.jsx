@@ -44,16 +44,22 @@ const fetchBlogss = async () => {
 
   const handleEdit = async (id) => {
     setShow(true);
-    bloggerid(id);
-    // setcatName(name);    
+    setbloggerid(id);
+    setBloggerName("");
+    setinstaName("");
+    setBloggerDescription("");
   };
 
   const confirmUpdate = async (e) => {
+      console.log("blogger_name", bloggerName);
+      console.log("insta_name", instaName);
+      console.log("description", bloggerDescription);
+
     e.preventDefault();
     if (bloggerid && bloggerName && instaName && bloggerDescription) {
       const formData = new FormData();
-      formData.append("blogger_name", bloggerName);
-      formData.append("insta_name", instaName);
+      formData.append("title", bloggerName);
+      formData.append("description", bloggerDescription);
       formData.append("description", bloggerDescription);
      
 
