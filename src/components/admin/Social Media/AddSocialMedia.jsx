@@ -40,7 +40,7 @@ function AddSocialMedia() {
   return (<>    
     <Card>
       <Card.Body>
-        <h3>Social Media</h3>
+        <h4 className='text-center mt-2 mb-4'>Social Media</h4>
         <Form>
           <Form.Label htmlFor="image">Title</Form.Label>
           <Form.Control value={title} onChange={(e) => setTitle(e.target.value)} id="image" type="text" placeholder="Name"/> 

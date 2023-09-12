@@ -55,7 +55,7 @@ function AddShopping() {
   return (<>
     <Card>
       <Card.Body>
-        <h3>Add Shopping Details</h3>
+        <h4 className='text-center mt-2 mb-4'>Add Shopping Details</h4>
         <Form>
           <Form.Label className='my-1' htmlFor="shoppingName">Shopping Area Name</Form.Label>
           <Form.Control  className='my-1' value={shoppingName} onChange={(e) => setShoppingName(e.target.value)} id="shoppingName" type="text" placeholder="Shopping Area Name"/> 

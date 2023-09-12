@@ -4,23 +4,24 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { Modal, Card, Row, Col, Tooltip, OverlayTrigger, Button, Form  } from "react-bootstrap";
 
-function ListTourist() {
-  const TOURIST_API = process.env.REACT_APP_TOURIST_URL;  
-  const [tourist, setTourist] = useState([]);
+function ListBlog() {
+  const BLOG_API = process.env.REACT_APP_BLOG_URL;
 
-  const fetchTourist =  async () => {
+  const [blog, setBlog] = useState([]);
+
+  const fetchBlog =  async () => {
     try {
-      const response = await axios.get(TOURIST_API);
-      setTourist(response.data);
+      const response = await axios.get(BLOG_API);
+      setBlog(response.data);
       console.log(response.data);
     } 
     catch (err) {
-      console.error(err.response.data.message || "Error fetching Food Detail!!!");
+      console.error(err.response.data.message || "Error fetching Blogs Detail!!!");
     }   
   }
 
   useEffect(() => {
-    fetchTourist();
+    fetchBlog();
   }, []);
 
   const [show, setShow] = useState(false);
@@ -79,11 +80,11 @@ function ListTourist() {
       console.error(err.response || "Error deleting Tourist spots details");
     }
   };
-    
+
   return (<>
     <div style={{color: "#000000"}}>
-    <h4 className='text-center mt-2 mb-4'>List of Tourist Spots</h4>
-    <Row style={{color: "#2B3542", fontWeight: "bold"}} className="mt-2 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort">
+    <h4 className='text-center mt-2 mb-4'>List of Toursit Spots</h4>
+      <Row style={{color: "#2B3542", fontWeight: "bold"}} className="mt-2 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort">
         <Col lg="1" className="d-flex flex-column mb-lg-0 pe-1 d-flex align-items-start">
           <div  className="text-md cursor-pointer sort">Index</div>
         </Col>
@@ -100,6 +101,7 @@ function ListTourist() {
           <div className="text-md cursor-pointer sort">Actions</div>
         </Col>
       </Row>
+
       {tourist && tourist.map((data, index) => (
         <Card key={data._id} className='my-2 '>
           <Card.Body>
@@ -141,11 +143,11 @@ function ListTourist() {
         </Card>
       ))}
 
-  <Modal show={show} onHide={() => setShow(false)}>
-    <Modal.Header closeButton>
-       <Modal.Title>Edit Guide</Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
+    <Modal show={show} onHide={() => setShow(false)}>
+      <Modal.Header closeButton>
+        <Modal.Title>Edit Guide</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
         <Form>
           <Form.Label className='my-1' htmlFor="touristName">Tourist Place Name</Form.Label>
           <Form.Control  className='my-1' value={touristName} onChange={(e) => setTouristName(e.target.value)} id="touristName" type="text" placeholder="Tourist Name"/> 
@@ -156,13 +158,12 @@ function ListTourist() {
           <Form.Label className='my-1' htmlFor="desc">Description</Form.Label>
           <Form.Control  className='my-1' value={desc} onChange={(e) => setDesc(e.target.value)} id="desc" type="text" placeholder="Description" />
         </Form>  
-      <Button className='mx-1' onClick={() => ConfirmUpdate()}>Save</Button>
-      <Button className='mx-1' onClick={() => setShow(false)}>Close</Button>
-
-    </Modal.Body>
-  </Modal> 
-    </div>   
+        <Button className='mx-1' onClick={() => ConfirmUpdate()}>Save</Button>
+        <Button className='mx-1' onClick={() => setShow(false)}>Close</Button>
+      </Modal.Body>
+    </Modal> 
+    </div>
   </>)
 }
 
-export default ListTourist;
+export default ListBlog;

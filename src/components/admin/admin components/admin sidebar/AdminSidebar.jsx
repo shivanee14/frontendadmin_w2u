@@ -119,7 +119,7 @@ function AdminSidebar() {
                 Add New +
               </MenuItem>
             </SubMenu>
-            <SubMenu style={{fontWeight: "bold"}}  label="BloggerInfluencer">
+            <SubMenu style={{fontWeight: "bold"}}  label="Blogger Influencer">
               <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_blogger" />}>
                 List
               </MenuItem>

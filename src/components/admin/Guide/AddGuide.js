@@ -52,7 +52,7 @@ function AddGuide() {
   return (<>
     <Card>
       <Card.Body>
-        <h3>Add Guide Details</h3>
+        <h4 className='text-center mt-2 mb-4'>Add Guide Details</h4>
         <Form>
           <Form.Label className='my-1' htmlFor="guideName">Guide Name</Form.Label>
           <Form.Control  className='my-1' value={guideName} onChange={(e) => setGuideName(e.target.value)} id="guideName" type="text" placeholder="Guide Name"/> 
