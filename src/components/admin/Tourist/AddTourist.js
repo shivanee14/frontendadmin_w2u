@@ -43,7 +43,7 @@ function AddTourist() {
   return (<>
     <Card>
       <Card.Body>
-        <h3>Add Tourist Place Details</h3>
+        <h4 className='text-center mt-2 mb-4'>Add Tourist Place Details</h4>
         <Form>
           <Form.Label className='my-1' htmlFor="touristName">Tourist Place Name</Form.Label>
           <Form.Control  className='my-1' value={touristName} onChange={(e) => setTouristName(e.target.value)} id="touristName" type="text" placeholder="Tourist Name"/> 

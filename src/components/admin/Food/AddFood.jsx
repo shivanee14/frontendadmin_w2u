@@ -58,7 +58,7 @@ function AddFood() {
   return (<>
     <Card>
       <Card.Body>
-        <h3>Add Food Details</h3>
+        <h4 className='text-center mt-2 mb-4'>Add Food Details</h4>
         <Form>
           <Form.Label className='my-1' htmlFor="restuarant">Restaurant Name</Form.Label>
           <Form.Control  className='my-1' value={restuarant} onChange={(e) => setRestaurant(e.target.value)} id="restuarant" type="text" placeholder="Restuarant Name"/> 

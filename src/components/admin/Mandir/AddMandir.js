@@ -47,7 +47,7 @@ function AddMandir() {
   return (<>
     <Card>
       <Card.Body>
-        <h3>Add Mandir Details</h3>
+        <h4 className='text-center mt-2 mb-4'>Add Mandir Details</h4>
         <Form>
           <Form.Label className='my-1' htmlFor="mandirName">Mandir Name</Form.Label>
           <Form.Control  className='my-1' value={mandirName} onChange={(e) => setMandirName(e.target.value)} id="mandirName" type="text" placeholder="Mandir Name"/> 
