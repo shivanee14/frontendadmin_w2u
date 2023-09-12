@@ -45,6 +45,14 @@ import ListEvent from "../components/admin/admin Event/ListEvent";
 import AddEvent from '../components/admin/admin Event/AddEvent';
 import AddGuide from '../components/admin/Guide/AddGuide';
 import ListGuide from "../components/admin/Guide/ListGuide";
+import ListFood from "../components/admin/Food/ListFood";
+import AddFood from "../components/admin/Food/AddFood";
+import ListMandir from "../components/admin/Mandir/ListMandir";
+import AddMandir from "../components/admin/Mandir/AddMandir";
+import ListShopping from "../components/admin/Shopping/ListShopping";
+import AddShopping from "../components/admin/Shopping/AddShopping";
+import ListTourist from "../components/admin/Tourist/ListTourist";
+import AddTourist from "../components/admin/Tourist/AddTourist";
 
 function PageRoutes() {
 
@@ -143,6 +151,23 @@ function PageRoutes() {
             {/* Guide */}
             <Route exact path="list_guide" element={<ListGuide />} />
             <Route exact path="add_guide" element={<AddGuide />} />
+
+            {/* Food */}
+            <Route exact path="list_food" element={<ListFood />} />
+            <Route exact path="add_food" element={<AddFood />} />
+
+            {/* Mandir */}
+            <Route exact path="list_mandir" element={<ListMandir />} />
+            <Route exact path="add_mandir" element={<AddMandir />} />
+
+            {/* Shopping */}
+            <Route exact path="list_shopping" element={<ListShopping />} />
+            <Route exact path="add_shopping" element={<AddShopping />} />
+
+            {/* Tourist */}
+            <Route exact path="list_tourist" element={<ListTourist />} />
+            <Route exact path="add_tourist" element={<AddTourist />} />
+
           </Route>
 
           <Route exact path="contact-us" element={<ContactUsPage />} />

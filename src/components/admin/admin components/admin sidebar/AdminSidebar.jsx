@@ -130,6 +130,38 @@ function AdminSidebar() {
                 Add New +
               </MenuItem>
             </SubMenu>
+            <SubMenu style={{fontWeight: "bold"}}  label="Food">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_food" />}>
+                List
+              </MenuItem>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_food" />}>
+                Add New +
+              </MenuItem>
+            </SubMenu>
+            <SubMenu style={{fontWeight: "bold"}}  label="Mandir">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_mandir" />}>
+                List
+              </MenuItem>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_mandir" />}>
+                Add New +
+              </MenuItem>
+            </SubMenu>
+            <SubMenu style={{fontWeight: "bold"}}  label="Shopping">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_shopping" />}>
+                List
+              </MenuItem>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_shopping" />}>
+                Add New +
+              </MenuItem>
+            </SubMenu>
+            <SubMenu style={{fontWeight: "bold"}}  label="Tourist">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_tourist" />}>
+                List
+              </MenuItem>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_tourist" />}>
+                Add New +
+              </MenuItem>
+            </SubMenu>
           </Menu>
         </Sidebar>
       </div>

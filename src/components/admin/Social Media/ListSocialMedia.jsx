@@ -77,7 +77,8 @@ const fetchSocial = async () => {
     }
   };
 
-  return (<div>
+  return (<>
+    <div>
     <h4 className='text-center mt-2 mb-4'>List of Social Media Post</h4>
       <table className="table table-striped table-hover">
         <thead>
@@ -159,8 +160,8 @@ const fetchSocial = async () => {
           </form>
         </Modal.Body>
       </Modal>
-   </div>
-  )
+    </div>
+  </>)
 }
 
 export default ListSocialMedia;
