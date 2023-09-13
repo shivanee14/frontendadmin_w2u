@@ -85,9 +85,8 @@ const fetchBlogs = async () => {
   };
 
 
-  return (
-   <>
-   <h3>Blog Influencer</h3>
+  return (<>
+    <h4 className='text-center mt-2 mb-4'>Blog Influencer</h4>
       <table className="table table-striped table-hover">
         <thead>
           <tr>
@@ -148,7 +147,7 @@ const fetchBlogs = async () => {
               </tr>
             ))}
         </tbody>
-        </table>
+      </table>
 
         <Modal show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
@@ -239,4 +238,4 @@ const fetchBlogs = async () => {
   )
 }
 
-export default ListBloginfluencer
+export default ListBloginfluencer;

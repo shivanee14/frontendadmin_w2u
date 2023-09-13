@@ -5,18 +5,13 @@ import toast from "react-hot-toast";
 
 
 const ListBlog = () => {
-  const BLOG_API = process.env.REACT_APP_BLOG_URL  ;
+  const BLOG_API = process.env.REACT_APP_BLOG_URL;
+  const [blog, setBlog] = useState([]);
 
-    const [show, setShow] = useState(false);
-
-  const [blogListss, setBlogListss] = useState([]);
-//   const [instaName, setInstaName] = useState('');
-//   const [blog_description, setBlog_description] = useState("");
-
-const fetchBlogss = async () => {
+  const fetchBlogss = async () => {
     try {
       const response = await axios.get(BLOG_API);
-      setBlogListss(response.data);
+      setBlog(response.data);
       console.log(response.data);
     } catch (err) {
       console.log(err.response.data.message || "Error fetching categories");
@@ -36,48 +31,48 @@ const fetchBlogss = async () => {
     }
   };
 
-  const [bloggerid, setbloggerid] = useState("");
-  const [bloggerName, setBloggerName] = useState("");
-  const [instaName, setinstaName] = useState("");
-  const [bloggerDescription, setBloggerDescription] = useState("");
+  const [show, setShow] = useState(false);
+  const [editId, setEditId] = useState("");
+  const [blog_title, setBlog_title] = useState('');
+  const [blogDescription, setBlogDescription] = useState("");
+  const [blog_Date, setBlog_Date] = useState("");
+  const [blog_Image, setBlog_Image] = useState(null);
 
 
-  const handleEdit = async (id) => {
+  const handleEdit = async (id, desc, title, date) => {
     setShow(true);
-    setbloggerid(id);
-    setBloggerName("");
-    setinstaName("");
-    setBloggerDescription("");
+    setEditId(id);
+    setBlogDescription(desc);
+    setBlog_title(title);
+    setBlog_Date(date);
   };
 
   const confirmUpdate = async (e) => {
-      console.log("blogger_name", bloggerName);
-      console.log("insta_name", instaName);
-      console.log("description", bloggerDescription);
-
     e.preventDefault();
-    if (bloggerid && bloggerName && instaName && bloggerDescription) {
+    if (editId && blog_title && blogDescription && blog_Date && blog_Image) {
       const formData = new FormData();
-      formData.append("title", bloggerName);
-      formData.append("description", bloggerDescription);
-      formData.append("description", bloggerDescription);
-     
+      formData.append("title", blog_title);
+      formData.append("description", blogDescription);
+      formData.append("date", blog_Date);
+      formData.append('my-images', blog_Image);
 
       try {
-        const response = await axios.put(`${BLOG_API}/${bloggerid}`, formData, {
+        const response = await axios.put(`${BLOG_API}/${editId}`, formData, {
           headers: {
             // Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
         });         
         if (response.data) {
-          toast.success("blogger added successfully");
+          toast.success("Blog Updated Successfully");
           e.target.reset();
           fetchBlogss();
           setShow(false);
-          console.log(response.data)
-         // setcatName("");
-         // setcatImage(null);
+          setEditId("");
+          setBlogDescription("");
+          setBlog_title("");
+          setBlog_Date("");
+          setBlog_Image(null);
         }
       } catch (error) {
         console.error(error.response || "Something went wrong");
@@ -88,9 +83,8 @@ const fetchBlogss = async () => {
   };
 
 
-  return (
-   <>
-   <h3>Blog </h3>
+  return (<>
+     <h4 className='text-center mt-2 mb-4'>Blog </h4>
       <table className="table table-striped table-hover">
         <thead>
           <tr>
@@ -103,8 +97,8 @@ const fetchBlogss = async () => {
           </tr>
         </thead>
         <tbody>
-          {blogListss &&
-            blogListss.map((data, index) => (
+          {blog &&
+            blog.map((data, index) => (
               <tr key={index}>
                 <td scope="row">{index + 1}</td>
                 <td>{data.title}</td>
@@ -134,27 +128,14 @@ const fetchBlogss = async () => {
                 </td> */}
                 <td>
                   <div className="d-flex gap-2">
-                    <button
-                      className="btn btn-light btn-round mb-0"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="Delete"
-                      onClick={() => {
-                        const deleteblog =
-                          window.confirm("Delete bloggerlist?");
-                        if (deleteblog) {
-                          handleDelete(data._id);
-                        }
-                      }}
+                    <button className="btn btn-light btn-round mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"
+                      onClick={() => { const deleteblog = window.confirm("Delete bloggerlist?");
+                        if (deleteblog) { handleDelete(data._id); } }}
                     >
                       <i className="bi bi-trash" />
                     </button>
-                    <button
-                      className="btn btn-light btn-round mb-0"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="Edit"
-                      onClick={() => handleEdit(data._id)}
+                    <button className="btn btn-light btn-round mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"
+                      onClick={() => handleEdit(data._id, data.description, data.title, data.date)}
                     >
                       <i className="bi bi-pencil-square" />
                     </button>
@@ -163,95 +144,39 @@ const fetchBlogss = async () => {
               </tr>
             ))}
         </tbody>
-        </table>
+      </table>
 
-        <Modal show={show} onHide={() => setShow(false)}>
+      <Modal show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={confirmUpdate}>
             <div className="mb-3">
-              <label htmlFor="bloggerName" className="form-label">
-            Blogger Name
-              </label>
-              <input
-                className="form-control"
-                id="bloggerName"
-                type="text"
-                placeholder="Blogger Name"
-                value={bloggerName}
-                onChange={(e) => setBloggerName(e.target.value)}
-              />
+              <label htmlFor="blogtitle" className="form-label" >Blog Title</label>
+              <input onChange={(e) => setBlog_title(e.target.value)} className="form-control" id="blogtitle" type="text" placeholder="Blog Title" value={blog_title} />
             </div>
-           
+            <div className="col-md-12 position-relative">
+              <h6 className="my-2">Blog Image</h6>
+              <label className="w-100" htmlFor="image" style={{ cursor: "pointer" }}>
+                <input onChange={(e) => setBlog_Image(e.target.files[0])} className="form-control stretched-link" type="file" name="my-images" id="image" accept="image/gif, image/jpeg, image/png" />
+              </label>
+            </div>
             <div className="mb-3">
-              <label htmlFor="instaName" className="form-label">
-            Blogger Name
-              </label>
-              <input
-                className="form-control"
-                id="instaName"
-                type="text"
-                placeholder="Blogger Name"
-                value={instaName}
-                onChange={(e) => setinstaName(e.target.value)}
-              />
+              <label htmlFor="blogdes" className="form-label" >Blog Description</label>
+              <input onChange={(e) => setBlogDescription(e.target.value)} className="form-control" id="blogdes" type="text" placeholder="Blog Description" value={blogDescription} />
             </div>
-             <div className="mb-3">
-              <label htmlFor="bloggerdes" className="form-label">
-            Blogger Name
-              </label>
-              <input
-                className="form-control"
-                id="bloggerdes"
-                type="text"
-                placeholder="Blogger Description"
-                value={bloggerDescription}
-                onChange={(e) => setBloggerDescription(e.target.value)}
-              />
+            <div className="mb-3">
+              <label htmlFor="Date" className="form-label" >Blog Date</label>
+              <input onChange={(e) => setBlog_Date(e.target.value)} className="form-control" id="Date" type="datetime-local" placeholder="Blog Date" value={blog_Date} />
             </div>
-            {/* <div className="col-md-12 position-relative">
-              <h6 className="my-2">Add Image</h6>
-              <label
-
-
-
-
-                className="w-100"
-                htmlFor="my-images"
-                style={{ cursor: "pointer" }}
-              >
-                <input
-                  className="form-control stretched-link"
-                  type="file"
-                  name="my-images"
-                  id="image"
-                  accept="image/gif, image/jpeg, image/png"
-                  onChange={(e) => setcatImage(e.target.files[0])}
-                />
-              </label>
-            </div> */}
-
             <div className="d-flex justify-content-end mt-4">
-              <button type="submit" className="btn btn-outline-success me-2">
-                Save Changes
-              </button>
-              <button
-                type="button"
-                onClick={() => setShow(false)}
-                className="btn btn-outline-success"
-              >
-                close
-              </button>
+              <button type="submit" className="btn btn-outline-success" > Create Blog </button>
             </div>
           </form>
         </Modal.Body>
-      </Modal>
-  
-   
-   </>
-  )
+      </Modal>   
+  </>)
 }
 
 export default ListBlog;
