@@ -167,7 +167,7 @@ function PageRoutes() {
 
           {/* Organized By */}
           <Route exact path="list_organizedby" element={<ListOrganizedby />} />
-          <Route exact path="add_organizedby" element={<AddOrganizedby />} />
+          <Route exact path="add_organizedby" element={<AddOrganizedby />} />
 
         </Route>          
 

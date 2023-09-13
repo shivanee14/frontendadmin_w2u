@@ -188,9 +188,9 @@ function AdminSidebar() {
                 List
               </MenuItem>
               <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_organizedby" />}>
-              Add New +
+                Add New +
               </MenuItem>
-            </SubMenu>
+            </SubMenu>
           </Menu>        
         </Sidebar>      
       </div>
