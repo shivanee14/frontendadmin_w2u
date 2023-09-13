@@ -5,18 +5,13 @@ import toast from "react-hot-toast";
 
 
 const ListBloginfluencer = () => {
-    const BLOG_INFLUENCER_API = process.env.REACT_APP_BLOGGER_URL;
+  const BLOG_INFLUENCER_API = process.env.REACT_APP_BLOGGER_URL;
+  const [blogger, setbBlogger] = useState([]);
 
-    const [show, setShow] = useState(false);
-
-  const [blogLists, setBlogLists] = useState([]);
-//   const [instaName, setInstaName] = useState('');
-//   const [blog_description, setBlog_description] = useState("");
-
-const fetchBlogs = async () => {
+  const fetchBlogs = async () => {
     try {
       const response = await axios.get(BLOG_INFLUENCER_API);
-      setBlogLists(response.data);
+      setbBlogger(response.data);
       console.log(response.data);
     } catch (err) {
       console.log(err.response.data.message || "Error fetching categories");
@@ -36,11 +31,11 @@ const fetchBlogs = async () => {
     }
   };
 
+  const [show, setShow] = useState(false);
   const [bloggerid, setbloggerid] = useState("");
   const [bloggerName, setBloggerName] = useState("");
   const [instaName, setinstaName] = useState("");
   const [bloggerDescription, setBloggerDescription] = useState("");
-
 
   const handleEdit = async (id,name,insta,des) => {
     setShow(true);
@@ -56,8 +51,7 @@ const fetchBlogs = async () => {
       const formData = new FormData();
       formData.append("blogger_name", bloggerName);
       formData.append("insta_name", instaName);
-      formData.append("description", bloggerDescription);
-     
+      formData.append("description", bloggerDescription);     
 
       try {
         const response = await axios.put(`${BLOG_INFLUENCER_API}/${bloggerid}`, formData, {
@@ -84,7 +78,6 @@ const fetchBlogs = async () => {
     }
   };
 
-
   return (<>
     <h4 className='text-center mt-2 mb-4'>Blog Influencer</h4>
       <table className="table table-striped table-hover">
@@ -98,8 +91,8 @@ const fetchBlogs = async () => {
           </tr>
         </thead>
         <tbody>
-          {blogLists &&
-            blogLists.map((data, index) => (
+          {blogger &&
+            blogger.map((data, index) => (
               <tr key={index}>
                 <td scope="row">{index + 1}</td>
                 <td>{data.blogger_name}</td>
@@ -148,94 +141,38 @@ const fetchBlogs = async () => {
             ))}
         </tbody>
       </table>
-
-        <Modal show={show} onHide={() => setShow(false)}>
+      <Modal show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Edit Blogger's Information</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={confirmUpdate}>
             <div className="mb-3">
-              <label htmlFor="bloggerName" className="form-label">
-            Blogger Name
-              </label>
-              <input
-                className="form-control"
-                id="bloggerName"
-                type="text"
-                placeholder="Blogger Name"
-                value={bloggerName}
-                onChange={(e) => setBloggerName(e.target.value)}
-              />
-            </div>
-           
+              <label htmlFor="bloggerName" className="form-label"> Blogger Name </label>
+              <input className="form-control" id="bloggerName" type="text" placeholder="Blogger Name" value={bloggerName} onChange={(e) => setBloggerName(e.target.value)} />
+            </div>           
             <div className="mb-3">
-              <label htmlFor="instaName" className="form-label">
-              Insta Name
-              </label>
-              <input
-                className="form-control"
-                id="instaName"
-                type="text"
-                placeholder="Blogger Name"
-                value={instaName}
-                onChange={(e) => setinstaName(e.target.value)}
-              />
+              <label htmlFor="instaName" className="form-label"> Insta Name </label>
+              <input className="form-control" id="instaName" type="text" placeholder="Blogger Name" value={instaName} onChange={(e) => setinstaName(e.target.value)} />
             </div>
              <div className="mb-3">
-              <label htmlFor="bloggerdes" className="form-label">
-               Description
-              </label>
-              <input
-                className="form-control"
-                id="bloggerdes"
-                type="text"
-                placeholder="Blogger Description"
-                value={bloggerDescription}
-                onChange={(e) => setBloggerDescription(e.target.value)}
-              />
-            </div>
-            {/* <div className="col-md-12 position-relative">
-              <h6 className="my-2">Add Image</h6>
-              <label
-
-
-
-
-                className="w-100"
-                htmlFor="my-images"
-                style={{ cursor: "pointer" }}
-              >
-                <input
-                  className="form-control stretched-link"
-                  type="file"
-                  name="my-images"
-                  id="image"
-                  accept="image/gif, image/jpeg, image/png"
-                  onChange={(e) => setcatImage(e.target.files[0])}
-                />
-              </label>
-            </div> */}
-
+              <label htmlFor="bloggerdes" className="form-label"> Description </label>
+              <input className="form-control" id="bloggerdes" type="text" placeholder="Blogger Description" value={bloggerDescription} onChange={(e) => setBloggerDescription(e.target.value)} />
+            </div>          
             <div className="d-flex justify-content-end mt-4">
-              <button type="submit" className="btn btn-outline-success me-2">
-                Save Changes
-              </button>
-              <button
-                type="button"
-                onClick={() => setShow(false)}
-                className="btn btn-outline-success"
-              >
-                close
-              </button>
+              <button type="submit" className="btn btn-outline-success me-2"> Save Changes </button>
+              <button type="button" onClick={() => setShow(false)} className="btn btn-outline-success" > Close </button>
+            </div>
+            <div className="col-md-12 position-relative">
+              <h6 className="my-2">Add Image</h6>
+              <label className="w-100" htmlFor="my-images" style={{ cursor: "pointer" }} >
+                <input className="form-control stretched-link" type="file" name="my-images" id="image" accept="image/gif, image/jpeg, image/png" onChange={(e) => setcatImage(e.target.files[0])} />
+              </label>
             </div>
           </form>
         </Modal.Body>
-      </Modal>
-  
-   
-   </>
-  )
+      </Modal>   
+  </>)
 }
 
 export default ListBloginfluencer;

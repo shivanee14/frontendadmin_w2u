@@ -148,7 +148,7 @@ const ListBlog = () => {
 
       <Modal show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Edit Blog</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={confirmUpdate}>
