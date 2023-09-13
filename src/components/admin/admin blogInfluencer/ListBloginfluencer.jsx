@@ -163,12 +163,12 @@ const ListBloginfluencer = () => {
               <button type="submit" className="btn btn-outline-success me-2"> Save Changes </button>
               <button type="button" onClick={() => setShow(false)} className="btn btn-outline-success" > Close </button>
             </div>
-            <div className="col-md-12 position-relative">
+            {/* <div className="col-md-12 position-relative">
               <h6 className="my-2">Add Image</h6>
               <label className="w-100" htmlFor="my-images" style={{ cursor: "pointer" }} >
                 <input className="form-control stretched-link" type="file" name="my-images" id="image" accept="image/gif, image/jpeg, image/png" onChange={(e) => setcatImage(e.target.files[0])} />
               </label>
-            </div>
+            </div> */}
           </form>
         </Modal.Body>
       </Modal>   
