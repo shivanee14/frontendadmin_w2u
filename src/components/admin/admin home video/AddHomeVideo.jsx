@@ -11,12 +11,43 @@ function AddHomeVideo() {
       thumbnailUrl: req.body.thumbnailUrl,
       uploader: req.user.id, */}
 
-    const [video, setVideo] = useState(null);
-    const [homeVideo, setHomeVideo] = useState('');
+      const [homeTitle, setHomeTitle] = useState('');
+      const [homeImage, setHomeImage] = useState(null);
 
-    function handleHomeVideo(){
-      console.log("Video Selected", video);
+
+    const handleSubmit = async(e)=>{
+      e.PreventDefault()
+
+      if(homeTitle && homeImage ){
+     const formData = new FormData();
+       formData.append("title",homeTitle);
+       formData.append("url",homeImage);
+       
+       try{
+       const response = await axios.post(HOME_VIDEO,formData,{
+         
+        headers:{
+
+            // Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+        }
+       })
+       if (response.data) {
+        toast.success("HomeImage added successfully");
+        e.target.reset();
+        setHomeTitle("")
+        setHomeImage(null)
+      }
+       }catch (error) {
+        console.error(error.response || "Something went wrong");
+
+      }
+    } 
+    else {
+      toast.error("All fields are mandatory.");
     }
+  
+  }
 
   return (<>
   {/* <Card>
@@ -46,34 +77,58 @@ function AddHomeVideo() {
             <div className=" row g-2">
               <div className="col-lg-9">
                 <div className="card border">
-                  <h3 className="mt-3 text-center">Add Home Video</h3>
+                
+                  <h3 className="mt-3 text-center">Add Home Images</h3>
                   <div className="card-body">
+                    <form>
+                  <div className="mt-3">
+                      <label
+                        htmlFor="title"
+                        className="col-3  fs-5 col-form-label"
+                      >
+                        Home Image Title
+                      </label>
+                      <input
+                        type="text" id="title" 
+                        className="col-9 form-control"
+                        aria-labelledby="passwordHelpInline"
+                        value={homeTitle}
+                        onChange={(e) => setHomeTitle(e.target.value)}
+                      />
+                      {/* accept="video/*" */}
+                    </div>
                     <div className="mt-3">
                       <label
                         htmlFor="video"
                         className="col-3  fs-5 col-form-label"
                       >
-                        Home Video
+                        Home Image
                       </label>
                       <input
-                        type="file" id="video" name="video" accept="video/*"
+                        type="file" id="video" name="homeImage"
                         className="col-9 form-control"
                         aria-labelledby="passwordHelpInline"
-                        onChange={(e) => setVideo(e.target.files[0])}
+                        onChange={(e) => setHomeImage(e.target.files[0])}
                       />
+                      {/* accept="video/*" */}
                     </div>
                     <div className="d-flex justify-content-end mt-4">
                       <button type="submit" className="btn btn-success"
-                      onClick={() => handleHomeVideo()}
+                      onClick={() => handleSubmit()}
                       >
                         Submit
                       </button>
                     </div>
+                    </form>
                   </div>
                 </div>
+                
               </div>
+              
             </div>
+  
           </div>
+          
         </section>
       </main>
 
