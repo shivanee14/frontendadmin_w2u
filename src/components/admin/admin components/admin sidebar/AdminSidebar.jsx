@@ -175,6 +175,22 @@ function AdminSidebar() {
               Add New +
               </MenuItem>
             </SubMenu>
+            <SubMenu style={{fontWeight: "bold"}}  label="Online Directory">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_online_directory" />}>
+                List
+              </MenuItem>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_online_directory" />}>
+              Add New +
+              </MenuItem>
+            </SubMenu>
+            <SubMenu style={{fontWeight: "bold"}}  label="Organized By">
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_organizedby" />}>
+                List
+              </MenuItem>
+              <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/add_organizedby" />}>
+              Add New +
+              </MenuItem>
+            </SubMenu>
           </Menu>        
         </Sidebar>      
       </div>

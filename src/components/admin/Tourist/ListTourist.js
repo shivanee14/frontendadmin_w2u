@@ -8,6 +8,8 @@ function ListTourist() {
   const TOURIST_API = process.env.REACT_APP_TOURIST_URL;  
   const [tourist, setTourist] = useState([]);
 
+  console.log("hello");
+
   const fetchTourist =  async () => {
     try {
       const response = await axios.get(TOURIST_API);

@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Modal, Card, Row, Col, Tooltip, OverlayTrigger, Button, Form  } from "react-bootstrap";
 
+
 function ListMandir() {
     const MANDIR_API = process.env.REACT_APP_MANDIR_URL ;
     const [mandir, setMandir] = useState([]);
+    const [file, setFile] = useState();  // Import and Export
+
+    const fileStyle = {
+      display: "none",
+    }
   
     const fetchMandir =  async () => {
       try {
         const response = await axios.get(MANDIR_API);
         setMandir(response.data);
-        console.log(response.data);
       } 
       catch (err) {
         console.error(err.response.data.message || "Error fetching Food Detail!!!");
@@ -75,18 +80,58 @@ function ListMandir() {
     }
   };
 
-    const handleDelete = async (id) => {
-      try {
-        await axios.delete(`${MANDIR_API}/${id}`);
-        fetchMandir();
-      } catch (err) {
-        console.error(err.response || "Error deleting Mandir details");
-      }
-    };
-    
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`${MANDIR_API}/${id}`);
+      fetchMandir();
+    } catch (err) {
+      console.error(err.response || "Error deleting Mandir details");
+    }
+  };
+
+    // const [ idea, setIdea ] = useState("");
+    // useEffect(() => {
+    //   fetchMandir();
+    // }, [idea]);
+
+    // const wait = async () => {
+    //   await fetchMandir();
+    //   setIdea("2");
+    // }
+
+    const ExportData = async() => {
+      const response = await axios.get(`${MANDIR_API}/export-csv`);
+      const dummyData = response.data;
+      const csvContent = `data:text/csv;charset=utf-8,${dummyData}`;
+      const encodedURI = encodeURI(csvContent);
+      window.open(encodedURI);
+      fetchMandir();
+    }  
+
+    const ImportData = async () => {
+      document.getElementById('myFileInput').click();
+    }
+
+    useEffect(() => {
+      const formData = new FormData();
+      formData.append("file", file);
+      const response = axios.post(`${MANDIR_API}/import-csv`, formData);
+      setMandir(response.data);
+     // wait();
+    }, [file]);
+
   return (<>
     <div style={{color: "#000000"}}>
     <h4 className='text-center mt-2 mb-4'>List of Mandirs</h4>
+    <div className='justify-content-end'>
+    {/* Import CSV */}
+    <input type={"file"} id={"myFileInput"} style={fileStyle} accept={".csv"} 
+      onChange={(e) => setFile(e.target.files[0])} />     
+      <Button onClick={() => ImportData()} className='btn btn-sm mx-1'>Upload CSV Data</Button>
+    {/* Export CSV Data  */}
+      <Button onClick={() => ExportData()} className='btn btn-sm mx-1'>Download CSV Data</Button>
+    </div>
+
     <Row style={{color: "#2B3542",  fontWeight: "bold"}} className="mt-2 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort">
         <Col lg="1" className="d-flex flex-column mb-lg-0 pe-1 d-flex align-items-start">
           <div  className="text-md cursor-pointer sort">Index</div>
@@ -106,7 +151,7 @@ function ListMandir() {
         <Col lg="2" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center">
           <div className="text-md cursor-pointer sort">Actions</div>
         </Col>
-      </Row>
+    </Row>
       {mandir && mandir.map((data, index) => (
         <Card key={data._id} className='my-2 '>
           <Card.Body>
@@ -177,4 +222,4 @@ function ListMandir() {
   </>)
 }
 
-export default ListMandir
+export default ListMandir;

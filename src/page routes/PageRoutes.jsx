@@ -59,152 +59,132 @@ import ListShopping from "../components/admin/Shopping/ListShopping";
 import AddShopping from "../components/admin/Shopping/AddShopping";
 import ListTourist from "../components/admin/Tourist/ListTourist";
 import AddTourist from "../components/admin/Tourist/AddTourist";
+import AddOnlineDirectory from "../components/admin/OnlineDirectory/AddOnlineDirectory";
+import ListOnlineDirectory from "../components/admin/OnlineDirectory/ListOnlineDirectory";
+import ListOrganizedby from "../components/admin/admin Organizedby/ListOrganizedby";
+import AddOrganizedby from "../components/admin/admin Organizedby/AddOrganizedby";
 
 function PageRoutes() {
+  return (<>
+    <Router>
+      <Routes>
+        <Route exact path="/:category_name/:category_id" element={<CategoryPage />} />;
+        <Route exact path="/:category_name/:category_id/:subcategory_Name/:subcategory_id" element={<SubCategoryPage />} />
+        {/* path="/:category/:subcategoryname"  */}
+        <Route exact path="/:category_name/:category_id/:subcategory_Name/:subcategory_id/:business_name/:business_id" element={<ListedItemPage />} />
+        {/* path="/listeditem" */}
+        <Route exact path="news" element={<NewsPage />} />
+        <Route exact path="news/:news_id" element={<MainNews />} />
+        <Route exact path={`find_in_udaipur/:searched_query`} element={<SearchResult />} />
+        {/* path={`find_in_udaipur/search/q=:searched_query`} */}
+        <Route exact path="signup" element={<SignUpPage />} />
+        <Route exact path="signin" element={<SignInPage />} />
+        <Route exact path="user" element={<UserPage />} />
+        <Route exact path="user/business_list" element={<BusinessListingPage />} />
+        <Route exact path="user/edit_details" element={<EditUserProfilePage />} />
 
-  return (
-    <>
-      <Router>
-        <Routes>
-          <Route exact path="/:category_name/:category_id" element={<CategoryPage />} />;
-          <Route exact
-            // path="/:category/:subcategoryname"
-            path="/:category_name/:category_id/:subcategory_Name/:subcategory_id"
-            element={<SubCategoryPage />}
-          />
-          <Route
-            exact
-            path="/:category_name/:category_id/:subcategory_Name/:subcategory_id/:business_name/:business_id"
-            // path="/listeditem"
-            element={<ListedItemPage />}
-          />
-          <Route exact path="news" element={<NewsPage />} />
-          <Route
-            exact
-            path="news/:news_id"
-            element={<MainNews />}
-          />
+        {/* Admin Panel */}
+        <Route exact path="admin" element={<Dashboard />}>
 
-          <Route
-            exact
-            path={`find_in_udaipur/:searched_query`}
-            // path={`find_in_udaipur/search/q=:searched_query`}
-            element={<SearchResult />}
-          />
+          {/* Category */}
+          <Route exact path="add_category" element={<AddCategory />} />
+          <Route exact path="list_category" element={<ListCategory />} />
 
-          <Route exact path="signup" element={<SignUpPage />} />
-          <Route exact path="signin" element={<SignInPage />} />
+          {/* Subcategory */}
+          <Route exact path="add_subcategory" element={<AddSubcategory />} />
+          <Route exact path="list_subcategory" element={<ListSubcategory />} />
 
-          <Route exact path="user" element={<UserPage />} />
-          <Route
-            exact
-            path="user/business_list"
-            element={<BusinessListingPage />}
-          />
-          <Route
-            exact
-            path="user/edit_details"
-            element={<EditUserProfilePage />}
-          />
+          {/* News  */}
+          <Route exact path="add_news" element={<AddNews />} />
+          <Route exact path="list_news" element={<ListNews />} />
 
-          {/* Admin Panel */}
-          <Route exact path="admin" element={<Dashboard />}>
+          {/* User List */}
+          <Route exact path="list_user" element={<ListUser />} />
+          {/* ------------------------ */}
 
-            {/* Category */}
-            <Route exact path="add_category" element={<AddCategory />} />
-            <Route exact path="list_category" element={<ListCategory />} />
+          {/* Advertisement */}
+          <Route exact path="list_advertisement" element={< ListAdvertisement />} />
+          <Route exact path="add_advertisement" element={<AddAdvertisement />} />
 
-            {/* Subcategory */}
-            <Route exact path="add_subcategory" element={<AddSubcategory />} />
-            <Route exact path="list_subcategory" element={<ListSubcategory />} />
+          {/* Businesses */}
+          <Route exact path="list_businesses" element={<ListBusinessListing />} />
+          <Route exact path="add_businesses" element={<AddBusinessListing />} />
 
-            {/* News  */}
-            <Route exact path="add_news" element={<AddNews />} />
-            <Route exact path="list_news" element={<ListNews />} />
+          {/* Darshan Timing */}
+          <Route exact path="list_darshan_timing" element={<ListDarshanTiming />} />
+          <Route exact p ath="add_darshan_timing" element={<AddDarshanTiming />} />
 
-            {/* User List */}
-            <Route exact path="list_user" element={<ListUser />} />
+          {/* Home_Video */}
+          <Route exact path="list_home_video" element={<HomeVideo />} />
+          <Route exact path="add_home_video" element={<AddHomeVideo />} />
 
-            {/* ------------------------ */}
+          {/* Newsletter */}
+          <Route exact path="list_newsletter" element={<ListNewsletterUser />} />
 
-            {/* Advertisement */}
-            <Route exact path="list_advertisement" element={< ListAdvertisement />} />
-            <Route exact path="add_advertisement" element={<AddAdvertisement />} />
-
-            {/* Businesses */}
-            <Route exact path="list_businesses" element={<ListBusinessListing />} />
-            <Route exact path="add_businesses" element={<AddBusinessListing />} />
-
-            {/* Darshan Timing */}
-            <Route exact path="list_darshan_timing" element={<ListDarshanTiming />} />
-            <Route exact path="add_darshan_timing" element={<AddDarshanTiming />} />
-
-            {/* Home_Video */}
-            <Route exact path="list_home_video" element={<HomeVideo />} />
-            <Route exact path="add_home_video" element={<AddHomeVideo />} />
-
-            {/* Newsletter */}
-            <Route exact path="list_newsletter" element={<ListNewsletterUser />} />
-
-            {/* Social Media */}
-            <Route exact path="list_social_media" element={<ListSocialMedia />} />
-            <Route exact path="add_social_media" element={<AddSocialMedia />} />
+          {/* Social Media */}
+          <Route exact path="list_social_media" element={<ListSocialMedia />} />
+          <Route exact path="add_social_media" element={<AddSocialMedia />} /> 
              
-            {/* Event */}
-            <Route exact path="list_event" element={<ListEvent />} />
-            <Route exact path="add_event" element={<AddEvent />} />
+          {/* Event */}
+          <Route exact path="list_event" element={<ListEvent />} />
+          <Route exact path="add_event" element={<AddEvent />} />
 
-            {/* Guide */}
-            <Route exact path="list_guide" element={<ListGuide />} />
-            <Route exact path="add_guide" element={<AddGuide />} />         
+          {/* Guide */}
+          <Route exact path="list_guide" element={<ListGuide />} />
+          <Route exact path="add_guide" element={<AddGuide />} />         
           
-            {/* bloggerInfluencer */}
-            <Route exact path="list_blogger" element={<ListBloginfluencer />} />
-            <Route exact path="add_blogger" element={<AddBloginfluencer />} />
+          {/* bloggerInfluencer */}
+          <Route exact path="list_blogger" element={<ListBloginfluencer />} />
+          <Route exact path="add_blogger" element={<AddBloginfluencer />} />
             
-            {/* bloggerInfluencer */}
-            <Route exact path="list_blog" element={<ListBlog />} />
-            <Route exact path="add_blog" element={<AddBlog />} />
+          {/* bloggerInfluencer */}
+          <Route exact path="list_blog" element={<ListBlog />} />
+          <Route exact path="add_blog" element={<AddBlog />} />
 
-             {/* wedding_agent */}
-             <Route exact path="list_wedding_agent" element={<Listwedding_Agent />} />
-            <Route exact path="add_wedding_agent" element={<Addwedding_Agent/>} />
+          {/* Wedding_agent */}
+          <Route exact path="list_wedding_agent" element={<Listwedding_Agent />} />
+          <Route exact path="add_wedding_agent" element={<Addwedding_Agent/>} />
 
-            {/* Food */}
-            <Route exact path="list_food" element={<ListFood />} />
-            <Route exact path="add_food" element={<AddFood />} />
+          {/* Food */}
+          <Route exact path="list_food" element={<ListFood />} />
+          <Route exact path="add_food" element={<AddFood />} />
 
-            {/* Mandir */}
-            <Route exact path="list_mandir" element={<ListMandir />} />
-            <Route exact path="add_mandir" element={<AddMandir />} />
+          {/* Mandir */}
+          <Route exact path="list_mandir" element={<ListMandir />} />
+          <Route exact path="add_mandir" element={<AddMandir />} />
 
-            {/* Shopping */}
-            <Route exact path="list_shopping" element={<ListShopping />} />
-            <Route exact path="add_shopping" element={<AddShopping />} />
+          {/* Shopping */}
+          <Route exact path="list_shopping" element={<ListShopping />} />
+          <Route exact path="add_shopping" element={<AddShopping />} />
 
-            {/* Tourist */}
-            <Route exact path="list_tourist" element={<ListTourist />} />
-            <Route exact path="add_tourist" element={<AddTourist />} />
+          {/* Tourist */}
+          <Route exact path="list_tourist" element={<ListTourist />} />
+          <Route exact path="add_tourist" element={<AddTourist />} />
 
-          </Route>
+          {/* Online Directory */}
+          <Route exact path="list_online_directory" element={<ListOnlineDirectory />} />
+          <Route exact path="add_online_directory" element={<AddOnlineDirectory />} />
 
-          
+          {/* Organized By */}
+          <Route exact path="list_organizedby" element={<ListOrganizedby />} />
+          <Route exact path="add_organizedby" element={<AddOrganizedby />} />
 
-          <Route exact path="contact-us" element={<ContactUsPage />} />
-          <Route exact path="about-us" element={<AboutUsPage />} />
-          {/* <Route exact path="rough2" element={<Rough2 />} /> */}
-          <Route exact path="t&c" element={<TermsAndConditionsPage />} />
-          <Route exact path="faq" element={<FAQPage />} />
-          <Route exact path="privacy_policy" element={<PrivacyPolicyPage />} />
-          <Route exact path="ads_policy" element={<AdsPolicyPage />} />
-          <Route exact path="vendor_policy" element={<VendorPolicyPage />} />
-          <Route exact path="rough" element={<Rough />} />
-          <Route exact path="/" element={<IndexPage />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </Router >
-    </>
-  );
+        </Route>          
+
+        <Route exact path="contact-us" element={<ContactUsPage />} />
+        <Route exact path="about-us" element={<AboutUsPage />} />
+        {/* <Route exact path="rough2" element={<Rough2 />} /> */}
+        <Route exact path="t&c" element={<TermsAndConditionsPage />} />
+        <Route exact path="faq" element={<FAQPage />} />
+        <Route exact path="privacy_policy" element={<PrivacyPolicyPage />} />
+        <Route exact path="ads_policy" element={<AdsPolicyPage />} />
+        <Route exact path="vendor_policy" element={<VendorPolicyPage />} />
+        <Route exact path="rough" element={<Rough />} />
+        <Route exact path="/" element={<IndexPage />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </Router >
+  </>);
 }
 
 export default PageRoutes;
