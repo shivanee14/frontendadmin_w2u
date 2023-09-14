@@ -99,8 +99,8 @@ const ListEvent = () => {
         <thead>
           <tr>
             {/* <th scope="col">Id</th> */}
-            {/* <th scope="col">Event Image</th> */}
             <th scope="col">Event Name</th>            
+            <th scope="col">Event Image</th>
             <th scope="col">Address</th>
             <th scope="col">Location</th>
             <th scope="col">Date</th>
@@ -118,8 +118,8 @@ const ListEvent = () => {
               <tr key={index}>
                 {/* <td scope="row">{index + 1}</td> */}
 
-                <td>{data.name}</td>
-                {/* <td>
+                <td>{index + 1}{data.name}</td>
+                <td>
                   <div style={{ height: "50px" }}>
                     <a href={`${data.Image}`} target="_blank">
                       <img
@@ -129,7 +129,7 @@ const ListEvent = () => {
                         />
                     </a>
                   </div>
-                </td> */}            
+                </td>       
                 <td>{data.address}</td>
                 <td>{data.location}</td>
                 <td>{data.date}</td>
@@ -147,7 +147,7 @@ const ListEvent = () => {
                       title="Delete"
                       onClick={() => {
                         const deletecategory =
-                          window.confirm("Delete category?");
+                          window.confirm("Delete eventList?");
                         if (deletecategory) {
                           handleDelete(data._id);
                         }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Modal, Card, Row, Col, Tooltip, OverlayTrigger, Button, Form  } from "react-bootstrap";
+import { Modal, Card, Row, Col, Tooltip, OverlayTrigger, Button, Form, Table  } from "react-bootstrap";
 
 
 const ListOrganizedby = () => {
@@ -38,7 +38,7 @@ const ListOrganizedby = () => {
       const [organizedTitle, setOrganizedTitle] = useState("");   
       const [descOrganized, setDescOrganized] = useState("");  
       const [organizedDate, setOrganizedDate] = useState("");                 // description
-    //   const [image, setImage] = useState(null);              // my-images
+      const [image, setImage] = useState(null);              // my-images
     
       const handleEdit = (id, title, desc, date) => {
         setShow(true);
@@ -46,15 +46,16 @@ const ListOrganizedby = () => {
         setOrganizedTitle(title);
         setDescOrganized(desc);
         setOrganizedDate(date);
+        setImage(null);
       }
     
       const ConfirmUpdate = async () => {
-        if (organizedId && organizedTitle && descOrganized &&  organizedDate ) {
+        if (organizedId && image && organizedTitle && descOrganized &&  organizedDate ) {
           const formData = new FormData();
           formData.append('title', organizedTitle);
           formData.append('description', descOrganized);
           formData.append('date', organizedDate);
-        //   formData.append('my-images', image);   
+         formData.append('my-images', image);   
     
           try {
             const response = await axios.put(`${ORGANIZEDBY_API}/${organizedId}`, formData, {
@@ -87,12 +88,59 @@ const ListOrganizedby = () => {
     <>
     <div style={{color: "#000000"}}>
     <h4 className='text-center mt-2 mb-4'>List of OrganizedBY</h4>
-      <Row style={{color: "#2B3542", fontWeight: "bold"}} className="mt-2 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort">
+
+    <Table>
+          <thead>
+            <tr>
+              <th scope='col'>Title</th>
+              <th scope='col'>Image</th>
+              <th scope='col'>Description</th>
+              <th scope='col'>Date</th>
+              <th scope='col'>Actions</th>
+            </tr>
+          </thead>
+          <tbody >
+            {organizes && organizes.map((data, index) => (       
+            <tr key={data._id} >
+              <td>{index + 1} {data.title}</td>
+              <td>
+                <img className="img-fluid h-100 w-100" src={`${data.Image}`} alt="ss"/></td>
+              <td>{data.description}</td>
+              <td>{data.date}</td>
+              <td>
+              
+                <Button variant='outline-primary' className="btn btn-light btn-round me-2"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                  onClick={() => {
+                  const deletecategory = window.confirm("Delete  OrganizedBY ?");
+                  if (deletecategory) { handleDelete(data._id); }
+                  }}>
+                    <i className="bi bi-trash" />
+                </Button>
+             
+                <Button variant='outline-primary' className="btn btn-light btn-round me-1"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                  onClick={() => handleEdit(data._id, data.title, data.description , data.date)}>
+                    <i className="bi bi-pencil-square" />
+                </Button>
+
+              </td>
+            </tr>         
+            ))}
+          </tbody>
+        </Table>
+
+      {/* <Row style={{color: "#2B3542", fontWeight: "bold"}} className="mt-2 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort">
         <Col lg="1" className="d-flex flex-column mb-lg-0 pe-1 d-flex align-items-start">
           <div  className="text-md cursor-pointer sort">Index</div>
         </Col>
         <Col lg="3" className="d-flex flex-column mb-lg-0 pe-1 d-flex ">
           <div  className="text-md cursor-pointer sort">Title</div>
+        </Col>
+        <Col lg="2" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center">
+          <div className="text-md cursor-pointer sort ">Image</div>
         </Col>
         <Col lg="2" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center">
           <div className="text-md cursor-pointer sort">Description</div>
@@ -103,9 +151,9 @@ const ListOrganizedby = () => {
         <Col lg="2" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center">
           <div className="text-md cursor-pointer sort">Actions</div>
         </Col>
-      </Row>
+      </Row> */}
 
-      {organizes && organizes.map((data, index) => (
+      {/* {organizes && organizes.map((data, index) => (
         <Card key={data._id} className='my-2 '>
           <Card.Body>
             <Row className="g-0 h-100 align-content-center">
@@ -118,9 +166,22 @@ const ListOrganizedby = () => {
                 <div className="text-alternate">{data.title}</div>
               </Col>
               
+              <Col xs="6" lg="3" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 align-items-lg-center">
+                <div  className="text-muted text-small d-lg-none">Image</div>
+                <div style={{ height: "50px" }}>
+                    <a href={`${data.Image}`} target="_blank">
+                      <img
+                        className="img-fluid h-100"
+                        src={`${data.Image}`}
+                        alt=""
+                      />
+                    </a>
+                  </div>
+              </Col>
+              
               <Col xs="6" lg="3" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-3 order-lg-3 align-items-lg-center">
                 <div  className="text-muted text-small d-lg-none">Description</div>
-                <div className="text-alternate">{data.description}</div>
+                <div className="text-alternate d-flex ">{data.description}</div>
               </Col>
               <Col xs="6" lg="3" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-3 order-lg-3 align-items-lg-center">
                 <div  className="text-muted text-small d-lg-none">Date</div>
@@ -145,7 +206,7 @@ const ListOrganizedby = () => {
             </Row>
           </Card.Body>
         </Card>
-      ))}
+      ))} */}
 
     <Modal show={show} onHide={() => setShow(false)}>
       <Modal.Header closeButton>
@@ -155,8 +216,8 @@ const ListOrganizedby = () => {
         <Form>
           <Form.Label className='my-1' htmlFor="organizedTitle">Tourist Place Name</Form.Label>
           <Form.Control  className='my-1' value={organizedTitle} onChange={(e) => setOrganizedTitle(e.target.value)} id="organizedTitle" type="text" placeholder="Title"/> 
-          {/* <Form.Label className='my-1' htmlFor="image">Image</Form.Label>
-          <Form.Control  className='my-1' onChange={(e) => setImage(e.target.files[0])} id="image" accept="image/gif, image/jpeg, image/png" type="file"  /> */}
+          <Form.Label className='my-1' htmlFor="image">Image</Form.Label>
+          <Form.Control  className='my-1' onChange={(e) => setImage(e.target.files[0])} id="image" accept="image/gif, image/jpeg, image/png" type="file"  />
           <Form.Label className='my-1' htmlFor="desc">Description</Form.Label>
           <Form.Control  className='my-1' value={descOrganized} onChange={(e) => setDescOrganized(e.target.value)} id="desc" type="text" placeholder="Description" />
          <Form.Label className='my-1' htmlFor="date">Date</Form.Label>

@@ -9,7 +9,7 @@ const AddOrganizedby = () => {
     const [organized_title, setOrganized_title] = useState('');
     const [organized_Description, setOrganized_Description] = useState("");
     const [organized_Date, setOrganized_Date] = useState("");
-  //const [blog_Image, setBlog_Image] = useState(null);
+    const [organized_Image, setOrganized_Image] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +18,7 @@ const AddOrganizedby = () => {
 
       const formData = new FormData();
       formData.append('title', organized_title);
-    //   formData.append('images', blog_Image);
+       formData.append('my-images', organized_Image);
       formData.append('description', organized_Description);
       formData.append('date', organized_Date);
 
@@ -35,7 +35,7 @@ const AddOrganizedby = () => {
           setOrganized_title("")
           setOrganized_Description("")
           setOrganized_Date("")
-        //   setBlog_Image(null)
+          setOrganized_Image(null)
         }
       } catch (error) {
         console.error(error.response || "Something went wrong");
@@ -72,8 +72,8 @@ const AddOrganizedby = () => {
                         />
                       </div>
 
-                           {/* <div className="col-md-12 position-relative">
-                        <h6 className="my-2">Blog Image</h6>
+                           <div className="col-md-12 position-relative">
+                        <h6 className="my-2"> Image</h6>
                         <label className="w-100"
                           htmlFor="image"
 
@@ -84,10 +84,10 @@ const AddOrganizedby = () => {
                             name="my-images"
                             id="image"
                             accept="image/gif, image/jpeg, image/png"
-                            onChange={(e) => setBlog_Image(e.target.files[0])}
+                            onChange={(e) => setOrganized_Image(e.target.files[0])}
                           />
                         </label>
-                      </div>  */}
+                      </div> 
 
                       <div className="mb-3">
                         <label htmlFor="orgdes" className="form-label" > Description</label>

@@ -106,8 +106,8 @@ const Listwedding_Agent = () => {
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Venture Name</th>
-            {/* <th scope="col">Category Image</th> */}
             <th scope="col">Agent Name</th>
+            <th scope="col">Image</th>
             <th scope="col">Contact No</th>
             <th scope="col">Description</th>
             <th scope="col">Action</th>
@@ -120,17 +120,17 @@ const Listwedding_Agent = () => {
                 <td scope="row">{index + 1}</td>
                 <td>{data.ventureName}</td>
                 <td>{data.agentName}</td>
-                {/* <td>
+                <td>
                   <div style={{ height: "50px" }}>
-                    <a href={`${data.image}`} target="_blank">
+                    <a href={`${data.Image}`} target="_blank">
                       <img
                         className="img-fluid h-100"
-                        src={`${data.image}`}
+                        src={`${data.Image}`}
                         alt=""
                       />
                     </a>
                   </div>
-                </td> */}
+                </td>
                  <td>{data.contactNo}</td>
                  <td>{data.description}</td>
                 <td>

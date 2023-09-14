@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Modal, Card, Row, Col, Tooltip, OverlayTrigger, Button, Form  } from "react-bootstrap";
+import { Modal, Card, Row, Col, Tooltip, OverlayTrigger, Button, Form, Table  } from "react-bootstrap";
 
 
 function ListMandir() {
@@ -106,13 +106,14 @@ function ListMandir() {
       const encodedURI = encodeURI(csvContent);
       window.open(encodedURI);
       fetchMandir();
-    }  
+    }   
 
     const ImportData = async () => {
       document.getElementById('myFileInput').click();
     }
 
     useEffect(() => {
+
       const formData = new FormData();
       formData.append("file", file);
       const response = axios.post(`${MANDIR_API}/import-csv`, formData);
@@ -139,6 +140,9 @@ function ListMandir() {
         <Col lg="2" className="d-flex flex-column mb-lg-0 pe-1 d-flex ">
           <div  className="text-md cursor-pointer sort">Mandir Name</div>
         </Col>
+        <Col lg="2" className="d-flex flex-column mb-lg-0 pe-1 d-flex ">
+          <div  className="text-md cursor-pointer sort">Image</div>
+        </Col>
         <Col lg="2" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center">
           <div className="text-md cursor-pointer sort">Details</div>
         </Col>
@@ -152,6 +156,16 @@ function ListMandir() {
           <div className="text-md cursor-pointer sort">Actions</div>
         </Col>
     </Row>
+    <Table>
+     <thead>
+      <th scope='col'>Index name</th>
+      <th scope='col'>Mandir Name</th>
+      <th scope='col'>Image</th>
+      <th scope='col'>Details</th>
+      <th scope='col'>Location</th>
+      <th scope='col'>Address</th>
+     </thead>
+      <tbody>
       {mandir && mandir.map((data, index) => (
         <Card key={data._id} className='my-2 '>
           <Card.Body>
@@ -172,7 +186,7 @@ function ListMandir() {
                 <div  className="text-muted text-small d-lg-none">Location</div>
                 <div className="text-alternate">{data.location}</div>
               </Col>
-              <Col xs="6" lg="3" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-4 align-items-lg-center">
+              <Col xs="6" lg="2" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-4 align-items-lg-center">
                 <div  className="text-muted text-small d-lg-none">Address</div>
                 <div className="text-alternate">{data.address}</div>
               </Col>
@@ -195,7 +209,11 @@ function ListMandir() {
             </Row>
           </Card.Body>
         </Card>
+        
       ))}
+      </tbody>
+    </Table>
+     
 
   <Modal show={show} onHide={() => setShow(false)}>
     <Modal.Header closeButton>
