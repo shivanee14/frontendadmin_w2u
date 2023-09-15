@@ -1,0 +1,23 @@
+Your CSS
+.your-element {
+    position: relative;
+    z-index: 1;
+    background-image: url('/barner2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+  }
+  
+  .your-element::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-image: inherit;
+    background-size: cover;
+    filter: blur(5px); /* Adjust the blur value as needed */
+    opacity: 0.8;
+  }

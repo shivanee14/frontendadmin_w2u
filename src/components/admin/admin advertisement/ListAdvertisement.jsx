@@ -90,7 +90,7 @@ const confirmUpdate = async (e) => {
         <h3 className="d-flex justify-content-center mt-4 mb-4"> Advertisement Listing </h3>
         <table style={{overflowX: "visible"}} className="table table-striped table-hover" >
           <thead className="fs-5">
-              <tr>
+              <tr style={{color:"white"}}>
                 <th scope="col">Id</th>
                 <th scope="col">Title</th>
                 <th scope="col">Image</th>
@@ -101,12 +101,12 @@ const confirmUpdate = async (e) => {
                 <th scope="col">Active</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody >
           {advertisment && 
            advertisment.map((data, index) => (
-            <tr key={index}>
-                <td scope="row">{index + 1}</td> 
-               <td>{data.title}</td>
+            <tr   key={index}>
+                <td scope="row" style={{color:"white"}}>{index + 1}</td> 
+               <td  style={{color:"white"}}>{data.title}</td>
                <td>
                   <div style={{ height: "50px" }}>
                     <a href={`${data.imageURL}`} target="_blank">
@@ -114,11 +114,11 @@ const confirmUpdate = async (e) => {
                     </a>
                   </div>
                 </td>
-               <td>{data.description}</td>              
-               <td>{data.startDate}</td>
-               <td>{data.endDate}</td>
-               <td>{data.businessListing}</td>
-               <td>{data.active? "Active" : "Inactive"}</td>
+               <td  style={{color:"white"}}>{data.description}</td>              
+               <td  style={{color:"white"}}>{data.startDate}</td>
+               <td  style={{color:"white"}}>{data.endDate}</td>
+               <td  style={{color:"white"}}>{data.businessListing}</td>
+               <td  style={{color:"white"}}>{data.active? "Active" : "Inactive"}</td>
                
                 <td>
                   <div className="d-flex gap-2">

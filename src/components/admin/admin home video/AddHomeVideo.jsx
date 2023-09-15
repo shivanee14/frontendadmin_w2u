@@ -5,49 +5,44 @@ import { Card, Form , Col, Row, Button} from 'react-bootstrap'
 
 function AddHomeVideo() {
   const HOME_VIDEO = process.env.REACT_APP_INDEX_VIDEO_URL;
-  {/* title: req.body.title,
-      description: req.body.description,
-      url: req.file ? req.file.path : null,
-      thumbnailUrl: req.body.thumbnailUrl,
-      uploader: req.user.id, */}
+ 
 
       const [homeTitle, setHomeTitle] = useState('');
       const [homeImage, setHomeImage] = useState(null);
 
 
-    const handleSubmit = async(e)=>{
-      e.PreventDefault()
+    
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-      if(homeTitle && homeImage ){
-     const formData = new FormData();
-       formData.append("title",homeTitle);
-       formData.append("url",homeImage);
-       
-       try{
-       const response = await axios.post(HOME_VIDEO,formData,{
-         
-        headers:{
+    if (homeTitle && homeImage) {
 
+      const formData = new FormData();
+      formData.append('title', homeTitle);
+      formData.append('my-images', homeImage);
+
+      try {
+        const response = await axios.post(HOME_VIDEO, formData, {
+          headers: {
             // Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
+          },
+        });
+        if (response.data) {
+          toast.success("home Image added successfully");
+          e.target.reset();
+          setHomeTitle("")
+          setHomeImage(null)
         }
-       })
-       if (response.data) {
-        toast.success("HomeImage added successfully");
-        e.target.reset();
-        setHomeTitle("")
-        setHomeImage(null)
-      }
-       }catch (error) {
+      } catch (error) {
         console.error(error.response || "Something went wrong");
 
       }
-    } 
+    }
     else {
       toast.error("All fields are mandatory.");
     }
-  
-  }
+   }
 
   return (<>
   {/* <Card>
@@ -80,7 +75,7 @@ function AddHomeVideo() {
                 
                   <h3 className="mt-3 text-center">Add Home Images</h3>
                   <div className="card-body">
-                    <form>
+                    <form onSubmit={ handleSubmit} >
                   <div className="mt-3">
                       <label
                         htmlFor="title"
@@ -114,7 +109,7 @@ function AddHomeVideo() {
                     </div>
                     <div className="d-flex justify-content-end mt-4">
                       <button type="submit" className="btn btn-success"
-                      onClick={() => handleSubmit()}
+                      
                       >
                         Submit
                       </button>

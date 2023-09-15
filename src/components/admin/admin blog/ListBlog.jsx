@@ -102,17 +102,17 @@ const ListBlog = () => {
               <tr key={index}>
                 <td scope="row">{index + 1}</td>
                 <td>{data.title}</td>
-                {/* <td>
+                <td>
                   <div style={{ height: "50px" }}>
                     <a href={`${data.images}`} target="_blank">
                       <img
                         className="img-fluid h-100"
-                        src={`${data.images}`}
-                        alt=""
+                        src={data.images}
+                        alt="blog"
                       />
                     </a>
                   </div>
-                </td>  */}
+                </td> 
                 <td>{data.description}</td>
                 <td>{data.date}</td>
                 {/* <td>

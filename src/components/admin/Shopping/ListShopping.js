@@ -102,11 +102,14 @@ function ListShopping() {
           <div className="text-md cursor-pointer sort">Shopping Area Slug</div>
         </Col>
         <Col lg="2" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center ">
+          <div className="text-md cursor-pointer sort">Image</div>
+        </Col>
+        <Col lg="2" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center ">
           <div className="text-md cursor-pointer sort">Location</div>
         </Col>
-        <Col lg="3" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center">
+        {/* <Col lg="3" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center">
           <div className="text-md cursor-pointer sort">Tag</div>
-        </Col>
+        </Col> */}
         <Col lg="2" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center">
           <div className="text-md cursor-pointer sort">Actions</div>
         </Col>
@@ -126,6 +129,10 @@ function ListShopping() {
               <Col xs="6" lg="2" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-2 order-lg-2 align-items-lg-center">
                 <div  className="text-muted text-small d-lg-none">Shopping Area Slug</div>
                 <div className="text-alternate">{data.slug}</div>
+              </Col>
+              <Col xs="6" lg="2" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-3 order-lg-3 align-items-lg-center">
+                <div  className="text-muted text-small d-lg-none">Location</div>
+                <div className="text-alternate"><img src={data.Image} style={{height:"100px",width:"100px"}}></img></div>
               </Col>
               <Col xs="6" lg="2" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-3 order-lg-3 align-items-lg-center">
                 <div  className="text-muted text-small d-lg-none">Location</div>

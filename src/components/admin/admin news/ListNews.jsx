@@ -111,7 +111,7 @@ function ListNews() {
             News</h3>
           <table className="table table-striped table-hover">
             <thead className="fs-5">
-              <tr>
+              <tr  style={{color:"white"}}>
                 <th scope="col">Id</th>
                 <th scope="col">Tile</th>
                 <th scope="col">Slug</th>
@@ -128,7 +128,7 @@ function ListNews() {
 
               {news &&
                 news.map((data, index) =>
-                  <tr key={index}>
+                  <tr key={index}  style={{color:"white"}}>
                     <td scope="row">{index + 1}</td>
                     <td>{data.title}</td>
                     <td>{data.slug}</td>

@@ -82,7 +82,7 @@ function HomeVideo() {
       <div className='container-fluid'>
         <div className='row'>
           <h3 className="d-flex justify-content-center mt-4 mb-4">
-            Home Videos
+            Home Images
           </h3>
           <table className="table table-striped table-hover" >
 
@@ -102,10 +102,10 @@ function HomeVideo() {
                 <td>{data.title}</td>
                 <td>
                   <div style={{ height: "50px" }}>
-                    <a href={`${data.file}`} target="_blank">
+                    <a href={`${data.images}`} target="_blank">
                       <img
                         className="img-fluid h-100"
-                        src={`${data.file}`}
+                        src={`${data.images}`}
                         alt=""
                       />
                     </a>
@@ -133,7 +133,7 @@ function HomeVideo() {
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
                       title="Edit"
-                      onClick={() => handleEdit(data._id, data.name)}
+                      onClick={() => handleEdit(data._id, data.title)}
                     >
                       <i className="bi bi-pencil-square" />
                     </button>

@@ -133,82 +133,85 @@ function ListMandir() {
       <Button onClick={() => ExportData()} className='btn btn-sm mx-1'>Download CSV Data</Button>
     </div>
 
-    <Row style={{color: "#2B3542",  fontWeight: "bold"}} className="mt-2 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort">
-        <Col lg="1" className="d-flex flex-column mb-lg-0 pe-1 d-flex align-items-start">
-          <div  className="text-md cursor-pointer sort">Index</div>
-        </Col>
-        <Col lg="2" className="d-flex flex-column mb-lg-0 pe-1 d-flex ">
-          <div  className="text-md cursor-pointer sort">Mandir Name</div>
-        </Col>
-        <Col lg="2" className="d-flex flex-column mb-lg-0 pe-1 d-flex ">
-          <div  className="text-md cursor-pointer sort">Image</div>
-        </Col>
-        <Col lg="2" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center">
-          <div className="text-md cursor-pointer sort">Details</div>
-        </Col>
-        <Col lg="2" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center ">
-          <div className="text-md cursor-pointer sort">Location</div>
-        </Col>
-        <Col lg="3" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center">
-          <div className="text-md cursor-pointer sort">Address</div>
-        </Col>
-        <Col lg="2" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center">
-          <div className="text-md cursor-pointer sort">Actions</div>
-        </Col>
-    </Row>
+  
     <Table>
      <thead>
-      <th scope='col'>Index name</th>
+      <th scope='col'>Index </th>
       <th scope='col'>Mandir Name</th>
       <th scope='col'>Image</th>
       <th scope='col'>Details</th>
       <th scope='col'>Location</th>
       <th scope='col'>Address</th>
+      <th scope='col'>Actions</th>
+      
      </thead>
       <tbody>
       {mandir && mandir.map((data, index) => (
-        <Card key={data._id} className='my-2 '>
-          <Card.Body>
-            <Row className="g-0 h-100 align-content-center">
-              <Col xs="6" lg="1" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 align-items-lg-center">
-                <div  className="text-muted text-small d-lg-none">Index No.</div>
-                <div className="text-alternate">{index + 1}</div>
-              </Col>
-              <Col xs="6" lg="2" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 align-items-lg-center">
-                <div  className="text-muted text-small d-lg-none">Mandir Name</div>
-                <div className="text-alternate">{data.name}</div>
-              </Col>
-              <Col xs="6" lg="2" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-2 order-lg-2 align-items-lg-center">
-                <div  className="text-muted text-small d-lg-none">Details</div>
-                <div className="text-alternate">{data.details}</div>
-              </Col>
-              <Col xs="6" lg="2" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-3 order-lg-3 align-items-lg-center">
-                <div  className="text-muted text-small d-lg-none">Location</div>
-                <div className="text-alternate">{data.location}</div>
-              </Col>
-              <Col xs="6" lg="2" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-4 align-items-lg-center">
-                <div  className="text-muted text-small d-lg-none">Address</div>
-                <div className="text-alternate">{data.address}</div>
-              </Col>
-              <Col xs="1" lg="1" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-4 align-items-lg-center">
-                <Button variant='outline-primary' className='me-1'
-                  onClick={() => {
-                  const deletecategory = window.confirm("Delete Guide?");
-                  if (deletecategory) { handleDelete(data._id); }
-                  }}>
-                    <i className="bi bi-trash" />
-                  </Button>
-              </Col>
-              <Col xs="1" lg="1" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-4 align-items-lg-center">
-                <Button variant='outline-primary' className='me-1'
-                  onClick={() => handleEdit(data._id, data.name, data.address, data.location, data.details)}>
-                    <i className="bi bi-pencil-square" />
-                  </Button>
-              </Col>
-              <hr />
-            </Row>
-          </Card.Body>
-        </Card>
+        <tr key={index}>
+          <td>{index+1}</td>
+         <td>{data.name}</td>
+         <td><img src={data.Image} style={{with:"100px",height:"100px"}}></img></td>
+         <td>{data.details}</td>
+         <td>{data.location}</td>
+         <td>{data.address}</td>
+         <td>
+         <Button variant='outline-primary' className='me-1'
+              onClick={() => {
+                   const deletecategory = window.confirm("Delete Guide?");
+                   if (deletecategory) { handleDelete(data._id); }
+                   }}>
+                     <i className="bi bi-trash" />
+                   </Button>
+
+                   <Button variant='outline-primary' className='me-1'
+                 onClick={() => handleEdit(data._id, data.name, data.address, data.location, data.details)}>
+                     <i className="bi bi-pencil-square" />
+                 </Button>
+         </td>
+
+        </tr>
+        // <Card key={data._id} className='my-2 '>
+        //   <Card.Body>
+        //     <Row className="g-0 h-100 align-content-center">
+        //       <Col xs="6" lg="1" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 align-items-lg-center">
+        //         <div  className="text-muted text-small d-lg-none">Index No.</div>
+        //         <div className="text-alternate">{index + 1}</div>
+        //       </Col>
+        //       <Col xs="6" lg="2" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 align-items-lg-center">
+        //         <div  className="text-muted text-small d-lg-none">Mandir Name</div>
+        //         <div className="text-alternate">{data.name}</div>
+        //       </Col>
+        //       <Col xs="6" lg="2" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-2 order-lg-2 align-items-lg-center">
+        //         <div  className="text-muted text-small d-lg-none">Details</div>
+        //         <div className="text-alternate">{data.details}</div>
+        //       </Col>
+        //       <Col xs="6" lg="2" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-3 order-lg-3 align-items-lg-center">
+        //         <div  className="text-muted text-small d-lg-none">Location</div>
+        //         <div className="text-alternate">{data.location}</div>
+        //       </Col>
+        //       <Col xs="6" lg="2" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-4 align-items-lg-center">
+        //         <div  className="text-muted text-small d-lg-none">Address</div>
+        //         <div className="text-alternate">{data.address}</div>
+        //       </Col>
+        //       <Col xs="1" lg="1" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-4 align-items-lg-center">
+        //         <Button variant='outline-primary' className='me-1'
+        //           onClick={() => {
+        //           const deletecategory = window.confirm("Delete Guide?");
+        //           if (deletecategory) { handleDelete(data._id); }
+        //           }}>
+        //             <i className="bi bi-trash" />
+        //           </Button>
+        //       </Col>
+        //       <Col xs="1" lg="1" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-4 align-items-lg-center">
+        //         <Button variant='outline-primary' className='me-1'
+        //           onClick={() => handleEdit(data._id, data.name, data.address, data.location, data.details)}>
+        //             <i className="bi bi-pencil-square" />
+        //           </Button>
+        //       </Col>
+        //       <hr />
+        //     </Row>
+        //   </Card.Body>
+        // </Card>
         
       ))}
       </tbody>

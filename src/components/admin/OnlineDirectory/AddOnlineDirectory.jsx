@@ -75,8 +75,8 @@ function AddOnlineDirectory() {
           <Form.Control  className='my-1' value={mobile} onChange={(e) => setMobile(e.target.value)} id="mobile" type="text" placeholder="Mobile No." />
           <Form.Label className='my-1' htmlFor="url">Website URL</Form.Label>
           <Form.Control  className='my-1' value={url} onChange={(e) => setURL(e.target.value)} id="url" type="text" placeholder="Website URL" />
-          {/* <Form.Label className='my-1' htmlFor="logoimage">Logo Image</Form.Label>
-          <Form.Control  className='my-1' onChange={(e) => setLogoimage(e.target.files[0])} id="logoimage" accept="image/gif, image/jpeg, image/png" type="file"  /> */}
+          <Form.Label className='my-1' htmlFor="logoimage">Logo Image</Form.Label>
+          <Form.Control  className='my-1' onChange={(e) => setLogoimage(e.target.files[0])} id="logoimage" accept="image/gif, image/jpeg, image/png" type="file"  />
         </Form>
         <Button className='my-2' onClick={() => handleDirectory()}>Save</Button>
       </Card.Body>

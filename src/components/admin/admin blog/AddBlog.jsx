@@ -8,7 +8,7 @@ const AddBlog = () => {
   const [blog_title, setBlog_title] = useState('');
   const [blogDescription, setBlogDescription] = useState("");
   const [blog_Date, setBlog_Date] = useState("");
-//const [blog_Image, setBlog_Image] = useState(null);
+const [blog_Image, setBlog_Image] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +17,7 @@ const AddBlog = () => {
 
       const formData = new FormData();
       formData.append('title', blog_title);
-    //   formData.append('images', blog_Image);
+      formData.append('my-images', blog_Image);
       formData.append('description', blogDescription);
       formData.append('date', blog_Date);
 
@@ -71,7 +71,7 @@ const AddBlog = () => {
                         />
                       </div>
 
-                           {/* <div className="col-md-12 position-relative">
+                           <div className="col-md-12 position-relative">
                         <h6 className="my-2">Blog Image</h6>
                         <label className="w-100"
                           htmlFor="image"
@@ -86,7 +86,7 @@ const AddBlog = () => {
                             onChange={(e) => setBlog_Image(e.target.files[0])}
                           />
                         </label>
-                      </div>  */}
+                      </div> 
 
                       <div className="mb-3">
                         <label htmlFor="blogdes" className="form-label" >Blog Description</label>

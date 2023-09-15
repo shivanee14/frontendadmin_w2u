@@ -93,6 +93,9 @@ function ListTourist() {
           <div  className="text-md cursor-pointer sort">Tourist Spot Name</div>
         </Col>
         <Col lg="2" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center">
+          <div className="text-md cursor-pointer sort">Image</div>
+        </Col>
+        <Col lg="2" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center">
           <div className="text-md cursor-pointer sort">Address</div>
         </Col>
         <Col lg="3" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center ">
@@ -113,6 +116,10 @@ function ListTourist() {
               <Col xs="6" lg="3" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 align-items-lg-center">
                 <div  className="text-muted text-small d-lg-none">Tourist Spot</div>
                 <div className="text-alternate">{data.place_name}</div>
+              </Col>
+              <Col xs="6" lg="2" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-2 order-lg-2 align-items-lg-center">
+                <div  className="text-muted text-small d-lg-none">Address</div>
+                <div className="text-alternate"><img src={data.Image} style={{width:'100px',height:"100px"}}></img></div>
               </Col>
               <Col xs="6" lg="2" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-2 order-lg-2 align-items-lg-center">
                 <div  className="text-muted text-small d-lg-none">Address</div>

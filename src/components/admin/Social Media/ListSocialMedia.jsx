@@ -13,11 +13,11 @@ const fetchSocial = async () => {
     try {
       const response = await axios.get(SOCIAL_MEDIA_API);
       setSocials(response.data);
+      console.log(response.data)
     } catch (err) {
       console.log(err.response.data.message || "Error fetching categories");
     }
   };
-
   useEffect(() => {
     fetchSocial();
   }, []);
@@ -100,7 +100,7 @@ const fetchSocial = async () => {
                     <a href={`${data.Image}`} target="_blank">
                       <img
                         className="img-fluid h-100"
-                        src={data.Image}
+                        src={`${data.Image}`} 
                         alt=""
                       />
                     </a>

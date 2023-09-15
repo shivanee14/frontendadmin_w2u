@@ -82,7 +82,7 @@ function AdminSidebar() {
                 Add New +
               </MenuItem>
             </SubMenu>
-            <SubMenu style={{fontWeight: "bold"}}  label="Home Video">
+            <SubMenu style={{fontWeight: "bold"}}  label="Home Image">
               <MenuItem style={{fontWeight: "bold"}} component={<Link to="/admin/list_home_video" />}>
                 List
               </MenuItem>

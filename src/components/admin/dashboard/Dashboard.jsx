@@ -5,9 +5,12 @@ import AdminFooter from "../admin components/admin footer/AdminFooter";
 import AdminSidebar from "../admin components/admin sidebar/AdminSidebar";
 import { ProSidebarProvider } from "react-pro-sidebar";
 
+
 function Dashboard() {
   return (
     <>
+    <div className="your-element" style={{backgroundImage:"url('/barner2.png')",backgroundSize:"cover", position:" relative",backgroundReapeat:"no-repeat"
+ }}>
       <AdminNavbar />
       <div className="container-fluid">
         <div className="row">
@@ -22,6 +25,7 @@ function Dashboard() {
         </div>
       </div>
       <AdminFooter />
+      </div>
     </>
   );
 }
