@@ -13,6 +13,11 @@ function AddTourist() {
 
   const handleTourist = async () => {
 
+    console.log('place_name', touristName);
+    console.log('address', address);
+    console.log('description', desc);
+    console.log('my-images', image);    
+
     const formData = new FormData();
     formData.append('place_name', touristName);
     formData.append('address', address);
