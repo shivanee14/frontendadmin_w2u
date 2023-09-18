@@ -36,11 +36,12 @@ const ListEvent = () => {
   const [eventid, seteventid] = useState("");
   const [eventName, seteventName] = useState("");
   const [eventImage, seteventImage] = useState(null);
+  // const [eventDetailName, setEventDetailName] = useState(null);
   const [eventLocation, seteventLocation] = useState("");
   const [eventAddress, seteventAddress] =useState("");
   const [eventDate, seteventDate] = useState("");
   const [eventTime, seteventTime] = useState("");
-  const [eventDetail ,seteventDetail] = useState("");
+ const [eventDetail ,seteventDetail] = useState("");
   const [eventTicket_price, seteventTicket_price] = useState("");
   const [eventWeb_url, seteventWeb_url] = useState("");
 
@@ -101,14 +102,20 @@ const ListEvent = () => {
             {/* <th scope="col">Id</th> */}
             <th scope="col">Event Name</th>            
             <th scope="col">Event Image</th>
-            <th scope="col">Address</th>
+            <th scope="col">Event DetailName</th>
+            <th scope="col">Expo and Exhibition</th>
             <th scope="col">Location</th>
+            <th scope="col">VenueAddress</th>
             <th scope="col">Date</th>
             <th scope="col">Time</th>
-            <th scope="col">Details</th>
-            <th scope="col">Ticket Price</th>
+            <th scope="col">TicketInformation</th>
+            <th scope="col">OrganizerName</th>
+            <th scope="col">OrganizerAddress</th>
+            <th scope="col">OrganizerLocation</th>
+            <th scope="col">OrganizerMobileno</th>
+            <th scope="col">OrganizerEmail</th>
             <th scope="col">Website URL</th>
-            <th scope="col">Action</th>
+           <th scope="col">Action</th>
             
           </tr>
         </thead>
@@ -130,14 +137,20 @@ const ListEvent = () => {
                     </a>
                   </div>
                 </td>       
-                <td>{data.address}</td>
-                <td>{data.location}</td>
-                <td>{data.date}</td>
-                <td>{data.time}</td> 
-                <td>{data.details}</td>
-                <td>{data.ticket_price}</td>
-                <td>{data.website_url}</td>
-
+                <td>{data.Detail_Name_of_Event}</td>
+                <td>{data.event_Location}</td>
+                <td>{data.Venue_Address}</td>
+                <td>{data.start_date}</td>
+                <td>{data.start_time}</td> 
+                <td>{data.Ticket_Information}</td>
+                <td>{data.event_Website_url}</td>
+                <td>{data.ORGANIZED_by_Name}</td>
+                <td>{data.Organized_HomeAddress}</td>
+                <td>{data.Organized_Location}</td>
+                <td>{data.mobile_no}</td>
+                <td>{data.Email}</td>
+                <td>{data.ORGANIZED_by_Website_url}</td>
+               
                 <td>
                   <div className="d-flex gap-2">
                     <button

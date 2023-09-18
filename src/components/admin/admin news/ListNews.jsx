@@ -114,6 +114,7 @@ function ListNews() {
               <tr  style={{color:"white"}}>
                 <th scope="col">Id</th>
                 <th scope="col">Tile</th>
+                <th scope="col">HeadlineNews</th>
                 <th scope="col">Slug</th>
                 <th scope="col">Category</th>
                 <th scope="col">Content</th>
@@ -131,6 +132,7 @@ function ListNews() {
                   <tr key={index}  style={{color:"white"}}>
                     <td scope="row">{index + 1}</td>
                     <td>{data.title}</td>
+                    <td>{data.headline_news}</td>
                     <td>{data.slug}</td>
                     <td>{data.newsCategory}</td>
                     <td>{data.content}</td>
