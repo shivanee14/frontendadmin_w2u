@@ -10,13 +10,24 @@ const AddEvent = () => {
 
   const [event_image, setEvent_image] = useState(null);
   const [event_Name, setEvent_Name] = useState('');
+  const [event_slug, setEvent_slug] = useState(''); 
+  const [event_DetailName, setEvent_DetailName] = useState('');
   const [event_location, setEvent_location] = useState('');
   const [event_address, setEvent_address] =  useState('');
-  const [event_time, setEvent_time] =  useState('');
-  const [event_date, setEvent_date] =  useState('');
-  const [event_detail, setEvent_detail] =  useState('');
-  const [event_ticket_price, setEvent_ticket_price] =  useState('');
+  const [event_StartTime, setEvent_StartTime] =  useState('');
+  const [event_EndTime, setEvent_EndTime] =  useState('');
+  const [start_date, setStart_date] =  useState('');
+  const [end_date, setEnd_date] =  useState('');
+  const [event_ticket_information, setEvent_ticket_information] =  useState('');
   const [event_web_url, setEvent_web_url] =  useState('');
+  const [event_Exhibitions, setEvent_Exhibitions] =  useState('');
+  const [Organizedby_Name, setOrganizedby_Name] =  useState('');
+  const [Organizedby_Address, setOrganizedby_Address] =  useState('');
+  const [Organizedby_Location, setOrganizedby_Location] =  useState('');
+  const [Organizedby_mobileno, setOrganizedby_mobileno] =  useState('');
+  const [Organizedby_Email, setOrganizedby_Email] =  useState('');
+  const [Organizedby_WebUrl, setOrganizedby_WebUrl] =  useState('');
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,14 +36,25 @@ const AddEvent = () => {
 
       const formData = new FormData();
       formData.append('name', event_Name);
+      formData.append('slug', event_slug);
+      formData.append(' Detail_Name_of_Event', event_DetailName);
       formData.append('my-images', event_image);
-      formData.append('location', event_location);
-     formData.append('address', event_address);
-     formData.append('time', event_time);
-       formData.append('date', event_date);
-      formData.append('details', event_detail);
-      formData.append('ticket_price', event_ticket_price);
-      formData.append('website_url', event_ticket_price);
+      formData.append(' event_Location', event_location);
+      formData.append(' Venue_Address', event_address);
+      formData.append('start_time', event_StartTime);
+      formData.append('end_time', event_EndTime)
+      formData.append('start_date', start_date);
+      formData.append('end_date', end_date);
+      formData.append('Ticket_Information', event_ticket_information);
+      formData.append('event_Website_url', event_web_url);
+      formData.append(' EXPO_AND_EXHIBITIONS_details', event_Exhibitions);
+      formData.append('   ORGANIZED_by_Name', Organizedby_Name);
+      formData.append('  Organized_HomeAddress', Organizedby_Address);
+      formData.append(' Organized_Location',Organizedby_Location);
+      formData.append('  mobile_no', Organizedby_mobileno);
+      formData.append('  Email',Organizedby_Email);
+      formData.append('  ORGANIZED_by_Website_url', Organizedby_WebUrl);
+
       try {
         const response = await axios.post(event_URL, formData, {
           headers: {
@@ -96,8 +118,31 @@ const AddEvent = () => {
                           />
                         </label>
                       </div>
-                     
+                       
+                      <div className="mb-3">
+                        <label htmlFor="location" className="form-label" >Slug</label>
+                        <input
+                          className="form-control"
+                          id="slug"
+                          type="text"
+                          placeholder="Slug"
+                          value={event_slug}
+                          onChange={(e) => setEvent_slug(e.target.value)}
+                        />
+                      </div>
                   
+                      <div className="mb-3">
+                        <label htmlFor="detailname" className="form-label" >DetailName of Event</label>
+                        <input
+                          className="form-control"
+                          id="detailname"
+                          type="text"
+                          placeholder="DetailName of Event"
+                          value={event_DetailName}
+                          onChange={(e) => setEvent_DetailName(e.target.value)}
+                        />
+                      </div>
+                    
                       <div className="mb-3">
                         <label htmlFor="location" className="form-label" >Event Location</label>
                         <input
@@ -109,6 +154,8 @@ const AddEvent = () => {
                           onChange={(e) => setEvent_location(e.target.value)}
                         />
                       </div>
+                      
+                  
 
                       <div className="mb-3">
                         <label htmlFor="address" className="form-label" >Event Address</label>
@@ -122,53 +169,41 @@ const AddEvent = () => {
                         />
                       </div> 
                       <div className="mb-3">
-                        <label htmlFor="date" className="form-label" >Event Date</label>
+                        <label htmlFor="sdate" className="form-label" >Start Date of End </label>
                         <input
                           className="form-control"
-                          id="date"
+                          id="sdate"
                           type="datetime-local"
                           
-                          placeholder="Event date"
-                          value={event_date}
-                          onChange={(e) => setEvent_date(e.target.value)}
+                          placeholder="Start date"
+                          value={event_StartTime}
+                          onChange={(e) => setEvent_StartTime(e.target.value)}
                         />
                       </div>
-
+ 
                       <div className="mb-3">
-                        <label htmlFor="time" className="form-label" >Event Time</label>
+                        <label htmlFor="edate" className="form-label" >Start Date of End </label>
                         <input
                           className="form-control"
-                          id="time"
-                          type="text"
-                          placeholder="Event time"
-                          value={event_time}
-                          onChange={(e) => setEvent_time(e.target.value)}
+                          id="edate"
+                          type="datetime-local"
+                          
+                          placeholder="Start date"
+                          value={event_EndTime}
+                          onChange={(e) => setEvent_EndTime(e.target.value)}
                         />
                       </div>
-
-                     
-
-                      <div className="mb-3">
-                        <label htmlFor="detail" className="form-label" >Event Detail</label>
-                        <input
-                          className="form-control"
-                          id="detail"
-                          type="text"
-                          placeholder="Event Detail"
-                          value={event_detail}
-                          onChange={(e) => setEvent_detail(e.target.value)}
-                        />
-                      </div>
+      
 
                       <div className="mb-3">
                         <label htmlFor="ticket" className="form-label" >Event Ticket</label>
                         <input
                           className="form-control"
                           id="ticket"
-                          type="number"
-                          placeholder="ticket_price"
-                          value={event_ticket_price}
-                          onChange={(e) => setEvent_ticket_price(e.target.value)}
+                          type="text"
+                          placeholder="ticket_info"
+                          value={event_ticket_information}
+                          onChange={(e) => setEvent_ticket_information(e.target.value)}
                         />
                       </div>       
 
@@ -182,7 +217,85 @@ const AddEvent = () => {
                           value={event_web_url}
                           onChange={(e) => setEvent_web_url(e.target.value)}
                         />
-                      </div>       
+                      </div>   
+
+                      <div className="mb-3">
+                        <label htmlFor="exhibitions" className="form-label" >Events Exhibition</label>
+                        <input
+                          className="form-control"
+                          id="exhibitions"
+                          type="text"
+                          placeholder="EventExhibitions"
+                          value={event_Exhibitions}
+                          onChange={(e) => setEvent_Exhibitions(e.target.value)}
+                        />
+                      </div> 
+                      <div className="mb-3">
+                        <label htmlFor="organizedby_Name" className="form-label" >Organizers Name </label>
+                        <input
+                          className="form-control"
+                          id="organizedby_Name"
+                          type="text"
+                          placeholder="Organizers Name"
+                          value={Organizedby_Name}
+                          onChange={(e) => setOrganizedby_Name(e.target.value)}
+                        />
+                      </div> 
+                      <div className="mb-3">
+                        <label htmlFor="orgbyaddress" className="form-label" >Organizers Address</label>
+                        <input
+                          className="form-control"
+                          id="orgbyaddress"
+                          type="text"
+                          placeholder="OrganizedbyAddress"
+                          value={Organizedby_Address}
+                          onChange={(e) => setOrganizedby_Address(e.target.value)}
+                        />
+                      </div> 
+                      <div className="mb-3">
+                        <label htmlFor="web" className="form-label" >Location of Organizers </label>
+                        <input
+                          className="form-control"
+                          id="web"
+                          type="text"
+                          placeholder="Web_url"
+                          value={Organizedby_Location}
+                          onChange={(e) => setOrganizedby_Location(e.target.value)}
+                        />
+                      </div> 
+                      <div className="mb-3">
+                        <label htmlFor="web" className="form-label" >Mobile No</label>
+                        <input
+                          className="form-control"
+                          id="web"
+                          type="number"
+                          placeholder="Organizers mobileno"
+                          value={Organizedby_mobileno}
+                          onChange={(e) => setOrganizedby_mobileno(e.target.value)}
+                        />
+                      </div> 
+                      <div className="mb-3">
+                        <label htmlFor="email" className="form-label" >Email</label>
+                        <input
+                          className="form-control"
+                          id="email"
+                          type="text"
+                          placeholder="Email"
+                          value={Organizedby_Email}
+                          onChange={(e) => setOrganizedby_Email(e.target.value)}
+                        />
+                      </div> 
+                      <div className="mb-3">
+                        <label htmlFor="orgweb" className="form-label" > Web URL</label>
+                        <input
+                          className="form-control"
+                          id="orgweb"
+                          type="text"
+                          placeholder="Web_url"
+                          value={setOrganizedby_WebUrl}
+                          onChange={(e) => setOrganizedby_WebUrl(e.target.value)}
+                        />
+                      </div>     
 
                       <div className="d-flex justify-content-end mt-4">
                         <button

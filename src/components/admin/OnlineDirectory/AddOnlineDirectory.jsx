@@ -36,6 +36,7 @@ function AddOnlineDirectory() {
           "Content-Type": "multipart/form-data",
         },
       });
+      
       if(response){
         toast.success("Directory Details added Successfully");
           setTitle("");
@@ -48,6 +49,7 @@ function AddOnlineDirectory() {
           setURL("");                       
           setLogoimage(null);
       }
+      console.log(response.data)
     }
     catch (error){
       console.error(error);

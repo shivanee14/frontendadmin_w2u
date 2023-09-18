@@ -5,7 +5,7 @@ import AdminFooter from "../admin components/admin footer/AdminFooter";
 import AdminSidebar from "../admin components/admin sidebar/AdminSidebar";
 import { ProSidebarProvider } from "react-pro-sidebar";
 
-
+      
 function Dashboard() {
   return (
     <>

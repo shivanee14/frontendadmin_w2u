@@ -153,7 +153,7 @@ return (<>
       {directory && directory.map((data, index) => (
         <tr key={data._id}>
           <td>{index + 1 } {data.title}</td>
-          {/* <td> <div style={{ height: "50px" }}>
+          <td> <div style={{ height: "50px" }}>
                     <a href={`${data.logoimage}`} target="_blank">
                       <img
                         className="img-fluid h-100"
@@ -161,7 +161,7 @@ return (<>
                         alt=""
                       />
                     </a>
-                  </div></td> */}
+                  </div></td>
           <td>{data.mobileNo}</td>
           <td>{data.email}</td>
           <td>{data.address.text}</td>

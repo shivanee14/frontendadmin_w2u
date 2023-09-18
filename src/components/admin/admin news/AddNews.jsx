@@ -10,6 +10,7 @@ function AddNews() {
 
 
   const [title, setTitle] = useState("");
+  const [headline, setHeadline] = useState("");
   const [slug, setSlug] = useState("");
   const [news_category, setNews_category] = useState("");
   const [content, setContent] = useState("");
@@ -33,6 +34,7 @@ function AddNews() {
     // } else {
     const formData = new FormData();
     formData.append('title', title);
+    formData.append('headline_news', headline);
     formData.append('slug', slug);
     formData.append('content', content);
     formData.append('newsCategory', news_category);
@@ -75,6 +77,10 @@ function AddNews() {
                     <div className="mt-1">
                       <label htmlFor="newsTitle" className="col-auto col-form-label"> Title </label>
                       <input type="text" id="newsTitle" className=" form-control" aria-labelledby="passwordHelpInline" placeholder="Title of the News" onChange={(e) => setTitle(e.target.value)} />
+                    </div>
+                    <div className="mt-1">
+                      <label htmlFor="newshead" className="col-auto col-form-label"> Headline of the News </label>
+                      <input type="text" id="newshead" className=" form-control" aria-labelledby="passwordHelpInline" placeholder="Headline of the News" onChange={(e) => setHeadline(e.target.value)} />
                     </div>
                     <div className="mt-1">
                       <label htmlFor="inputSlug" className="col-auto col-form-label" > Slug </label>
