@@ -85,14 +85,14 @@ function HeaderOffcanvas({ darshan_data }) {
                 </button>
                 <ul className="dropdown-menu" aria-labelledby="darshan">
                   {darshan_data &&
-                    darshan_data.map((item, index) => {
+                    darshan_data?.map((item, index) => {
                       return (
                         <li key={index}>
                           <a
                             className="dropdown-item"
                             href="#"
                             data-bs-toggle="modal"
-                            data-bs-target={`#${item.darshantime_templeName.replace(
+                            data-bs-target={`#${item?.darshantime_templeName?.replace(
                               /\s/g,
                               "_"
                             )}`}

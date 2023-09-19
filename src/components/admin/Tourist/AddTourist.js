@@ -33,7 +33,6 @@ function AddTourist() {
       });
       if(response){
         toast.success("Tourist Place Added Successfully");
-        // console.log("DATA RESPONSE", response.data);
         setTouristName("");
         setAddress("");
         setDesc("");

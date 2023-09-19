@@ -8,8 +8,6 @@ function ListTourist() {
   const TOURIST_API = process.env.REACT_APP_TOURIST_URL;  
   const [tourist, setTourist] = useState([]);
 
-  console.log("hello");
-
   const fetchTourist =  async () => {
     try {
       const response = await axios.get(TOURIST_API);
@@ -47,7 +45,6 @@ function ListTourist() {
       formData.append('address', address);
       formData.append('description', desc);
       formData.append('my-images', image);   
-
       try {
         const response = await axios.put(`${TOURIST_API}/${editId}`, formData, {
           headers: {
@@ -85,7 +82,7 @@ function ListTourist() {
   return (<>
     <div style={{color: "#000000"}}>
     <h4 className='text-center mt-2 mb-4'>List of Tourist Spots</h4>
-    <Row style={{color: "#2B3542", fontWeight: "bold"}} className="mt-2 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort">
+      <Row style={{color: "#2B3542", fontWeight: "bold"}} className="mt-2 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort">
         <Col lg="1" className="d-flex flex-column mb-lg-0 pe-1 d-flex align-items-start">
           <div  className="text-md cursor-pointer sort">Index</div>
         </Col>
@@ -105,6 +102,7 @@ function ListTourist() {
           <div className="text-md cursor-pointer sort">Actions</div>
         </Col>
       </Row>
+
       {tourist && tourist.map((data, index) => (
         <Card key={data._id} className='my-2 '>
           <Card.Body>

@@ -197,18 +197,18 @@ function IndexHeader() {
       {/* models  */}
       <div style={{ clear: "left" }}> </div>
 
-      {darshan_data.map((item, index) => {
+      {darshan_data?.map((item, index) => {
         return (
           <div
             className="modal fade"
-            id={item.darshantime_templeName.replace(/\s/g, "_")}
+            id={item?.darshantime_templeName?.replace(/\s/g, "_")}
             key={index}
           >
             <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
               <div className="modal-content">
                 <div className="modal-header">
                   <h4 className="modal-title">
-                    {item.darshantime_templeName} Darshan
+                    {item?.darshantime_templeName} Darshan
                   </h4>
                   <button
                     type="button"
@@ -228,9 +228,9 @@ function IndexHeader() {
                     </thead>
                     <tbody>
                       <tr>
-                        <td>{item.darshantime_season}</td>
-                        <td>{item.darshantime_opening_time} </td>
-                        <td>{item.darshantime_time}</td>
+                        <td>{item?.darshantime_season}</td>
+                        <td>{item?.darshantime_opening_time} </td>
+                        <td>{item?.darshantime_time}</td>
                       </tr>
                     </tbody>
                   </table>
