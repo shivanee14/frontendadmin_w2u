@@ -2,7 +2,7 @@ Your CSS
 .your-element {
     position: relative;
     z-index: 1;
-    background-image: url('/barner2.png');
+    /* background-image: url('/barner2.png'); */
     background-size: cover;
     background-repeat: no-repeat;
     opacity: 0.8;

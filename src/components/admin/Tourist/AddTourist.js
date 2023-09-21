@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import toast from "react-hot-toast";
 import { Button, Card, Form } from 'react-bootstrap';
+import './tourist.css';
 
 function AddTourist() {
   const TOURIST_API = process.env.REACT_APP_TOURIST_URL;
@@ -45,7 +46,7 @@ function AddTourist() {
   }
 
   return (<>
-    <Card>
+    <Card className=' mt-4'>
       <Card.Body>
         <h4 className='text-center mt-2 mb-4'>Add Tourist Place Details</h4>
         <Form>
